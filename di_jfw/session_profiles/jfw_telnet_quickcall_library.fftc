@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <sessionClass includeTestCase="true" sessionType="jfw_telnet_base.ffsp"/>
+        <language>Python</language>
+    </general>
+    <procedures>
+        <item name="main"/>
+        <item name="GetAttenuation" isPublic="true" isVBlock="true">
+            <description>Get Attenuation</description>
+            <steps>
+                <item guid="46eff95e-7daa-4ea8-a780-137ccdde43b8" action="command" session="[session]" estimatedStepExecutionTime="7.978">
+                    <command>
+                        <body>raa</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>port_number()</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>port_list</storageLocation>
+                                        <storeInAList>true</storeInAList>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>attenuation_level()</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>level_list</storageLocation>
+                                        <storeInAList>true</storeInAList>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                    <emulation useExternalSource="false">
+                        <behavior>
+                            <response>Checksum = 0x229
+Atten #1 = 10dB
+Atten #2 = 95dB
+Atten #3 = 95dB
+Atten #4 = 95dB
+Atten #5 = 95dB
+Atten #6 = 95dB
+Atten #7 = 95dB
+Atten #8 = 95dB
+Atten #9 = 95dB
+Atten #10 = 95dB
+Atten #11 = 95dB
+Atten #12 = 95dB
+Atten #13 = 95dB
+Atten #14 = 95dB
+Atten #15 = 95dB
+Atten #16 = 95dB
+Atten #17 = 95dB
+Atten #18 = 95dB
+Atten #19 = 95dB
+Atten #20 = 95dB
+Atten #21 = 95dB
+Atten #22 = 95dB
+Atten #23 = 95dB
+Atten #24 = 95dB
+Atten #25 = 95dB
+Atten #26 = 95dB
+Atten #27 = 95dB
+Atten #28 = 95dB
+Atten #29 = 95dB
+Atten #30 = 95dB
+Atten #31 = 95dB
+Atten #32 = 95dB
+Atten #33 = 95dB
+Atten #34 = 95dB
+Atten #35 = 95dB
+Atten #36 = 95dB
+Atten #37 = 95dB
+Atten #38 = 95dB
+Atten #39 = 95dB
+Atten #40 = 95dB
+Atten #41 = 95dB
+Atten #42 = 95dB
+Atten #43 = 95dB
+Atten #44 = 95dB
+Atten #45 = 95dB
+Atten #46 = 95dB
+Atten #47 = 95dB
+Atten #48 = 95dB
+
+</response>
+                            <responseType>text</responseType>
+                            <structuredData>
+&lt;structure xmlns:map=&quot;http://www.fnfr.com/svt/mapping&quot;&gt;
+    &lt;isEmpty&gt;false&lt;/isEmpty&gt;
+    &lt;promptName&gt;prompt1&lt;/promptName&gt;
+    &lt;echo&gt;raa&lt;/echo&gt;
+    &lt;prompt&gt;ATTENUATOR&amp;gt;&lt;/prompt&gt;
+&lt;/structure&gt;
+</structuredData>
+                            <aliases>
+                                <item name="isEmpty">
+                                    <queryFormatString>.//isEmpty</queryFormatString>
+                                </item>
+                                <item name="promptName">
+                                    <queryFormatString>.//promptName</queryFormatString>
+                                </item>
+                                <item name="echo">
+                                    <queryFormatString>.//echo</queryFormatString>
+                                </item>
+                                <item name="prompt">
+                                    <queryFormatString>.//prompt</queryFormatString>
+                                </item>
+                            </aliases>
+                            <duration>0.3</duration>
+                        </behavior>
+                    </emulation>
+                </item>
+                <item guid="32a35af2-ab5f-4289-92b0-f29bf8c81e9e" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>build JSON response (using json steps)</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="b09cdf86-1953-42a7-8e33-9f70901af5d6" action="for" useFieldsInCommand="false">
+                            <command>
+                                <body>port, level in zip(port_list, level_list):</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="987af900-12bc-4a8e-b7fb-d2251e2823eb" action="json" useFieldsInCommand="false">
+                                    <command>
+                                        <body>action=&apos;addJsonNode&apos;, editResponseStructure=&apos;true&apos;, pathValue=&apos;{&quot;port[port]&quot;:{&quot;port_number&quot;:&quot;[port]&quot;, &quot;level&quot;:&quot;[level]&quot;}}&apos;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.execution.builtin.json.JsonPropertiesGroup">
+                                        <action inherit="false">addJsonNode</action>
+                                        <pathValue inherit="false" sub="true">{&quot;port[port]&quot;:{&quot;port_number&quot;:&quot;[port]&quot;, &quot;level&quot;:&quot;[level]&quot;}}</pathValue>
+                                        <editResponseStructure inherit="false">true</editResponseStructure>
+                                    </applicationProperties>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <multilineDescription>Get current configured attenuation levels on all ports.
+Returns a block JSON response:
+port_list</multilineDescription>
+            <response>{}</response>
+        </item>
+        <item name="SetAttenuation" isPublic="true">
+            <description>Set Attenuation</description>
+            <steps>
+                <item guid="6e21a152-af98-44fa-ba50-11cfe7c9867d" action="command" session="[session]" estimatedStepExecutionTime="0.031">
+                    <command>
+                        <body>sa [port_number] [level]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+            </steps>
+            <multilineDescription>Set the attenuation on a port</multilineDescription>
+            <arguments>
+                <item name="port_number">
+                    <description>Number of port to configure</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="level">
+                    <description>Desired attenuation level in dB</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+            </arguments>
+        </item>
+        <item name="SetPrompt" isPublic="true">
+            <description>Set Prompt</description>
+            <steps>
+                <item guid="86d4c877-d24e-48a7-a6f6-4aece4c6581d" action="command" session="[session]">
+                    <command>
+                        <body>prompt [prompt]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties">
+                        <completionProperties>
+                            <completeWhen inherit="false">IDLE</completeWhen>
+                        </completionProperties>
+                    </applicationProperties>
+                </item>
+            </steps>
+            <multilineDescription>Set the device&apos;s prompt. Configured at the session level to be automatically executed when connected. </multilineDescription>
+            <arguments>
+                <item name="prompt">
+                    <description>The session&apos;s prompt will be set to this value</description>
+                    <defaultValue>attenuator&gt;</defaultValue>
+                </item>
+            </arguments>
+        </item>
+    </procedures>
+</testCase>

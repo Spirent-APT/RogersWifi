@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tbml xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.teslaalliance.org/trs/tbml/1.0/tbml-core.xsd" xmlns="http://www.teslaalliance.org/trs/tbml/1.0">
+  <header>
+    <name>qc_verification</name>
+    <description></description>
+    <property name="author">alex</property>
+    <property name="dateCreated">2018-11-12T10:34:09.465-06:00</property>
+    <property name="dateModified">2018-11-13T13:56:33.332-05:00</property>
+    <property name="creationTool" vendor="com.fnfr">com.fnfr.itest.topology.tbml.diagram</property>
+    <property name="creationToolVersion" vendor="com.fnfr">7.2.0.201810240214</property>
+  </header>
+  <body>
+    <resources>
+      <resource guid="907a7f19-4a1c-45ab-9276-ff93f203d203" id="resource_0" type="">
+        <boundary height="100" width="100" x="455" y="287"/>
+        <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Device_generic_32.gif</property>
+        <property name="name">JFW</property>
+        <property name="inventoryName"/>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="telnet" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+              <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                <ipAddress inherit="false">172.30.245.80</ipAddress>
+                <port inherit="false">3001</port>
+                <TerminalProperties>
+                  <captureProperties>
+                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                  </captureProperties>
+                </TerminalProperties>
+              </sessionProperties>
+              <baseProfile>project://di_jfw/session_profiles/jfw_telnet_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+      </resource>
+    </resources>
+    <connectivity/>
+  </body>
+  <illustration>
+    <layer/>
+  </illustration>
+</tbml>

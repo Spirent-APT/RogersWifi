@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <language>Python</language>
+    </general>
+    <testbed>project://ai_attenuator_testing/topologies/qc_verification.tbml</testbed>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="222e625d-2ed8-4bd7-9168-052d3405ddf7" action="open" session="s1">
+                    <command>
+                        <body>device:JFW#telnet</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                        <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties">
+                            <completionProperties>
+                                <completeWhen inherit="false">IDLE</completeWhen>
+                            </completionProperties>
+                        </stepProperties>
+                        <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                            <TerminalProperties>
+                                <captureProperties>
+                                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                </captureProperties>
+                            </TerminalProperties>
+                        </sessionProperties>
+                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                    </applicationProperties>
+                    <emulation emulate="ALWAYS"/>
+                </item>
+                <item guid="55228f18-bace-4fa3-b0b1-8ebdcfd6fad1" action="SetPrompt" session="s1" useFieldsInCommand="false">
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                    <emulation emulate="ALWAYS"/>
+                </item>
+                <item guid="6b67c822-0b1f-4aca-a8d3-44d3fd9d8de5" action="SetAttenuation" session="s1" useFieldsInCommand="false">
+                    <command>
+                        <body> -port_number 1 -level 10</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                    <emulation emulate="ALWAYS"/>
+                </item>
+                <item guid="bb3175b0-035a-4b9d-8ad8-2315ba13d103" action="GetAttenuation" session="s1" useFieldsInCommand="false">
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>level_by_port(&apos;5&apos;)</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="assert">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.AssertionPropertyGroup">
+                                        <expression>int(value) == 95</expression>
+                                        <actionsWhenTrue>
+                                            <item actionId="PassTestIfNotAlreadyFailed">
+                                                <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                            </item>
+                                            <item actionId="DeclareExecutionIssue">
+                                                <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup" severity="OK">
+                                                    <message>{auto_message_true}</message>
+                                                </actionProperties>
+                                            </item>
+                                        </actionsWhenTrue>
+                                        <actionsWhenFalse>
+                                            <item actionId="FailTest">
+                                                <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                            </item>
+                                            <item actionId="DeclareExecutionIssue">
+                                                <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup">
+                                                    <message>{auto_message_false}</message>
+                                                </actionProperties>
+                                            </item>
+                                        </actionsWhenFalse>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                    <emulation emulate="ALWAYS" useExternalSource="false"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>

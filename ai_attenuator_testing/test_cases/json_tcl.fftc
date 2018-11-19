@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <procedures>
+        <item name="main" isVBlock="true">
+            <steps>
+                <item guid="11f1a975-a53f-48ae-aea1-3e14eba0c4b8" action="json" useFieldsInCommand="false">
+                    <command>
+                        <body>-action addJsonNode -editResponseStructure true -pathValue {&quot;key0&quot;:{&quot;childKey&quot;:&quot;value1&quot;}}</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.builtin.json.JsonPropertiesGroup">
+                        <action inherit="false">addJsonNode</action>
+                        <pathValue inherit="false">{&quot;key0&quot;:{&quot;childKey&quot;:&quot;value1&quot;}}</pathValue>
+                        <editResponseStructure inherit="false">true</editResponseStructure>
+                    </applicationProperties>
+                </item>
+                <item guid="d871f93b-be6c-4955-a8ea-dfefc0613606" action="json" useFieldsInCommand="false">
+                    <command>
+                        <body>-action addJsonNode -editResponseStructure true -pathValue {&quot;key1&quot;:{&quot;childKey&quot;:&quot;value2&quot;}}</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.builtin.json.JsonPropertiesGroup">
+                        <action inherit="false">addJsonNode</action>
+                        <pathValue inherit="false">{&quot;key1&quot;:{&quot;childKey&quot;:&quot;value2&quot;}}</pathValue>
+                        <editResponseStructure inherit="false">true</editResponseStructure>
+                    </applicationProperties>
+                </item>
+            </steps>
+            <response>{&quot;key&quot;:{}}</response>
+        </item>
+    </procedures>
+</testCase>

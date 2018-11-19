@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<ResponseMap version="7.2.0.201811011532">
+    <responseStructure>application/json</responseStructure>
+    <sampleDictionary>
+        <item name="sample1">
+            <action actionType="GetAttenuation"/>
+            <responseBody>{&quot;port1&quot;:{&quot;port_number&quot;:&quot;1&quot;,&quot;level&quot;:&quot;10&quot;},&quot;port2&quot;:{&quot;port_number&quot;:&quot;2&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port3&quot;:{&quot;port_number&quot;:&quot;3&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port4&quot;:{&quot;port_number&quot;:&quot;4&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port5&quot;:{&quot;port_number&quot;:&quot;5&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port6&quot;:{&quot;port_number&quot;:&quot;6&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port7&quot;:{&quot;port_number&quot;:&quot;7&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port8&quot;:{&quot;port_number&quot;:&quot;8&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port9&quot;:{&quot;port_number&quot;:&quot;9&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port10&quot;:{&quot;port_number&quot;:&quot;10&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port11&quot;:{&quot;port_number&quot;:&quot;11&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port12&quot;:{&quot;port_number&quot;:&quot;12&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port13&quot;:{&quot;port_number&quot;:&quot;13&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port14&quot;:{&quot;port_number&quot;:&quot;14&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port15&quot;:{&quot;port_number&quot;:&quot;15&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port16&quot;:{&quot;port_number&quot;:&quot;16&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port17&quot;:{&quot;port_number&quot;:&quot;17&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port18&quot;:{&quot;port_number&quot;:&quot;18&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port19&quot;:{&quot;port_number&quot;:&quot;19&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port20&quot;:{&quot;port_number&quot;:&quot;20&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port21&quot;:{&quot;port_number&quot;:&quot;21&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port22&quot;:{&quot;port_number&quot;:&quot;22&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port23&quot;:{&quot;port_number&quot;:&quot;23&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port24&quot;:{&quot;port_number&quot;:&quot;24&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port25&quot;:{&quot;port_number&quot;:&quot;25&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port26&quot;:{&quot;port_number&quot;:&quot;26&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port27&quot;:{&quot;port_number&quot;:&quot;27&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port28&quot;:{&quot;port_number&quot;:&quot;28&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port29&quot;:{&quot;port_number&quot;:&quot;29&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port30&quot;:{&quot;port_number&quot;:&quot;30&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port31&quot;:{&quot;port_number&quot;:&quot;31&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port32&quot;:{&quot;port_number&quot;:&quot;32&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port33&quot;:{&quot;port_number&quot;:&quot;33&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port34&quot;:{&quot;port_number&quot;:&quot;34&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port35&quot;:{&quot;port_number&quot;:&quot;35&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port36&quot;:{&quot;port_number&quot;:&quot;36&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port37&quot;:{&quot;port_number&quot;:&quot;37&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port38&quot;:{&quot;port_number&quot;:&quot;38&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port39&quot;:{&quot;port_number&quot;:&quot;39&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port40&quot;:{&quot;port_number&quot;:&quot;40&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port41&quot;:{&quot;port_number&quot;:&quot;41&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port42&quot;:{&quot;port_number&quot;:&quot;42&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port43&quot;:{&quot;port_number&quot;:&quot;43&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port44&quot;:{&quot;port_number&quot;:&quot;44&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port45&quot;:{&quot;port_number&quot;:&quot;45&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port46&quot;:{&quot;port_number&quot;:&quot;46&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port47&quot;:{&quot;port_number&quot;:&quot;47&quot;,&quot;level&quot;:&quot;95&quot;},&quot;port48&quot;:{&quot;port_number&quot;:&quot;48&quot;,&quot;level&quot;:&quot;95&quot;}}</responseBody>
+            <contentType>text</contentType>
+            <structuredData>
+&lt;structure xmlns:map=&quot;http://www.fnfr.com/svt/mapping&quot;&gt;
+    &lt;isEmpty&gt;false&lt;/isEmpty&gt;
+    &lt;responseLine&gt;{&amp;quot;port1&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;10&amp;quot;},&amp;quot;port2&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;2&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port3&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;3&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port4&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;4&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port5&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;5&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port6&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;6&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port7&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;7&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port8&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;8&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port9&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;9&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port10&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;10&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port11&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;11&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port12&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;12&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port13&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;13&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port14&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;14&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port15&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;15&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port16&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;16&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port17&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;17&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port18&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;18&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port19&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;19&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port20&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;20&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port21&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;21&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port22&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;22&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port23&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;23&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port24&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;24&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port25&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;25&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port26&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;26&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port27&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;27&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port28&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;28&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port29&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;29&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port30&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;30&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port31&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;31&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port32&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;32&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port33&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;33&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port34&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;34&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port35&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;35&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port36&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;36&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port37&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;37&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port38&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;38&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port39&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;39&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port40&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;40&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port41&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;41&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port42&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;42&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port43&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;43&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port44&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;44&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port45&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;45&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port46&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;46&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port47&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;47&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;},&amp;quot;port48&amp;quot;:{&amp;quot;port_number&amp;quot;:&amp;quot;48&amp;quot;,&amp;quot;level&amp;quot;:&amp;quot;95&amp;quot;}}&lt;/responseLine&gt;
+    &lt;definedIn&gt;project://di_jfw/session_profiles/jfw_telnet_quickcall_library.fftc&lt;/definedIn&gt;
+&lt;/structure&gt;
+</structuredData>
+            <aliases>
+                <item name="isEmpty">
+                    <queryFormatString>.//isEmpty</queryFormatString>
+                </item>
+                <item name="responseLine">
+                    <queryFormatString>.//responseLine</queryFormatString>
+                </item>
+                <item name="definedIn">
+                    <queryFormatString>.//definedIn</queryFormatString>
+                    <source>Kernel</source>
+                </item>
+                <item name="port9">
+                    <queryFormatString>mapped/Json/port9</queryFormatString>
+                </item>
+                <item name="port7">
+                    <queryFormatString>mapped/Json/port7</queryFormatString>
+                </item>
+                <item name="port8">
+                    <queryFormatString>mapped/Json/port8</queryFormatString>
+                </item>
+                <item name="port5">
+                    <queryFormatString>mapped/Json/port5</queryFormatString>
+                </item>
+                <item name="port6">
+                    <queryFormatString>mapped/Json/port6</queryFormatString>
+                </item>
+                <item name="port3">
+                    <queryFormatString>mapped/Json/port3</queryFormatString>
+                </item>
+                <item name="port4">
+                    <queryFormatString>mapped/Json/port4</queryFormatString>
+                </item>
+                <item name="port40">
+                    <queryFormatString>mapped/Json/port40</queryFormatString>
+                </item>
+                <item name="port1">
+                    <queryFormatString>mapped/Json/port1</queryFormatString>
+                </item>
+                <item name="port41">
+                    <queryFormatString>mapped/Json/port41</queryFormatString>
+                </item>
+                <item name="port2">
+                    <queryFormatString>mapped/Json/port2</queryFormatString>
+                </item>
+                <item name="port20">
+                    <queryFormatString>mapped/Json/port20</queryFormatString>
+                </item>
+                <item name="port42">
+                    <queryFormatString>mapped/Json/port42</queryFormatString>
+                </item>
+                <item name="port10">
+                    <queryFormatString>mapped/Json/port10</queryFormatString>
+                </item>
+                <item name="port32">
+                    <queryFormatString>mapped/Json/port32</queryFormatString>
+                </item>
+                <item name="port11">
+                    <queryFormatString>mapped/Json/port11</queryFormatString>
+                </item>
+                <item name="port33">
+                    <queryFormatString>mapped/Json/port33</queryFormatString>
+                </item>
+                <item name="port12">
+                    <queryFormatString>mapped/Json/port12</queryFormatString>
+                </item>
+                <item name="port34">
+                    <queryFormatString>mapped/Json/port34</queryFormatString>
+                </item>
+                <item name="port13">
+                    <queryFormatString>mapped/Json/port13</queryFormatString>
+                </item>
+                <item name="port35">
+                    <queryFormatString>mapped/Json/port35</queryFormatString>
+                </item>
+                <item name="port14">
+                    <queryFormatString>mapped/Json/port14</queryFormatString>
+                </item>
+                <item name="port36">
+                    <queryFormatString>mapped/Json/port36</queryFormatString>
+                </item>
+                <item name="port15">
+                    <queryFormatString>mapped/Json/port15</queryFormatString>
+                </item>
+                <item name="port37">
+                    <queryFormatString>mapped/Json/port37</queryFormatString>
+                </item>
+                <item name="port16">
+                    <queryFormatString>mapped/Json/port16</queryFormatString>
+                </item>
+                <item name="port38">
+                    <queryFormatString>mapped/Json/port38</queryFormatString>
+                </item>
+                <item name="port17">
+                    <queryFormatString>mapped/Json/port17</queryFormatString>
+                </item>
+                <item name="port39">
+                    <queryFormatString>mapped/Json/port39</queryFormatString>
+                </item>
+                <item name="port18">
+                    <queryFormatString>mapped/Json/port18</queryFormatString>
+                </item>
+                <item name="port19">
+                    <queryFormatString>mapped/Json/port19</queryFormatString>
+                </item>
+                <item name="port30">
+                    <queryFormatString>mapped/Json/port30</queryFormatString>
+                </item>
+                <item name="port31">
+                    <queryFormatString>mapped/Json/port31</queryFormatString>
+                </item>
+                <item name="port21">
+                    <queryFormatString>mapped/Json/port21</queryFormatString>
+                </item>
+                <item name="port43">
+                    <queryFormatString>mapped/Json/port43</queryFormatString>
+                </item>
+                <item name="port22">
+                    <queryFormatString>mapped/Json/port22</queryFormatString>
+                </item>
+                <item name="port44">
+                    <queryFormatString>mapped/Json/port44</queryFormatString>
+                </item>
+                <item name="port23">
+                    <queryFormatString>mapped/Json/port23</queryFormatString>
+                </item>
+                <item name="port45">
+                    <queryFormatString>mapped/Json/port45</queryFormatString>
+                </item>
+                <item name="port24">
+                    <queryFormatString>mapped/Json/port24</queryFormatString>
+                </item>
+                <item name="port46">
+                    <queryFormatString>mapped/Json/port46</queryFormatString>
+                </item>
+                <item name="port25">
+                    <queryFormatString>mapped/Json/port25</queryFormatString>
+                </item>
+                <item name="port47">
+                    <queryFormatString>mapped/Json/port47</queryFormatString>
+                </item>
+                <item name="port26">
+                    <queryFormatString>mapped/Json/port26</queryFormatString>
+                </item>
+                <item name="port48">
+                    <queryFormatString>mapped/Json/port48</queryFormatString>
+                </item>
+                <item name="port27">
+                    <queryFormatString>mapped/Json/port27</queryFormatString>
+                </item>
+                <item name="port28">
+                    <queryFormatString>mapped/Json/port28</queryFormatString>
+                </item>
+                <item name="port29">
+                    <queryFormatString>mapped/Json/port29</queryFormatString>
+                </item>
+            </aliases>
+            <duration>8.6</duration>
+        </item>
+    </sampleDictionary>
+    <applicabilityProperties actionType="GetAttenuation"/>
+    <aliases>
+        <item name="level_by_port_number">
+            <queryFormatString>mapped/Json/*[port_number=&apos;{0}&apos;]/level</queryFormatString>
+            <arguments>
+                <item name="port">
+                    <valuesQuery>mapped/Json/*/port_number</valuesQuery>
+                    <interpretAs>SampleValues</interpretAs>
+                </item>
+            </arguments>
+        </item>
+        <item name="port_numbers">
+            <queryFormatString>mapped/Json/*/port_number</queryFormatString>
+        </item>
+    </aliases>
+</ResponseMap>

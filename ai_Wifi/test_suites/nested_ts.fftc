@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<testCase version="7.1.0.201804110601">
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="03e417d5-309a-426b-ab75-20dcd049fba4" action="run">
+                    <command>
+                        <body>new_test_suite.fftc</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup">
+                        <params>ip=10.0.1.1</params>
+                    </applicationProperties>
+                </item>
+                <item guid="b12435b2-9735-4442-9089-985506610b9b" action="run">
+                    <command>
+                        <body>project://ai_Wifi/test_cases/Rate_vs_Range.fftc</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>

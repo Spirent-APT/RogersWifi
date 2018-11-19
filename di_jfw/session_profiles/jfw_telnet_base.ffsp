@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.1.0.201804110601">
+    <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+    <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+        <negOpt inherit="false">false</negOpt>
+        <TerminalProperties>
+            <localEcho inherit="false">true</localEcho>
+            <captureProperties>
+                <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+            </captureProperties>
+            <prompts merge="true">
+                <item name="prompt1">
+                    <Content>ATTENUATOR&gt;</Content>
+                </item>
+            </prompts>
+        </TerminalProperties>
+    </sessionProperties>
+    <responseLibrary inherit="false">project://di_jfw/</responseLibrary>
+    <sessionClassTestCase inherit="false">jfw_telnet_quickcall_library.fftc</sessionClassTestCase>
+    <initializationProcedure inherit="false">SetPrompt</initializationProcedure>
+    <isReferenceProfile>true</isReferenceProfile>
+    <language>Python</language>
+</SessionTemplate>

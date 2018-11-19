@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<testCase version="7.1.0.201804110601">
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="3e0f43eb-e908-472d-bde2-c07c73cf4a66" action="comment">
+                    <command>
+                        <body>Execute a Test case</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="d5c71c12-c559-42dc-a6a9-5865a9f7123a" action="run" skip="true">
+                            <command>
+                                <body>project://ai_Wifi/test_cases/Rate_vs_Range.fftc</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup"/>
+                        </item>
+                        <item guid="31c57de3-0fe9-408f-90c1-eebef142db94" action="run">
+                            <command>
+                                <body>project://ai_Wifi/test_cases/Rate_vs_Range.fftc</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
+                                <specifiedTestbed>project://ai_Wifi/topologies/Rate%20vs%20Range.tbml</specifiedTestbed>
+                            </applicationProperties>
+                        </item>
+                        <item guid="585366ab-bdb8-48fe-afbf-ca9092d89476" action="run">
+                            <command>
+                                <body>project://ai_Wifi/test_cases/Rate_vs_Range.fftc</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup"/>
+                        </item>
+                        <item guid="516ca6f1-967d-4470-83f6-8cf98f6bcfe7" action="run" skip="true">
+                            <command>
+                                <body>project://ai_Wifi/test_cases/Rate_vs_Range.fftc</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                    <useFieldsInCommand>false</useFieldsInCommand>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>

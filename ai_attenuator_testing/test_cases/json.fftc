@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <language>Python</language>
+    </general>
+    <procedures>
+        <item name="main" isVBlock="true">
+            <steps>
+                <item guid="582d6257-5e74-43a6-86c1-d01bc27ceaf7" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>numbers = [1,2,3,4,5]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="7e7be83a-ceab-4c37-a4f2-812c1844ad33" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>names = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="9d0440d1-d426-4bf3-a8ea-4945bf630d48" action="for" useFieldsInCommand="false">
+                    <command>
+                        <body>name, number in zip(numbers, names):</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="1e5b6274-af73-4f90-baed-24d17ca4f667" action="json" useFieldsInCommand="false">
+                            <command>
+                                <body>action=&apos;addJsonNode&apos;, editResponseStructure=&apos;true&apos;, pathValue=&apos;{&quot;ports/[number]&quot;:{&quot;name&quot;:&quot;[name]&quot;}}&apos;</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.builtin.json.JsonPropertiesGroup">
+                                <action inherit="false">addJsonNode</action>
+                                <pathValue inherit="false" sub="true">{&quot;ports/[number]&quot;:{&quot;name&quot;:&quot;[name]&quot;}}</pathValue>
+                                <editResponseStructure inherit="false">true</editResponseStructure>
+                            </applicationProperties>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="1068d08c-9e88-4739-8416-81dc60a4d672" action="json" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>action=&apos;addJsonNode&apos;, editResponseStructure=&apos;true&apos;, pathValue=&apos;{&quot;key/[0]&quot;:{&quot;childKey&quot;:&quot;value1&quot;}}&apos;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.builtin.json.JsonPropertiesGroup">
+                        <action inherit="false">addJsonNode</action>
+                        <pathValue inherit="false">{&quot;key/[0]&quot;:{&quot;childKey&quot;:&quot;value1&quot;}}</pathValue>
+                        <editResponseStructure inherit="false">true</editResponseStructure>
+                    </applicationProperties>
+                </item>
+                <item guid="f5a06d02-708b-4561-945b-762d3a06daa6" action="json" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>action=&apos;addJsonNode&apos;, editResponseStructure=&apos;true&apos;, pathValue=&apos;{&quot;key/[1]&quot;:{&quot;childKey&quot;:&quot;value2&quot;}}&apos;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.builtin.json.JsonPropertiesGroup">
+                        <action inherit="false">addJsonNode</action>
+                        <pathValue inherit="false">{&quot;key/[1]&quot;:{&quot;childKey&quot;:&quot;value2&quot;}}</pathValue>
+                        <editResponseStructure inherit="false">true</editResponseStructure>
+                    </applicationProperties>
+                </item>
+            </steps>
+            <response>{&quot;ports&quot;:{}}</response>
+        </item>
+    </procedures>
+</testCase>
