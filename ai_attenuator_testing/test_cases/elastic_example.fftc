@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <language>Python</language>
+    </general>
+    <testbed>project://ai_attenuator_testing/topologies/elastic.tbml</testbed>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="17b65215-578e-4ee2-95be-a2d87a50912a" action="open" session="es" useFieldsInCommand="false">
+                    <command>
+                        <body>device:elastic#REST</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                        <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties"/>
+                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                    </applicationProperties>
+                </item>
+                <item guid="9c54105e-fa62-4b3f-bd0f-79d5303456cc" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>import json</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="c853d3e4-bc89-42d5-aa8c-cb22c72415c9" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>data_var = &apos;{&quot;data_point_name&quot;:&quot;foo&quot;,  &quot;data_point_value&quot;:&quot;1.0&quot;}&apos;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="048a6930-35d2-4e32-ac93-d3cd98dc477a" action="eval" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>data_json = json.loads(data_var)</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="5111e92b-58d3-436f-8b12-0c9a70e09f32" action="AddDocument" session="es" useFieldsInCommand="false">
+                    <command>
+                        <body> -elastic_user user -elastic_password pass -index test -type _doc -data [data_var]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>

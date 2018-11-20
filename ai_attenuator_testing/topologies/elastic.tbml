@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tbml xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.teslaalliance.org/trs/tbml/1.0/tbml-core.xsd" xmlns="http://www.teslaalliance.org/trs/tbml/1.0">
+  <header>
+    <name>elastic</name>
+    <description></description>
+    <property name="author">alex</property>
+    <property name="dateCreated">2018-11-20T12:59:11.403-05:00</property>
+    <property name="dateModified">2018-11-20T13:05:07.587-05:00</property>
+    <property name="creationTool" vendor="com.fnfr">com.fnfr.itest.topology.tbml.diagram</property>
+    <property name="creationToolVersion" vendor="com.fnfr">7.2.0.201810240214</property>
+  </header>
+  <body>
+    <resources>
+      <resource guid="48e302b0-1b8b-4b81-ab01-6a08d2a18cc8" id="resource_0" type="server">
+        <boundary height="100" width="100" x="284" y="195"/>
+        <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/server_32.gif</property>
+        <property name="name">elastic</property>
+        <property name="inventoryName"></property>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="REST" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.itest.applications.webservices.restful</baseApplication>
+              <sessionProperties transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties" type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" url="http://172.30.245.81:9200" url.inherit="false"/>
+              <baseProfile>project://di_Elasticsearch/session_profiles/Elasticsearch_Rest_Base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+      </resource>
+    </resources>
+    <connectivity/>
+  </body>
+  <illustration>
+    <layer/>
+  </illustration>
+</tbml>
