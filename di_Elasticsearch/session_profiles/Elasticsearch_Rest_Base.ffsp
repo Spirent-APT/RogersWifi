@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.2.0.201811011532">
+    <baseApplication>com.fnfr.itest.applications.webservices.restful</baseApplication>
+    <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties">
+        <httpHeader inherit="false" transferableToolId="com.fnfr.itest.applications.webservices.restful">
+            <memberClasses>
+                <item>com.fnfr.itest.applications.webservices.properties.HTTPHeaderEntry</item>
+            </memberClasses>
+            <item transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.HTTPHeaderEntry" header="Content-Type" header.inherit="false" value="application/json" value.inherit="false"/>
+        </httpHeader>
+    </sessionProperties>
+    <responseLibrary inherit="false">project://di_Elasticsearch/</responseLibrary>
+    <formMapLibrary inherit="false">project://di_Elasticsearch/</formMapLibrary>
+    <sessionClassTestCase inherit="false">Elasticsearch_Rest_Quickcalls.fftc</sessionClassTestCase>
+    <isReferenceProfile>true</isReferenceProfile>
+    <language>Python</language>
+</SessionTemplate>
