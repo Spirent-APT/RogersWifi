@@ -5,7 +5,7 @@
     <description></description>
     <property name="author">Chris Graham</property>
     <property name="dateCreated">2017-09-07T15:01:24.261-04:00</property>
-    <property name="dateModified">2018-11-27T13:24:55.946-05:00</property>
+    <property name="dateModified">2018-11-28T12:10:14.238-05:00</property>
     <property name="creationTool" vendor="com.fnfr">com.fnfr.itest.topology.tbml.diagram</property>
     <property name="creationToolVersion" vendor="com.fnfr">7.2.0.201810240214</property>
   </header>
@@ -244,6 +244,9 @@
               <sessionProfile version="7.2.0.201811011532">
                 <baseApplication>com.fnfr.svt.applications.cmd</baseApplication>
                 <sessionProperties type="com.fnfr.svt.applications.cmd.CmdSessionProperties"/>
+                <baseProfile>project://di_octobox/session_profiles/octobox_cmd_base.ffsp</baseProfile>
+                <standalone>false</standalone>
+                <language>Python</language>
               </sessionProfile>
             </session>
           </extensions>
@@ -253,7 +256,7 @@
         <boundary height="100" width="100" x="96" y="312"/>
         <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Device_generic_32.gif</property>
         <property name="name">ChannelEmulator</property>
-        <property name="inventoryName"></property>
+        <property name="inventoryName"/>
         <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
           <session baseSessionProfile="" name="telnet" provider="com.fnfr">
             <sessionProfile version="7.2.0.201811011532">
@@ -275,11 +278,11 @@
         </extensions>
         <resource guid="6fb937e4-9251-4c92-a9cb-451df4befc1e" id="resource_14_0" type="port">
           <property name="name">port1</property>
-          <property name="inventoryName"></property>
+          <property name="inventoryName"/>
         </resource>
         <resource guid="e6845dc4-2ab4-472b-80b3-567ece4d0475" id="resource_14_1" type="port">
           <property name="name">port2</property>
-          <property name="inventoryName"></property>
+          <property name="inventoryName"/>
         </resource>
       </resource>
     </resources>

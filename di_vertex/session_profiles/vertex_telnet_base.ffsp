@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.2.0.201811011532">
+    <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+    <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+        <TerminalProperties>
+            <captureProperties>
+                <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+            </captureProperties>
+        </TerminalProperties>
+    </sessionProperties>
+    <responseLibrary inherit="false">project://di_vertex/</responseLibrary>
+    <formMapLibrary inherit="false">project://di_vertex/</formMapLibrary>
+    <sessionClassTestCase inherit="false">project://di_vertex/session_profiles/vertex_telnet_quickcall_library.fftc</sessionClassTestCase>
+    <isReferenceProfile>true</isReferenceProfile>
+</SessionTemplate>

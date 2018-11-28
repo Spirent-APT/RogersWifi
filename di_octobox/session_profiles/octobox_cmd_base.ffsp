@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.2.0.201811011532">
+    <baseApplication>com.fnfr.svt.applications.cmd</baseApplication>
+    <sessionProperties type="com.fnfr.svt.applications.cmd.CmdSessionProperties"/>
+    <responseLibrary inherit="false">project://di_octobox/</responseLibrary>
+    <sessionClassTestCase inherit="false">project://di_octobox/session_profiles/octobox_cmd_quickcall_library.fftc</sessionClassTestCase>
+    <isReferenceProfile>true</isReferenceProfile>
+</SessionTemplate>

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<testCase version="7.1.0.201804110601">
+<testCase version="7.2.0.201811011532">
     <procedures>
         <item name="main">
             <steps>
-                <item guid="3e0f43eb-e908-472d-bde2-c07c73cf4a66" action="comment">
+                <item guid="3e0f43eb-e908-472d-bde2-c07c73cf4a66" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Execute a Test case</body>
                     </command>
@@ -19,7 +19,7 @@
                                 <body>project://ai_Wifi/test_cases/Rate_vs_Range.fftc</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
-                                <specifiedTestbed>project://ai_Wifi/topologies/Rate%20vs%20Range.tbml</specifiedTestbed>
+                                <specifiedTestbed>project://ai_Wifi/topologies/AlexWifi.tbml</specifiedTestbed>
                             </applicationProperties>
                         </item>
                         <item guid="585366ab-bdb8-48fe-afbf-ca9092d89476" action="run">
@@ -36,7 +36,6 @@
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
             </steps>
         </item>

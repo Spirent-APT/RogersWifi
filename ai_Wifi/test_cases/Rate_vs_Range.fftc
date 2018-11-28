@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<testCase version="7.1.0.201804110601">
+<testCase version="7.2.0.201811011532">
     <execution>
-        <parameters version="7.1.0.201804110601">
+        <parameters version="7.2.0.201811011532">
             <parameters escape="true">
                 <parameters xmlns:pt="http://www.fnfr.com/schemas/parameterTree">
                     <Attenuation_start pt:description="Starting  db ">0</Attenuation_start>
@@ -13,7 +13,7 @@
             </parameters>
         </parameters>
     </execution>
-    <testbed>project://ai_Wifi/topologies/Rate%20vs%20Range.tbml</testbed>
+    <testbed>project://ai_Wifi/topologies/AlexWifi.tbml</testbed>
     <procedures>
         <item name="main">
             <steps>
@@ -22,19 +22,17 @@
                         <body>Initialize Variables</body>
                     </command>
                     <nestedSteps>
-                        <item guid="5189037f-d6bb-4463-bf7c-a8be90617bf1" action="eval">
+                        <item guid="5189037f-d6bb-4463-bf7c-a8be90617bf1" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set mcsActual 0</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="b02ccffd-30b9-4545-bf1b-433f473ba0d5" action="eval">
+                        <item guid="b02ccffd-30b9-4545-bf1b-433f473ba0d5" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set mcsActualLong 0</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -46,7 +44,7 @@
                     <nestedSteps>
                         <item guid="745ce373-61bb-4a4f-9f62-585f465e7350" action="open" session="STC">
                             <command>
-                                <body>device:STC_Wifi#Spirent_TestCenter</body>
+                                <body>device:TrafficGenerator#Spirent_TestCenter</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                 <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -91,14 +89,13 @@
                         <body>Collect stats and chart</body>
                     </command>
                     <nestedSteps>
-                        <item guid="3f041bd9-9230-47c2-a9b2-7547eb580acc" action="eval">
+                        <item guid="3f041bd9-9230-47c2-a9b2-7547eb580acc" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set i 0</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="54cce715-a2ba-4e51-9bbf-9557badb7e46" action="while">
+                        <item guid="54cce715-a2ba-4e51-9bbf-9557badb7e46" action="while" useFieldsInCommand="false">
                             <command>
                                 <body>$i &lt; 2</body>
                             </command>
@@ -118,6 +115,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>var1</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -130,6 +129,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>var2</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -137,21 +138,19 @@
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="434301b2-b520-41d5-8904-cfd00a595400" action="eval">
+                                <item guid="434301b2-b520-41d5-8904-cfd00a595400" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set value1 [expr $var1 / 1000000] </body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="a553d77c-acd6-4329-866b-e052ca4b5373" action="eval">
+                                <item guid="a553d77c-acd6-4329-866b-e052ca4b5373" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set value2 [expr $var2 / 1000000] </body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="2e25b80b-cbb7-4a0f-814d-3e5da8d3d4c1" action="eval" skip="true">
+                                <item guid="2e25b80b-cbb7-4a0f-814d-3e5da8d3d4c1" action="eval" skip="true" useFieldsInCommand="false">
                                     <command>
                                         <body>get $value1</body>
                                     </command>
@@ -170,9 +169,8 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="c9530b80-510b-4417-8878-67623dfb2fdd" action="eval" skip="true">
+                                <item guid="c9530b80-510b-4417-8878-67623dfb2fdd" action="eval" skip="true" useFieldsInCommand="false">
                                     <command>
                                         <body>get $value2</body>
                                     </command>
@@ -191,7 +189,6 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                                 <item guid="1fa35b39-f076-46ad-b5f7-c4998601d9c5" action="showResults" session="STC" normalOffset="9.754" estimatedStepExecutionTime="0.55">
                                     <command>
@@ -637,12 +634,11 @@
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="da4b3554-041a-4d99-97b6-210877bdd557" action="eval">
+                                <item guid="da4b3554-041a-4d99-97b6-210877bdd557" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>incr i</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                                 <item guid="3038dcf5-2ca2-479d-b975-537072a5386f" action="sleep">
                                     <command>
@@ -652,7 +648,6 @@
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -668,14 +663,13 @@
                             </command>
                             <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup"/>
                         </item>
-                        <item guid="6c88af83-1927-4fc3-af63-270e202924a5" action="eval">
+                        <item guid="6c88af83-1927-4fc3-af63-270e202924a5" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set i 0</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="d240bf9d-4398-4250-ad3f-43d1c83eb07b" action="while">
+                        <item guid="d240bf9d-4398-4250-ad3f-43d1c83eb07b" action="while" useFieldsInCommand="false">
                             <command>
                                 <body>$i &lt; 5</body>
                             </command>
@@ -695,6 +689,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>var1</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -707,6 +703,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>var2</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -714,21 +712,19 @@
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="bc728b9e-5043-4e48-bf66-eb6d7592cd3e" action="eval">
+                                <item guid="bc728b9e-5043-4e48-bf66-eb6d7592cd3e" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set value1 [expr $var1 / 1000000] </body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="f62c64ce-3de6-40e9-915a-c48d9fce0274" action="eval">
+                                <item guid="f62c64ce-3de6-40e9-915a-c48d9fce0274" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set value2 [expr $var2 / 1000000] </body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="5cf8fa79-18cd-4934-af22-1a0a99932f86" action="eval" skip="true">
+                                <item guid="5cf8fa79-18cd-4934-af22-1a0a99932f86" action="eval" skip="true" useFieldsInCommand="false">
                                     <command>
                                         <body>get $value1</body>
                                     </command>
@@ -747,9 +743,8 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="c266b4be-4eb8-45d3-8179-9a47b5494fcb" action="eval" skip="true">
+                                <item guid="c266b4be-4eb8-45d3-8179-9a47b5494fcb" action="eval" skip="true" useFieldsInCommand="false">
                                     <command>
                                         <body>get $value2</body>
                                     </command>
@@ -800,7 +795,6 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                                 <item guid="de3348ed-a4d9-4155-8c6c-1dd500fc24cf" action="showResults" session="STC" normalOffset="9.754" estimatedStepExecutionTime="0.55">
                                     <command>
@@ -1252,16 +1246,14 @@
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="d09fc033-fa8c-4d74-a649-a67f028b395a" action="eval">
+                                <item guid="d09fc033-fa8c-4d74-a649-a67f028b395a" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>incr i</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -1282,14 +1274,13 @@
                         <body>Collect final stats and complete chart</body>
                     </command>
                     <nestedSteps>
-                        <item guid="02393b4f-4401-4b70-be11-61bc655b7aff" action="eval">
+                        <item guid="02393b4f-4401-4b70-be11-61bc655b7aff" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set i 0</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="3156b05a-30fc-4da8-83cf-0c54ad2c0f49" action="while">
+                        <item guid="3156b05a-30fc-4da8-83cf-0c54ad2c0f49" action="while" useFieldsInCommand="false">
                             <command>
                                 <body>$i &lt; 3</body>
                             </command>
@@ -1309,6 +1300,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>var1</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -1321,6 +1314,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>var2</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -1328,21 +1323,19 @@
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="4b1e29bc-8c32-46bd-afa0-0412e39fe80a" action="eval">
+                                <item guid="4b1e29bc-8c32-46bd-afa0-0412e39fe80a" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set value1 [expr $var1 / 1000000] </body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="61700a9d-6f1e-42c9-98b0-d92f17f41983" action="eval">
+                                <item guid="61700a9d-6f1e-42c9-98b0-d92f17f41983" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set value2 [expr $var2 / 1000000] </body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="f534b951-b486-40b4-8a88-94c17a3880b1" action="eval" skip="true">
+                                <item guid="f534b951-b486-40b4-8a88-94c17a3880b1" action="eval" skip="true" useFieldsInCommand="false">
                                     <command>
                                         <body>get $value1</body>
                                     </command>
@@ -1361,9 +1354,8 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="f0f0a57a-2da1-4cb4-8273-c34263a10501" action="eval" skip="true">
+                                <item guid="f0f0a57a-2da1-4cb4-8273-c34263a10501" action="eval" skip="true" useFieldsInCommand="false">
                                     <command>
                                         <body>get $value2</body>
                                     </command>
@@ -1382,7 +1374,6 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                                 <item guid="aeec7c0e-4ef9-4ba3-bb07-3fa2be7a43a7" action="showResults" session="STC" normalOffset="9.754" estimatedStepExecutionTime="0.55">
                                     <command>
@@ -1834,30 +1825,27 @@
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="0233a49e-7d29-4b68-8c77-dd5bc93d2a5e" action="eval">
+                                <item guid="0233a49e-7d29-4b68-8c77-dd5bc93d2a5e" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>incr i</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="248b581b-9fe5-4995-9fe2-a4e40a6d3ece" action="eval">
+                        <item guid="248b581b-9fe5-4995-9fe2-a4e40a6d3ece" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set i 1</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="a0b424f3-5ef7-491a-bd4b-0744ee668f29" action="while">
+                        <item guid="a0b424f3-5ef7-491a-bd4b-0744ee668f29" action="while" useFieldsInCommand="false">
                             <command>
                                 <body>$i &lt; 12</body>
                             </command>
                             <nestedSteps>
-                                <item guid="127a4267-d952-4acd-b81d-0d94af8d92b9" action="readFile" skip="true" useResponseMapLibraryApplicability="false">
+                                <item guid="127a4267-d952-4acd-b81d-0d94af8d92b9" action="readFile" skip="true" responseMap="project://a_Wifi/parameters/rate_vs_range_csv.ffrm" useResponseMapLibraryApplicability="false" useFieldsInCommand="false">
                                     <command>
                                         <body>project://a_Wifi/parameters/rate_vs_range.csv</body>
                                     </command>
@@ -1872,6 +1860,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>db</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -1903,11 +1893,9 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.execution.builtin.exec.ReadFilePropertyGroup"/>
-                                    <responseMap>project://a_Wifi/parameters/rate_vs_range_csv.ffrm</responseMap>
                                     <useResponseMapLibraryFromSession>false</useResponseMapLibraryFromSession>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="3f674d42-6620-42ad-9d67-86fb939962b6" action="readFile" useResponseMapLibraryApplicability="false">
+                                <item guid="3f674d42-6620-42ad-9d67-86fb939962b6" action="readFile" responseMap="project://ai_Wifi/parameters/rate_vs_range_csv.ffrm" useResponseMapLibraryApplicability="false" useFieldsInCommand="false">
                                     <command>
                                         <body>project://ai_Wifi/parameters/rate_vs_range2.csv</body>
                                     </command>
@@ -1922,6 +1910,8 @@
                                                 <processorInfo ruleType="store">
                                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                         <storageLocation>db</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                                     </ruleProperties>
                                                 </processorInfo>
                                             </item>
@@ -1954,11 +1944,9 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.execution.builtin.exec.ReadFilePropertyGroup"/>
-                                    <responseMap>project://ai_Wifi/parameters/rate_vs_range_csv.ffrm</responseMap>
                                     <useResponseMapLibraryFromSession>false</useResponseMapLibraryFromSession>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="67ec1b01-6ec7-4d98-b3f2-0ced05853f64" action="readFile" useResponseMapLibraryApplicability="false">
+                                <item guid="67ec1b01-6ec7-4d98-b3f2-0ced05853f64" action="readFile" responseMap="project://ai_Wifi/parameters/rate_vs_range_csv.ffrm" useResponseMapLibraryApplicability="false">
                                     <command>
                                         <body>project://ai_Wifi/parameters/rate_vs_range2.csv</body>
                                     </command>
@@ -1993,19 +1981,16 @@
                                         </analysisRules>
                                     </postProcessing>
                                     <applicationProperties type="com.fnfr.svt.execution.builtin.exec.ReadFilePropertyGroup"/>
-                                    <responseMap>project://ai_Wifi/parameters/rate_vs_range_csv.ffrm</responseMap>
                                     <useResponseMapLibraryFromSession>false</useResponseMapLibraryFromSession>
                                 </item>
-                                <item guid="c1fef38c-f329-4a1e-a680-270340613bf0" action="eval">
+                                <item guid="c1fef38c-f329-4a1e-a680-270340613bf0" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>incr i</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -2015,7 +2000,7 @@
                         <body>Close all open devices</body>
                     </command>
                     <nestedSteps>
-                        <item guid="aa053c8c-03fb-4b22-8827-b17d336a3790" action="close" session="STC">
+                        <item guid="aa053c8c-03fb-4b22-8827-b17d336a3790" action="close" session="STC" useFieldsInCommand="false">
                             <postProcessing>
                                 <analysisRules>
                                     <item>
@@ -2053,7 +2038,6 @@
                                 </analysisRules>
                             </postProcessing>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
