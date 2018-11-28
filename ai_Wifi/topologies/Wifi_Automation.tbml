@@ -5,7 +5,7 @@
     <description></description>
     <property name="author">Chris Graham</property>
     <property name="dateCreated">2017-09-07T15:01:24.261-04:00</property>
-    <property name="dateModified">2018-11-19T13:32:37.181-05:00</property>
+    <property name="dateModified">2018-11-27T13:24:55.946-05:00</property>
     <property name="creationTool" vendor="com.fnfr">com.fnfr.itest.topology.tbml.diagram</property>
     <property name="creationToolVersion" vendor="com.fnfr">7.2.0.201810240214</property>
   </header>
@@ -21,7 +21,7 @@
             <sessionProfile version="7.2.0.201811011532">
               <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
               <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
-                <ipAddress inherit="false">172.30.245.62</ipAddress>
+                <ipAddress inherit="false">172.30.245.83</ipAddress>
                 <TerminalProperties>
                   <captureProperties>
                     <commandCompletionchars inherit="false">
@@ -97,7 +97,7 @@
         </resource>
       </resource>
       <resource guid="45da123e-7c43-4f4e-bf21-7696ae92548f" id="resource_12" type="trafficgen">
-        <boundary height="97" width="97" x="48" y="168"/>
+        <boundary height="97" width="97" x="0" y="180"/>
         <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Traffic-Generator_32.gif</property>
         <property name="name">STC</property>
         <property name="inventoryName"/>
@@ -249,13 +249,41 @@
           </extensions>
         </resource>
       </resource>
+      <resource guid="8b1531ee-6717-479b-84f6-52a332fe5e5d" id="resource_14" type="">
+        <boundary height="100" width="100" x="96" y="312"/>
+        <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Device_generic_32.gif</property>
+        <property name="name">ChannelEmulator</property>
+        <property name="inventoryName"></property>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="telnet" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+              <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                <ipAddress inherit="false">172.30.245.80</ipAddress>
+                <port inherit="false">3000</port>
+                <TerminalProperties>
+                  <captureProperties>
+                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                  </captureProperties>
+                </TerminalProperties>
+              </sessionProperties>
+              <baseProfile>project://di_vertex/session_profiles/vertex_telnet_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+        <resource guid="6fb937e4-9251-4c92-a9cb-451df4befc1e" id="resource_14_0" type="port">
+          <property name="name">port1</property>
+          <property name="inventoryName"></property>
+        </resource>
+        <resource guid="e6845dc4-2ab4-472b-80b3-567ece4d0475" id="resource_14_1" type="port">
+          <property name="name">port2</property>
+          <property name="inventoryName"></property>
+        </resource>
+      </resource>
     </resources>
     <connectivity>
-      <link id="link_0">
-        <property name="name">link1</property>
-        <endpoint id="resource_12_0"/>
-        <endpoint id="resource_2_0"/>
-      </link>
       <link id="link_1">
         <property name="name">link2</property>
         <endpoint id="resource_0_0"/>
@@ -265,6 +293,16 @@
         <property name="name">link3</property>
         <endpoint id="resource_0_1"/>
         <endpoint id="resource_3_0"/>
+      </link>
+      <link id="link_3">
+        <property name="name">link4</property>
+        <endpoint id="resource_12_0"/>
+        <endpoint id="resource_14_0"/>
+      </link>
+      <link id="link_4">
+        <property name="name">link5</property>
+        <endpoint id="resource_14_1"/>
+        <endpoint id="resource_2_0"/>
       </link>
     </connectivity>
   </body>
