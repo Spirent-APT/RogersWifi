@@ -5,5 +5,35 @@
     </general>
     <procedures>
         <item name="main"/>
+        <item name="SetTurntablePosition" isPublic="true">
+            <description>Set Turntable Rotation</description>
+            <steps>
+                <item guid="de1315b1-20b4-4c05-ab8b-0446b7b22c27" action="command" session="$session">
+                    <command>
+                        <body>cd [file uriToPath project://di_octobox/executables/]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="5246fd3c-b4d6-4ad9-9d2e-26f5737e7ea7" action="command" session="$session">
+                    <command>
+                        <body>fnPerformaxCmd.exe -d $device_number -p $orientation</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+            </steps>
+            <multilineDescription>Set the turntable rotation to specified degree. Returns a JSON block response</multilineDescription>
+            <arguments>
+                <item name="device_number">
+                    <description>Device number as read by fnPerformax.exe. If only connected to one turn table, use default value of 0.</description>
+                    <defaultValue>0</defaultValue>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="orientation">
+                    <description>Desired orientation in degrees. Use values from -180 to 180. </description>
+                    <isMandatory>true</isMandatory>
+                </item>
+            </arguments>
+            <response>{}</response>
+        </item>
     </procedures>
 </testCase>
