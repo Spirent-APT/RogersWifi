@@ -2,10 +2,16 @@
 <SessionTemplate version="7.2.0.201811011532">
     <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
     <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+        <negOpt inherit="false">false</negOpt>
         <TerminalProperties>
             <captureProperties>
                 <detectScreenModeApps inherit="false">false</detectScreenModeApps>
             </captureProperties>
+            <prompts merge="true">
+                <item name="prompt1">
+                    <Content>Vertex&gt;</Content>
+                </item>
+            </prompts>
         </TerminalProperties>
     </sessionProperties>
     <responseLibrary inherit="false">project://di_vertex/</responseLibrary>
