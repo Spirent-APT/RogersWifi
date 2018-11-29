@@ -5,7 +5,7 @@
     </general>
     <procedures>
         <item name="main"/>
-        <item name="SetTurntablePosition" isPublic="true">
+        <item name="SetTurntablePosition" isPublic="true" isVBlock="true">
             <description>Set Turntable Rotation</description>
             <steps>
                 <item guid="de1315b1-20b4-4c05-ab8b-0446b7b22c27" action="command" session="$session">
@@ -18,6 +18,40 @@
                     <command>
                         <body>fnPerformaxCmd.exe -d $device_number -p $orientation</body>
                     </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>Devices_found()</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>var1</storageLocation>
+                                        <query>devices_found</query>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">false</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>Device_Name()</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>var1</storageLocation>
+                                        <query>turntable_name</query>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">false</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                 </item>
             </steps>
@@ -33,7 +67,10 @@
                     <isMandatory>true</isMandatory>
                 </item>
             </arguments>
-            <response>{}</response>
+            <response>{
+  &quot;devices_found&quot;: &quot;value&quot;,
+  &quot;turntable_name&quot;: &quot;value&quot;
+}</response>
         </item>
     </procedures>
 </testCase>
