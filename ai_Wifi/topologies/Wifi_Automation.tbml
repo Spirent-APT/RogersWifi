@@ -5,43 +5,23 @@
     <description></description>
     <property name="author">Chris Graham</property>
     <property name="dateCreated">2017-09-07T15:01:24.261-04:00</property>
-    <property name="dateModified">2018-11-28T12:10:14.238-05:00</property>
+    <property name="dateModified">2018-11-29T09:17:40.171-05:00</property>
     <property name="creationTool" vendor="com.fnfr">com.fnfr.itest.topology.tbml.diagram</property>
     <property name="creationToolVersion" vendor="com.fnfr">7.2.0.201810240214</property>
   </header>
   <body>
     <resources>
       <resource guid="0b61cfbe-9c24-432e-b4b8-b93e22884706" id="resource_2" type="">
-        <boundary height="97" width="97" x="204" y="168"/>
+        <boundary height="97" width="97" x="216" y="192"/>
         <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Device_generic_32.gif</property>
         <property name="name">Attenuator</property>
         <property name="inventoryName"/>
         <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
-          <session baseSessionProfile="" name="Telnet" provider="com.fnfr">
-            <sessionProfile version="7.2.0.201811011532">
-              <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
-              <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
-                <ipAddress inherit="false">172.30.245.83</ipAddress>
-                <TerminalProperties>
-                  <captureProperties>
-                    <commandCompletionchars inherit="false">
-                      <item>0</item>
-                    </commandCompletionchars>
-                  </captureProperties>
-                  <prompts merge="true">
-                    <item name="prompt1">
-                      <Content>Radio Rack&gt;</Content>
-                    </item>
-                  </prompts>
-                </TerminalProperties>
-              </sessionProperties>
-            </sessionProfile>
-          </session>
           <session baseSessionProfile="" name="telnet" provider="com.fnfr">
             <sessionProfile version="7.2.0.201811011532">
               <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
               <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
-                <ipAddress inherit="false">172.30.245.80</ipAddress>
+                <ipAddress inherit="false">172.30.245.83</ipAddress>
                 <port inherit="false">3001</port>
                 <TerminalProperties>
                   <captureProperties>
@@ -97,9 +77,9 @@
         </resource>
       </resource>
       <resource guid="45da123e-7c43-4f4e-bf21-7696ae92548f" id="resource_12" type="trafficgen">
-        <boundary height="97" width="97" x="0" y="180"/>
+        <boundary height="97" width="97" x="48" y="96"/>
         <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Traffic-Generator_32.gif</property>
-        <property name="name">STC</property>
+        <property name="name">TrafficGen</property>
         <property name="inventoryName"/>
         <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
           <session baseSessionProfile="" name="RFC2544_Config_Downstream_UDP" provider="com.fnfr">
@@ -198,6 +178,10 @@
           <property name="name">RF</property>
           <property name="inventoryName"/>
         </resource>
+        <resource guid="eb70ed98-c568-46b2-99e1-685d0147b7a9" id="resource_12_1" type="port">
+          <property name="name">DUT_eth</property>
+          <property name="inventoryName"></property>
+        </resource>
       </resource>
       <resource guid="a23e1b90-28fc-412e-acd4-600c6105fe3a" id="resource_13" type="group">
         <boundary height="367" width="181" x="348" y="72"/>
@@ -233,12 +217,17 @@
             <property name="name">Coax</property>
             <property name="inventoryName"/>
           </resource>
+          <resource guid="9f686f1f-b99c-46e3-a7fb-a7c45637c439" id="resource_0_2" type="port">
+            <property name="name">TG_eth</property>
+            <property name="inventoryName"></property>
+          </resource>
         </resource>
         <resource guid="12cba0d3-1209-4fa4-b886-bb112863f060" id="resource_4" type="hub">
           <boundary height="97" width="97" x="31" y="217"/>
           <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/hub_32.gif</property>
           <property name="name">Turntable</property>
           <property name="inventoryName"/>
+          <property name="deviceNum" vendor="com.fnfr">0</property>
           <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
             <session baseSessionProfile="" name="cmd" provider="com.fnfr">
               <sessionProfile version="7.2.0.201811011532">
@@ -253,7 +242,7 @@
         </resource>
       </resource>
       <resource guid="8b1531ee-6717-479b-84f6-52a332fe5e5d" id="resource_14" type="">
-        <boundary height="100" width="100" x="96" y="312"/>
+        <boundary height="100" width="100" x="72" y="312"/>
         <property name="iconURI">platform:/plugin/com.fnfr.itest.topology.tbml.edit/icons/full/topology/Device_generic_32.gif</property>
         <property name="name">ChannelEmulator</property>
         <property name="inventoryName"/>
@@ -306,6 +295,11 @@
         <property name="name">link5</property>
         <endpoint id="resource_14_1"/>
         <endpoint id="resource_2_0"/>
+      </link>
+      <link id="link_5">
+        <property name="name">link6</property>
+        <endpoint id="resource_12_1"/>
+        <endpoint id="resource_0_2"/>
       </link>
     </connectivity>
   </body>
