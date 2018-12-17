@@ -36,11 +36,21 @@
                     </vertex>
                     <orientation pt:description="If Rate vs Range with orientation need to be run, otherwise set to no">yes</orientation>
                     <AP>
-                        <channel_number>6</channel_number>
-                        <channel_BW pt:description="In MHz">40</channel_BW>
-                        <channel_frequncy pt:description="In GHz">2.4</channel_frequncy>
+                        <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">2.4</ChannelFrequency>
+                        <ChannelFreq_2_4>
+                            <channel_number>1</channel_number>
+                            <channel_BW>40</channel_BW>
+                            <hw_mode>11ng</hw_mode>
+                        </ChannelFreq_2_4>
+                        <ChannelFreq_5_0>
+                            <channel_number>157</channel_number>
+                            <channel_BW>60</channel_BW>
+                            <hw_mode>11ac</hw_mode>
+                        </ChannelFreq_5_0>
+                        <channel_number/>
+                        <channel_BW/>
+                        <hw_mode/>
                     </AP>
-                    <param1/>
                 </parameters>
             </parameters>
         </parameters>
@@ -250,6 +260,37 @@
                         </item>
                         <item guid="b4634d52-003c-47b2-b2c1-e5ab9ed7ae2d" action="showSubscriptionViews" session="trafficGen" normalOffset="1.374" estimatedStepExecutionTime="0.084">
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="2d3dd6ed-05ee-4553-9fcf-449374fcba70" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Open Session to AP and configure AP as per test case parameter</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="26901c2f-eb91-43ff-a376-6e887fdc46f8" action="open" session="AP">
+                            <command>
+                                <body>device:DUT1#telnet</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                    <TerminalProperties>
+                                        <captureProperties>
+                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                        </captureProperties>
+                                    </TerminalProperties>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="04b3515d-37a9-48e9-9b3e-0190c9d9df6c" action="configureAP" session="AP" useFieldsInCommand="false">
+                            <command>
+                                <body> -frenqncyChannel [param AP/ChannelFrequency] -channelNumber_2_4 [param AP/ChannelFreq_2_4/channel_number] -channelNumber_5_0 [param AP/ChannelFreq_5_0/channel_number] -channelMode_2_4 [param AP/ChannelFreq_2_4/hw_mode] -channelMode_5_0 [param AP/ChannelFreq_5_0/hw_mode]</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>

@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <sessionClass includeTestCase="true" sessionType="pod_base.ffsp"/>
+    </general>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="0e3d55f5-776b-43ea-be82-3c9e6cad40c2" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>main step</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="configureAP" isPublic="true">
+            <steps>
+                <item guid="4a82c0fc-1382-491f-8110-f635e94607a2" action="command" session="$session">
+                    <command>
+                        <body>cd</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="0c4b39b9-5ce1-4388-9fdd-c9984b6fc289" action="command" session="$session">
+                    <command>
+                        <body>cd templates</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="0d7f9b50-3511-4135-953f-4bb81827e1e0" action="command" session="$session">
+                    <command>
+                        <body>cp /etc/config/wireless wireless.bak</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="958b20dc-c235-4cdc-86ad-7d0997111c16" action="if" useFieldsInCommand="false">
+                    <command>
+                        <body>[string match -nocase $frenqncyChannel &quot;2.4&quot;]</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="174cdc7e-ae28-4670-8267-b6f3a6236297" action="then" useFieldsInCommand="false">
+                            <nestedSteps>
+                                <item guid="d08b671a-7455-4eb6-8c3a-0df8fe43a7ef" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure Wireless file for 2.4 GHz</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="38828d95-31d6-4bdf-860c-9b3bd0c26b49" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Enable 2.4 GHz</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="5d140e16-454e-4e7e-bcd3-11d621e09fd9" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;6c\\\\#\\\\toption disabled 1&apos;  wireless.bak &gt; wireless.mod</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="f72a5848-ea63-47f7-b08d-daee8e1aa4f4" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify hwmode</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="62e0f3c0-11ec-4b83-9733-8138fb3a4c8e" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;4c\\\\\\\\toption hwmode\\\\t$channelMode_2_4&apos; wireless.mod &gt; wireless.mod1</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="512841cd-99a1-4e12-bc1d-d4fae410d628" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify Channel Number</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="dd519462-99a9-4192-8efa-50902cc63a8f" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;3c\\\\\\\\toption channel\\\\t$channelNumber_2_4&apos; wireless.mod1 &gt; wireless.mod2</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="543568b0-5883-4e67-a851-49c6b5d8156f" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Disable 5.0 GHz option</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="c23c8570-afc7-4f70-b585-564c30a99b3c" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;21c\\\\\\\\toption disabled 1&apos;  wireless.mod2 &gt; wireless.final</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="b27c4ef6-44b3-445f-81c7-c578c75bc630" action="command" session="$session">
+                                            <command>
+                                                <body>rm wireless.mod*</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="fb1911cf-0450-4064-8764-51c5f47233c8" action="elseif" useFieldsInCommand="false">
+                            <command>
+                                <body>[string match -nocase $frenqncyChannel &quot;5.0&quot;]</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="35b26cdf-d01a-49fa-bfd9-e2bf75e738c1" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Insert steps here for when the expression evaluates to false</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="92c58c46-ae20-4c32-a5b4-909a248837df" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure Wireless file for 5.0 GHz</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="a35cc616-0428-4f8f-a5f4-b0431b5d08ed" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Enable 5.0 GHz</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="83c8e6a6-1269-461e-93ae-aabaa4a34a43" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;21c\\\\#\\\\toption disabled 1&apos;  wireless.bak &gt; wireless.mod</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="37671559-f776-4864-871f-c425c8861abe" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify hwmode</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="1f3da95e-3db0-4ffb-a54e-845a133a84a1" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;19c\\\\\\\\toption hwmode\\\\t$channelMode_5_0&apos; wireless.mod &gt; wireless.mod1</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="b3760bb7-87c7-41e3-b330-12ef16fe6785" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify Channel Number</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="6c04cbeb-ed1f-47cf-9e88-fd7edc0d5121" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;18c\\\\\\\\toption channel\\\\t$channelNumber_5_0&apos; wireless.mod1 &gt; wireless.mod2</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="d80de5a2-ac51-465f-8c89-d208e8589810" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Disable 2.4 GHz option</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="ede9b45f-15b9-4a8b-af40-3fde1fd79931" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;6c\\\\\\\\toption disabled 1&apos;  wireless.mod2 &gt; wireless.final</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                                <item guid="ba22fcc2-2f59-45ed-8012-ff61ca267dcb" action="command" session="$session">
+                                                    <command>
+                                                        <body>rm wireless.mod*</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="2b0a4d18-8c50-478e-9b5b-7aaab2f37b58" action="elseif" useFieldsInCommand="false">
+                            <command>
+                                <body>[string match -nocase $frenqncyChannel &quot;0&quot;]</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="ab399a45-40e1-463c-ad99-b66872347bde" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure both the band</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="2c9c0895-2bfe-491b-ac45-6d44a11f1c0f" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure 2.4</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="e6156c09-f3a4-4ad8-8f34-12317766d1d5" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Enable 2.4 GHz</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="970a3375-6833-4e90-b882-eab9e0ae5371" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;6c\\\\#\\\\toption disabled 1&apos;  wireless.bak &gt; wireless.mod</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="e4d04fba-41af-4703-9cb8-386b134f4efc" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify hwmode</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="194267b2-6126-42bf-bc92-d11f8a2eb655" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;4c\\\\\\\\toption hwmode\\\\t$channelMode_2_4&apos; wireless.mod &gt; wireless.mod1</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="a632573e-6ded-4280-a796-e61af5ba55ab" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify Channel Number</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="4939ec47-0f3b-4bdf-91f3-8e476a4e38e2" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;3c\\\\\\\\toption channel\\\\t$channelNumber_2_4&apos; wireless.mod1 &gt; wireless.mod2</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="e5aec3e7-f0e0-4e5c-abb9-3251e27e9074" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure 5.0</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="b244aa99-f63a-425c-bab7-72586b17fe25" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Enable 5.0 GHz</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="2ad711d9-f338-4e3b-bf49-598483e93797" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;21c\\\\#\\\\toption disabled 1&apos;   wireless.mod2 &gt; wireless.mod3</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="1f394e09-83c5-4783-9438-335d71d8d3a3" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify hwmode</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="07e77bf6-14fa-4c9b-a19b-c459191b70d8" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;19c\\\\\\\\toption hwmode\\\\t$channelMode_5_0&apos; wireless.mod3 &gt; wireless.mod4</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="60772dd1-46c0-4a20-8192-947bb7f61551" action="comment" useFieldsInCommand="false">
+                                            <command>
+                                                <body>Modify Channel Number</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="cdb13898-d210-4d5c-9bd7-b2c8b8586437" action="command" session="$session">
+                                                    <command>
+                                                        <body>sed &apos;18c\\\\\\\\toption channel\\\\t$channelNumber_5_0&apos; wireless.mod4 &gt; wireless.final</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                                <item guid="3b51e66f-b9d1-4eb1-be6e-60053c916c53" action="command" session="$session">
+                                                    <command>
+                                                        <body>rm wireless.mod*</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="554ae0bc-0bbd-42a9-8548-fcf4555f4cf3" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Copy modified file as wireless file</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="9c2f14ab-817a-4740-b287-4d4cc07272c1" action="command" session="$session">
+                            <command>
+                                <body>cp wireless.final /etc/config/wireless</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="e5e488fb-cd4c-43b0-89ee-78907faead3c" action="command" session="$session" skip="true">
+                    <command>
+                        <body>reboot</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="frenqncyChannel">
+                    <description>frenqncyChannel --&gt; Frequency Channel 2.4 or 5 G HZ
+Values
+5.0 --&gt; 5 GHz
+2.4 --&gt; 2.4 GHz
+0 --&gt; dual</description>
+                    <defaultValue>5</defaultValue>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="channelNumber_2_4">
+                    <description>Channel Number for 2.4 GHz</description>
+                    <defaultValue>1</defaultValue>
+                </item>
+                <item name="channelNumber_5_0">
+                    <description>Channel Number for 5.0 GHz</description>
+                    <defaultValue>157</defaultValue>
+                </item>
+                <item name="channelMode_2_4">
+                    <description>Hardware mode type:
+
+ng
+ac</description>
+                    <defaultValue>ng</defaultValue>
+                </item>
+                <item name="channelMode_5_0">
+                    <description>Hardware mode type:
+
+ng
+ac</description>
+                    <defaultValue>ac</defaultValue>
+                </item>
+            </arguments>
+            <response>{}</response>
+        </item>
+    </procedures>
+</testCase>

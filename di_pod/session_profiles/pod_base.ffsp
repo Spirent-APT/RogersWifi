@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.2.0.201811011532">
+    <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+    <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+        <ipAddress inherit="false">192.168.1.1</ipAddress>
+        <TerminalProperties>
+            <captureProperties>
+                <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+            </captureProperties>
+            <prompts merge="true">
+                <item name="prompt1" MatchMethod="WILDCARD">
+                    <Content>*:/#</Content>
+                </item>
+                <item name="prompt3" MatchMethod="WILDCARD">
+                    <Content>*#</Content>
+                </item>
+            </prompts>
+        </TerminalProperties>
+    </sessionProperties>
+    <responseLibrary inherit="false">project://di_pod/</responseLibrary>
+    <formMapLibrary inherit="false">project://di_pod/</formMapLibrary>
+    <sessionClassTestCase inherit="false">pod_quickcall.fftc</sessionClassTestCase>
+    <isReferenceProfile>true</isReferenceProfile>
+</SessionTemplate>
