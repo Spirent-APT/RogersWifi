@@ -5,7 +5,16 @@
         <language>Python</language>
     </general>
     <procedures>
-        <item name="main"/>
+        <item name="main">
+            <steps>
+                <item guid="f28f5143-bb90-456a-8c65-2a338d98ad06" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>main procedure</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
         <item name="StartEmulation" isPublic="true" isVBlock="true">
             <description>Start Emulation</description>
             <steps>
@@ -434,6 +443,71 @@ Examples:
                 </item>
                 <item name="power">
                     <description>Desired power level in dBm</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+            </arguments>
+            <response>{&quot;error_code&quot;:&quot;value&quot;,&quot;error_msg&quot;:&quot;value&quot;}</response>
+        </item>
+        <item name="setChannelModel" isPublic="true" isVBlock="true">
+            <steps>
+                <item guid="44fb3a5a-a882-4c60-99e2-dc329f41bb6e" action="command" session="[session]" estimatedStepExecutionTime="0.206">
+                    <command>
+                        <body>*CLS</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="4c2487c9-ca30-4e6b-a8e1-d0668d24d383" action="command" session="[session]" estimatedStepExecutionTime="0.206">
+                    <command>
+                        <body>CHM1:LIB [channelModel]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="c838cec2-2195-4403-b24c-dae7b052233a" action="command" session="[session]">
+                    <command>
+                        <body>ERR?</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>error_code()</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>var1</storageLocation>
+                                        <query>error_code</query>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">false</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                            <item>
+                                <extractorInfo extractorType="query">
+                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                        <query>error_message()</query>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>var1</storageLocation>
+                                        <query>error_msg</query>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">false</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="channelModel">
+                    <description>Channel Model selected from the profile 
+
+Example: WLAN_TGac_B_NLOS for Non Line of Sight channel Model B</description>
                     <isMandatory>true</isMandatory>
                 </item>
             </arguments>

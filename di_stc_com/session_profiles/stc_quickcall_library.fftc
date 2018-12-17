@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<testCase version="7.1.0.201804110601">
+<testCase version="7.2.0.201811011532">
     <general>
         <documentation>STC TCL QC library</documentation>
         <notes>STC TCL QC library</notes>
@@ -10,35 +10,32 @@
     <procedures>
         <item name="main">
             <steps>
-                <item guid="decdc98d-aa08-46dc-8fae-610fb25afff9" action="comment">
+                <item guid="decdc98d-aa08-46dc-8fae-610fb25afff9" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>main procedure</body>
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
             </steps>
         </item>
         <item name="apiSaveResultCommand" isPublic="true" defaultSessionProfile="application:com.fnfr.svt.applications.spirent.testcenter.gui">
             <description>Save STC results into a SQLite database</description>
             <steps>
-                <item guid="929c4d31-c077-4447-b30b-a232c9e6f163" action="comment">
+                <item guid="929c4d31-c077-4447-b30b-a232c9e6f163" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Create a default directory if doesn&apos;t exist - assume the C: drive exisits</body>
                     </command>
                     <nestedSteps>
-                        <item guid="669c270b-b589-4f04-86e4-c4efdc004cb8" action="eval">
+                        <item guid="669c270b-b589-4f04-86e4-c4efdc004cb8" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>file mkdir file:$databaseConnectionStringFilePath</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="ceb53701-4c3a-44ac-ac21-bd03e64ec771" action="comment">
+                <item guid="ceb53701-4c3a-44ac-ac21-bd03e64ec771" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Save DB results and return status</body>
                     </command>
@@ -58,6 +55,8 @@
                                         <processorInfo ruleType="store">
                                             <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                 <storageLocation>retValSaveResultCommand</storageLocation>
+                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                             </ruleProperties>
                                         </processorInfo>
                                     </item>
@@ -65,7 +64,7 @@
                             </postProcessing>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
-                        <item guid="8ac901ca-9239-4252-b053-10f1353eaa3d" action="call">
+                        <item guid="8ac901ca-9239-4252-b053-10f1353eaa3d" action="call" useFieldsInCommand="false">
                             <command>
                                 <body>stcApiReturnValues -stcApiReturnValue $retValSaveResultCommand</body>
                             </command>
@@ -73,25 +72,23 @@
                                 <storeResponseAt>retVal</storeResponseAt>
                             </postProcessing>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="ef83460f-789b-41bb-8c99-14a06c85ceb8" action="if">
+                <item guid="ef83460f-789b-41bb-8c99-14a06c85ceb8" action="if" useFieldsInCommand="false">
                     <command>
                         <body>$convertSchema == 1</body>
                     </command>
                     <nestedSteps>
-                        <item guid="2659663a-fb63-4a58-97c5-6a2bfcaee5ad" action="then">
+                        <item guid="2659663a-fb63-4a58-97c5-6a2bfcaee5ad" action="then" useFieldsInCommand="false">
                             <nestedSteps>
-                                <item guid="8ed29c10-6dbc-4093-bd35-eb400b409d19" action="comment">
+                                <item guid="8ed29c10-6dbc-4093-bd35-eb400b409d19" action="comment" useFieldsInCommand="false">
                                     <command>
                                         <body>Convert raw DB results and change to Results Reporter Schema for easy analysis</body>
                                     </command>
                                     <nestedSteps>
-                                        <item guid="034ea065-a347-4e7e-a95b-a3ac9fe56ae1" action="open" session="cmdDb">
+                                        <item guid="034ea065-a347-4e7e-a95b-a3ac9fe56ae1" action="open" session="cmdDb" useFieldsInCommand="false">
                                             <command>
                                                 <body>application:com.fnfr.svt.applications.cmd</body>
                                             </command>
@@ -101,7 +98,6 @@
                                                 <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                             </applicationProperties>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                         <item guid="fec938a2-fba2-44bf-9594-6ed0c0a5e9e4" action="command" session="cmdDb" normalOffset="3.995">
                                             <command>
@@ -115,21 +111,17 @@
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                         </item>
-                                        <item guid="653a56ea-a349-4ad4-b85a-ee3bc572051c" action="close" session="cmdDb">
+                                        <item guid="653a56ea-a349-4ad4-b85a-ee3bc572051c" action="close" session="cmdDb" useFieldsInCommand="false">
                                             <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
                 <item guid="6fbdb4d3-0f16-4018-a424-ec67830afcbe" action="write">
                     <command>
@@ -193,69 +185,61 @@ C:\\Program Files (x86)\\Spirent Communications\\Spirent TestCenter 4.49\\Spiren
         <item name="stcApiReturnValues">
             <description>Return structured response for STC API calls</description>
             <steps>
-                <item guid="2b462559-1d64-4e90-b7a0-3f3a6a9d460c" action="comment">
+                <item guid="2b462559-1d64-4e90-b7a0-3f3a6a9d460c" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>init variables</body>
                     </command>
                     <nestedSteps>
-                        <item guid="0ba9bdd3-ef24-46b0-bf91-626980babfd8" action="eval">
+                        <item guid="0ba9bdd3-ef24-46b0-bf91-626980babfd8" action="eval" useFieldsInCommand="false">
                             <command>
                                 <body>set newXmlPayload &quot;&quot;</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="b94318d7-d9bc-4160-9006-3d103a3d3cfc" action="comment">
+                <item guid="b94318d7-d9bc-4160-9006-3d103a3d3cfc" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Loop through array and turn it into xml</body>
                     </command>
                     <nestedSteps>
-                        <item guid="02848e8b-4177-4da7-9fcb-b991afc0a858" action="foreach">
+                        <item guid="02848e8b-4177-4da7-9fcb-b991afc0a858" action="foreach" useFieldsInCommand="false">
                             <command>
                                 <body>{attribute attributeValue} $stcApiReturnValue</body>
                             </command>
                             <nestedSteps>
-                                <item guid="c3b64d76-4176-4432-b7d2-1a27e3f4374d" action="comment">
+                                <item guid="c3b64d76-4176-4432-b7d2-1a27e3f4374d" action="comment" useFieldsInCommand="false">
                                     <command>
                                         <body>Build structured return values for easy analysis. Strip off the dashon attributes</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="cf3761e0-83a7-4a64-b231-0e5dce1531e9" action="eval">
+                                <item guid="cf3761e0-83a7-4a64-b231-0e5dce1531e9" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set attribute [string map {- &quot;&quot;} $attribute]</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="c2785429-39d2-4f14-9377-a717637212cf" action="eval">
+                                <item guid="c2785429-39d2-4f14-9377-a717637212cf" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set xmlPayload &quot;&lt;$attribute&gt;$attributeValue&lt;/$attribute&gt;&quot;</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="25f04c51-07ec-4a1d-917e-d663eb03ef33" action="eval">
+                                <item guid="25f04c51-07ec-4a1d-917e-d663eb03ef33" action="eval" useFieldsInCommand="false">
                                     <command>
                                         <body>set newXmlPayload &quot;$newXmlPayload\\n$xmlPayload&quot;</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="f4d079af-ce42-4017-95c2-af8d89e08042" action="comment">
+                <item guid="f4d079af-ce42-4017-95c2-af8d89e08042" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>write a structured response back to iTest. Wrap the XML header so response has good XML structure</body>
                     </command>
@@ -286,7 +270,6 @@ C:\\Program Files (x86)\\Spirent Communications\\Spirent TestCenter 4.49\\Spiren
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
             </steps>
             <author>Mike Barfield</author>
@@ -337,7 +320,7 @@ Example array response(stc::perform generatorStart): -parent system1 -Name {Star
         <item name="sanityCheckTraffic" isPublic="true">
             <description>This procedure will make sure that traffic is running and meets minimal conditions before moving forward</description>
             <steps>
-                <item guid="0f9a4f60-419a-44d4-8967-82038b358e30" action="eval">
+                <item guid="0f9a4f60-419a-44d4-8967-82038b358e30" action="eval" useFieldsInCommand="false">
                     <command>
                         <body>puts &quot;Sanity check traffic to ensure data is running normal!&quot;</body>
                     </command>
@@ -358,14 +341,12 @@ Example array response(stc::perform generatorStart): -parent system1 -Name {Star
                         </analysisRules>
                     </postProcessing>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="5a4df385-c2ff-4080-a3ad-e9bc5d61b25a" action="subscribeResults" session="$session">
+                <item guid="5a4df385-c2ff-4080-a3ad-e9bc5d61b25a" action="subscribeResults" session="$session" useFieldsInCommand="false">
                     <command>
                         <body>-subscribedResults DetailedStreamResults</body>
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                     <emulation>
                         <behavior>
                             <responseType>text</responseType>
@@ -390,12 +371,11 @@ Example array response(stc::perform generatorStart): -parent system1 -Name {Star
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="3bb074ef-0bae-4f2e-89c6-0dd5468aecb3" action="eval">
+                <item guid="3bb074ef-0bae-4f2e-89c6-0dd5468aecb3" action="eval" useFieldsInCommand="false">
                     <command>
                         <body>set sanityCheckStatus PASS</body>
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
                 <item guid="e531e112-2f45-45e6-a32d-2b5dfdf47f0b" action="showResults" session="$session" normalOffset="22.457" estimatedStepExecutionTime="0.041">
                     <command>
@@ -822,12 +802,11 @@ StreamBlock 1/131072  Port //2/12   Port //2/9     12338              10811     
         <item name="deadStreamCount" isPublic="true">
             <description>Return number of streams that are dead</description>
             <steps>
-                <item guid="ba58eac5-84de-4643-909a-13337cc57907" action="subscribeResults" session="$session">
+                <item guid="ba58eac5-84de-4643-909a-13337cc57907" action="subscribeResults" session="$session" useFieldsInCommand="false">
                     <command>
                         <body>-subscribedResults DetailedStreamResults</body>
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                     <emulation>
                         <behavior>
                             <responseType>text</responseType>
@@ -861,6 +840,8 @@ StreamBlock 1/131072  Port //2/12   Port //2/9     12338              10811     
                                 <processorInfo ruleType="store">
                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                         <storageLocation>streamIds</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                     </ruleProperties>
                                 </processorInfo>
                             </item>
@@ -1306,38 +1287,35 @@ StreamBlock 1/131072  Port //2/12   Port //2/9     12338              10811     
                         </behavior>
                     </emulation>
                 </item>
-                <item guid="af5be55f-d87f-4393-b727-e1781541d478" action="eval">
+                <item guid="af5be55f-d87f-4393-b727-e1781541d478" action="eval" useFieldsInCommand="false">
                     <command>
                         <body>set deadStreamCount 0</body>
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="871010f8-70d9-46b7-b512-0fa51d63426c" action="foreach">
+                <item guid="871010f8-70d9-46b7-b512-0fa51d63426c" action="foreach" useFieldsInCommand="false">
                     <command>
                         <body>streamId $streamIds</body>
                     </command>
                     <nestedSteps>
-                        <item guid="3d952783-0d4c-48ec-a6e0-a790648fa4d0" action="comment">
+                        <item guid="3d952783-0d4c-48ec-a6e0-a790648fa4d0" action="comment" useFieldsInCommand="false">
                             <command>
                                 <body>Compare each stream to see if data is flowing</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
-                        <item guid="0b847d53-6004-452d-b229-4948856967ee" action="if">
+                        <item guid="0b847d53-6004-452d-b229-4948856967ee" action="if" useFieldsInCommand="false">
                             <command>
                                 <body>[query result1 &quot;RxCount_Frames_(\\&quot;$streamId\\&quot;)&quot;] == [query result2 &quot;RxCount_Frames_(\\&quot;$streamId\\&quot;)&quot;]</body>
                             </command>
                             <nestedSteps>
-                                <item guid="0a39d354-c16d-417d-823f-62ba828e32e8" action="then">
+                                <item guid="0a39d354-c16d-417d-823f-62ba828e32e8" action="then" useFieldsInCommand="false">
                                     <nestedSteps>
-                                        <item guid="59355242-7d21-413e-8605-0d2d44e2362e" action="comment">
+                                        <item guid="59355242-7d21-413e-8605-0d2d44e2362e" action="comment" useFieldsInCommand="false">
                                             <command>
                                                 <body>Dead Stream - packets match</body>
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                         <item guid="cae3a2db-3716-4b8c-b163-8acd09131db0" action="write">
                                             <command>
@@ -1345,25 +1323,22 @@ StreamBlock 1/131072  Port //2/12   Port //2/9     12338              10811     
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="5c0678d4-b7f7-434c-92e4-3ce1a710430b" action="eval">
+                                        <item guid="5c0678d4-b7f7-434c-92e4-3ce1a710430b" action="eval" useFieldsInCommand="false">
                                             <command>
                                                 <body>incr deadStreamCount</body>
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="076aeaf0-f1b3-4f32-8b86-f2518d8875d4" action="else">
+                                <item guid="076aeaf0-f1b3-4f32-8b86-f2518d8875d4" action="else" useFieldsInCommand="false">
                                     <nestedSteps>
-                                        <item guid="e85e3f05-bceb-42db-8155-cb6d8cd0ceff" action="comment">
+                                        <item guid="e85e3f05-bceb-42db-8155-cb6d8cd0ceff" action="comment" useFieldsInCommand="false">
                                             <command>
                                                 <body>Live Stream - packets don&apos;t match</body>
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                         <item guid="4fea7736-dbc5-4e7b-8f3a-ba1f203a9b00" action="write">
                                             <command>
@@ -1373,15 +1348,12 @@ StreamBlock 1/131072  Port //2/12   Port //2/9     12338              10811     
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
                 <item guid="b1bede31-b148-43ae-94da-f154e4eeea33" action="write">
                     <command>
@@ -1506,6 +1478,8 @@ Example: file:/C:/stc.pcap</description>
                                 <processorInfo ruleType="store">
                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                         <storageLocation>port_list</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                     </ruleProperties>
                                 </processorInfo>
                             </item>
@@ -1513,7 +1487,7 @@ Example: file:/C:/stc.pcap</description>
                     </postProcessing>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="4aacb614-1c81-487e-9a2d-c72de6bf13f2" action="foreach">
+                <item guid="4aacb614-1c81-487e-9a2d-c72de6bf13f2" action="foreach" useFieldsInCommand="false">
                     <command>
                         <body>port $port_list</body>
                     </command>
@@ -1533,6 +1507,8 @@ Example: file:/C:/stc.pcap</description>
                                         <processorInfo ruleType="store">
                                             <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                 <storageLocation>port_location</storageLocation>
+                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                             </ruleProperties>
                                         </processorInfo>
                                     </item>
@@ -1540,12 +1516,12 @@ Example: file:/C:/stc.pcap</description>
                             </postProcessing>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
-                        <item guid="98152eff-21a2-49ed-bc85-5a0731437c1e" action="if">
+                        <item guid="98152eff-21a2-49ed-bc85-5a0731437c1e" action="if" useFieldsInCommand="false">
                             <command>
                                 <body>[string match -nocase $location $port_location]</body>
                             </command>
                             <nestedSteps>
-                                <item guid="361ca0b9-13b5-4c96-82ab-c05aea2ddf0f" action="then">
+                                <item guid="361ca0b9-13b5-4c96-82ab-c05aea2ddf0f" action="then" useFieldsInCommand="false">
                                     <nestedSteps>
                                         <item guid="8402e6ce-5d3b-47e7-a3aa-098cb2ded9b9" action="return">
                                             <command>
@@ -1555,27 +1531,22 @@ Example: file:/C:/stc.pcap</description>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="222e494d-14b8-420f-a498-32643d9d40e7" action="else">
+                                <item guid="222e494d-14b8-420f-a498-32643d9d40e7" action="else" useFieldsInCommand="false">
                                     <nestedSteps>
-                                        <item guid="962dbb35-4b61-43bf-b7c5-90f9470fe208" action="continue">
+                                        <item guid="962dbb35-4b61-43bf-b7c5-90f9470fe208" action="continue" useFieldsInCommand="false">
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="e42123b4-fb25-4c7d-8e01-603f67a71b92" action="comment">
+                <item guid="e42123b4-fb25-4c7d-8e01-603f67a71b92" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>If the above foreach doesn&apos;t return, there is error in location</body>
                     </command>
@@ -1604,7 +1575,6 @@ Example: file:/C:/stc.pcap</description>
                         </analysisRules>
                     </postProcessing>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
             </steps>
             <arguments>
@@ -1628,6 +1598,8 @@ Example: file:/C:/stc.pcap</description>
                                 <processorInfo ruleType="store">
                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                         <storageLocation>clientProfileId_list</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                     </ruleProperties>
                                 </processorInfo>
                             </item>
@@ -1635,7 +1607,13 @@ Example: file:/C:/stc.pcap</description>
                     </postProcessing>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="fbcd47aa-008b-4007-8b87-eff5d80a0fff" action="foreach">
+                <item guid="dbff3253-424c-473e-8d09-e2d2bb748651" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>puts $clientProfileName</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="fbcd47aa-008b-4007-8b87-eff5d80a0fff" action="foreach" useFieldsInCommand="false">
                     <command>
                         <body>clientProfileId $clientProfileId_list</body>
                     </command>
@@ -1655,6 +1633,8 @@ Example: file:/C:/stc.pcap</description>
                                         <processorInfo ruleType="store">
                                             <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                                 <storageLocation>clientProfile</storageLocation>
+                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                             </ruleProperties>
                                         </processorInfo>
                                     </item>
@@ -1662,12 +1642,12 @@ Example: file:/C:/stc.pcap</description>
                             </postProcessing>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
-                        <item guid="f0ea8bfb-5ff4-4b1a-9ea3-1a8cd6ab6899" action="if">
+                        <item guid="f0ea8bfb-5ff4-4b1a-9ea3-1a8cd6ab6899" action="if" useFieldsInCommand="false">
                             <command>
                                 <body>[string match -nocase $clientProfileName $clientProfile]</body>
                             </command>
                             <nestedSteps>
-                                <item guid="296c7e57-096d-41cd-b565-d336953c0238" action="then">
+                                <item guid="296c7e57-096d-41cd-b565-d336953c0238" action="then" useFieldsInCommand="false">
                                     <nestedSteps>
                                         <item guid="f06e4005-617e-4f16-a2c5-fc439c0efa2e" action="return">
                                             <command>
@@ -1677,27 +1657,49 @@ Example: file:/C:/stc.pcap</description>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
-                                <item guid="2d9cfe04-6300-44cf-bc46-7261d71da839" action="else">
+                                <item guid="2d9cfe04-6300-44cf-bc46-7261d71da839" action="else" useFieldsInCommand="false">
                                     <nestedSteps>
-                                        <item guid="ba213fee-780b-4e8f-9234-fb9dea866c21" action="continue">
+                                        <item guid="ba213fee-780b-4e8f-9234-fb9dea866c21" action="continue" useFieldsInCommand="false">
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                            <useFieldsInCommand>false</useFieldsInCommand>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                    <useFieldsInCommand>false</useFieldsInCommand>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            <useFieldsInCommand>false</useFieldsInCommand>
+                        </item>
+                        <item guid="f0029083-a030-42a3-a11b-26c0f2d99517" action="if" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>$clientProfileName == $clientProfile</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="fa72483b-0ae3-41b1-897b-292e023d080b" action="then" useFieldsInCommand="false">
+                                    <nestedSteps>
+                                        <item guid="60ca474e-53dc-4e7b-bbb4-fb668a3ace22" action="return">
+                                            <command>
+                                                <body>$clientProfileId</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a149e237-352c-4112-a225-8de18439b9cf" action="else" useFieldsInCommand="false">
+                                    <nestedSteps>
+                                        <item guid="11942073-cb66-4621-897f-2adc8f7e7515" action="continue" useFieldsInCommand="false">
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
-                <item guid="af83c0c2-a9ea-4770-8e46-b72152d50de7" action="comment">
+                <item guid="af83c0c2-a9ea-4770-8e46-b72152d50de7" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>If the above foreach doesn&apos;t return, there is error in location</body>
                     </command>
@@ -1726,7 +1728,6 @@ Example: file:/C:/stc.pcap</description>
                         </analysisRules>
                     </postProcessing>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                    <useFieldsInCommand>false</useFieldsInCommand>
                 </item>
             </steps>
             <arguments>
@@ -1752,6 +1753,8 @@ Example: file:/C:/stc.pcap</description>
                                 <processorInfo ruleType="store">
                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                         <storageLocation>streamblock</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                     </ruleProperties>
                                 </processorInfo>
                             </item>
@@ -1794,6 +1797,8 @@ Example: file:/C:/stc.pcap</description>
                                 <processorInfo ruleType="store">
                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                         <storageLocation>iee80211phy_handle</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                     </ruleProperties>
                                 </processorInfo>
                             </item>
@@ -1840,6 +1845,8 @@ Example: file:/C:/stc.pcap</description>
                                 <processorInfo ruleType="store">
                                     <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
                                         <storageLocation>iee80211phy_handle</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
                                     </ruleProperties>
                                 </processorInfo>
                             </item>
@@ -1872,6 +1879,64 @@ MIMO_1X1
 MIMO_2X2
 MIMO_3X3
 MIMO_4X4</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+            </arguments>
+        </item>
+        <item name="modifyChannelFreqncy" isPublic="true">
+            <steps>
+                <item guid="75c74592-e56a-481d-b659-a9ad2dd433d3" action="eval" session="$session">
+                    <command>
+                        <body>stc::get $wifiPort -Children-ieee80211phy</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="regex">
+                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>iee80211phy_handle</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="bcb5e950-776c-4eb6-9566-daf20709b6c6" action="eval" session="$session">
+                    <command>
+                        <body>stc::config $iee80211phy_handle -FrequencyBand $frqBand</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="ac6773ca-0b70-481a-aea1-c9949726c1e6" action="eval" session="$session">
+                    <command>
+                        <body>stc::apply</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="wifiPort">
+                    <description>Port where the Freqncy Channel need to be modified</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="frqBand">
+                    <description>Frequncy band that need to be set
+
+Following are different options
+
+Value                                Description
+FREQ_AUTO                      Auto
+FREQ_2_4_GHZ                 2.4 GHz
+FREQ_5_0_GHZ                 5.0 GHz</description>
+                    <defaultValue>FREQ_5_0_GHZ</defaultValue>
                     <isMandatory>true</isMandatory>
                 </item>
             </arguments>

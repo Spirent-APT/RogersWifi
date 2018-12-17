@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="51a89fef-47d5-4264-8e4d-cfca8a0abb64" action="open" session="Attenuator" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>project://di_jfw/session_profiles/jfw_telnet_base.ffsp</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                        <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                            <ipAddress inherit="false">172.30.245.83</ipAddress>
+                            <TerminalProperties>
+                                <captureProperties>
+                                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                </captureProperties>
+                            </TerminalProperties>
+                        </sessionProperties>
+                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                    </applicationProperties>
+                </item>
+                <item guid="d67d9a7d-01d8-47ec-a972-d008c9219e84" action="readFile" useFieldsInCommand="false">
+                    <command>
+                        <body>project://di_jfw/config/Attenuate_all.csv</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.execution.builtin.exec.ReadFilePropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>
