@@ -1735,6 +1735,7 @@ Example: file:/C:/stc.pcap</description>
                     <description>Name of the Client Profile to be attached to Ethernet Port</description>
                 </item>
             </arguments>
+            <response>{}</response>
         </item>
         <item name="attachClientProfile" isPublic="true">
             <steps>
@@ -1940,6 +1941,45 @@ FREQ_5_0_GHZ                 5.0 GHz</description>
                     <isMandatory>true</isMandatory>
                 </item>
             </arguments>
+        </item>
+        <item name="getBSSID" isPublic="true" isVBlock="true">
+            <steps>
+                <item guid="d11c21e0-396e-4d36-a501-a9d4c9ed8b43" action="eval" session="$session">
+                    <command>
+                        <body>stc::get $clientProfileId -BSSID</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="regex">
+                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>var1</storageLocation>
+                                        <query>[bssid]</query>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="wifiPort">
+                    <description>wifiPort --&gt; Port where the Client are attached</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="clientProfileId">
+                    <description>clientProfileId --&gt; Profile ID of the client </description>
+                </item>
+            </arguments>
+            <response>{&quot;bssid&quot;:&quot;value&quot;}</response>
         </item>
     </procedures>
 </testCase>

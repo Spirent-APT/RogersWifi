@@ -51,6 +51,8 @@
                         <channel_BW/>
                         <hw_mode/>
                     </AP>
+                    <result_dir pt:description="Don&apos;t forget include &quot;/&quot; at the end, example: project path: project://di_jfw/Results/ or path in location machin: C:/Users/WifiTester/Results/  ">C:/Users/WifiTester/Results/</result_dir>
+                    <AP_Vendor>PLUME</AP_Vendor>
                 </parameters>
             </parameters>
         </parameters>
@@ -291,6 +293,245 @@
                                 <body> -frenqncyChannel [param AP/ChannelFrequency] -channelNumber_2_4 [param AP/ChannelFreq_2_4/channel_number] -channelNumber_5_0 [param AP/ChannelFreq_5_0/channel_number] -channelMode_2_4 [param AP/ChannelFreq_2_4/hw_mode] -channelMode_5_0 [param AP/ChannelFreq_5_0/hw_mode]</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="cfa5c8cb-f778-49a1-a1a5-8a6f32c4f142" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Create Result File at the result dir, create file and then open File Session to append the result</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="5bc0c846-5e0d-4897-a62c-7f01a97289c3" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Create Report file at the location mentioned in parameter</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="440ffbd5-45e9-4b19-8fae-be1dbe149673" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>report_loc = param(&apos;result_location&apos;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="fc9bed7a-9e45-47a3-944c-c0c7e6f376fb" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>testCaseName = info(&apos;testCaseName&apos;, &apos;main&apos;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="53d4edd3-78a8-471e-8f4b-c942813e2885" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>dateTime = info(&apos;timestamp&apos;, &quot;yyyy_MM_dd_HH_mm_ss&quot;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a0ba7152-28f8-4e9b-be5c-dcf6beaa2857" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(report_loc)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="1210476e-22e5-41a5-8a07-78b44979be64" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(testCaseName)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="4fb6f287-8a60-48b3-80cf-d24e2b09b921" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(dateTime)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="8bf73f6a-6b29-4576-aea3-87d894dacb97" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>report_file = str(report_loc)+str(testCaseName)+&quot;_&quot;+str(dateTime)+&quot;.csv&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="ed60d723-8479-41c4-883f-b74106aad88b" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(report_file)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="86b5f42a-846e-4fbf-a297-19a31ba1afae" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>header = str(&quot;Port,Attenuation,Orienation,Vendor,DL Throughput,UL Throughput,Latency,Packet Loss,RSSI,ReportId&quot;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="817d2558-8846-4aae-925c-bcdc6daa91c4" action="call" useFieldsInCommand="false">
+                                    <command>
+                                        <body>project://ai_common/library/common_procedure.fftc#createFile -report_file [report_file] -header [header]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="09949902-5381-405e-80dc-2d6b695bdab0" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Open File Session type to write the Result</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="eb0c9901-d875-499a-9ab8-12844e91c58a" action="open" session="RESULT" useFieldsInCommand="false">
+                                    <command>
+                                        <body>project://ai_common/session_profiles/report_session.ffsp</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                        <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        <sessionProperties type="com.fnfr.itest.applications.file.properties.FileSessionProperties">
+                                            <sessionbuilderInitializeAction type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </sessionProperties>
+                                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                    </applicationProperties>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="cb3b5c63-d731-4657-9b69-81d7b59eade9" action="comment" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>Test</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="b319c4cb-c521-4832-96be-2cc2d879e152" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Test Data Wifie</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="a520e32e-2448-4cfa-823d-fbadc8ea59d8" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>port = &quot;//172.30.245.61/2/3&quot;</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="6f13aa03-66e5-4d93-af70-824da028be9d" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>atten_elk = 35</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="5313558f-14e5-4bd5-ba4a-d57275b825a4" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>orientation = 0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="3efaef62-2da5-44eb-ba34-291e4ee4b566" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>throughput_wifi = 8</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="dd808634-eac3-46f8-8956-c16491eeeccb" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_wifi = 106833</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="0d821a7e-6f69-47c4-a03c-eb4aa3c421e2" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>dfcounts_wifi = 63435422</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="8e04402d-1459-4f45-a066-b6f8f0f2c649" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>rssi_wifi = -66</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="e40790db-0459-4b7b-8d49-e8f5edac5d1f" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>reportId = 640</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="8819aab3-a5aa-414b-911b-87e19cbc3070" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Write to Result CSV File for Wifi Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="d57b6822-5d86-4ee8-9884-608253a202ab" action="command" session="RESULT">
+                                            <command>
+                                                <body>write [wifiPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],[throughput_wifi],NA,[avgLatency_wifi],[dfcounts_wifi],[rssi_wifi],[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="72a16929-6a26-4b62-ab36-f5f4fed3dca1" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Test Data Eth</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="9075c341-82d5-47af-99d2-66878a8f73a0" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>port = &quot;//172.30.245.61/4/1&quot;</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="1cd67f16-255b-45d5-8889-2888e99e1102" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>atten_elk = 35</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="19b29d1c-e130-4167-a446-649860c0e605" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>orientation = 0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="0e1e2551-7509-418a-ba66-0c6393f2b3e3" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>throughput_eth = 35</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="123a4961-b593-4f9a-8b42-c8a7218b5f36" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_eth = 33425</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="49f93cec-57d4-43d4-a880-48d81ca6c623" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>dfcounts_eth = 7392927</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="667ab3b3-da37-4ee5-a702-449f8be06c56" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>reportId = 640</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="cd188425-91fb-4d94-aa30-5840c5a85a86" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Write to Result CSV File for Eth Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="24d4d596-819d-4a14-ac16-543334ba8bb8" action="command" session="RESULT">
+                                            <command>
+                                                <body>write [wifiPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],NA,[throughput_eth],[avgLatency_eth],[dfcounts_eth],NA,[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -2526,6 +2767,20 @@
                                                                             </nestedSteps>
                                                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                         </item>
+                                                                        <item guid="f115a104-040c-48c4-bbbb-935e6e455dd8" action="comment" useFieldsInCommand="false">
+                                                                            <command>
+                                                                                <body>Write to Result CSV File for Wifi Port</body>
+                                                                            </command>
+                                                                            <nestedSteps>
+                                                                                <item guid="7458ea12-bbf9-40fc-89c2-0a506ee3769c" action="command" session="RESULT">
+                                                                                    <command>
+                                                                                        <body>write [wifiPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],[throughput_wifi],NA,[avgLatency_wifi],[dfcounts_wifi],[rssi_wifi],[reportId]</body>
+                                                                                    </command>
+                                                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                                </item>
+                                                                            </nestedSteps>
+                                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                        </item>
                                                                         <item guid="04227d9b-1d5f-447e-9b1f-f6dc3f54c55f" action="comment" useFieldsInCommand="false">
                                                                             <command>
                                                                                 <body>Insert data to ELK for Ethi Port</body>
@@ -2622,6 +2877,20 @@
 }</message>
                                                                                         <authentication transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.AuthenticationProperties" authenticationType="Basic" authenticationType.inherit="false" user="user" user.inherit="false" password.masked="true" password="lRcyT7thbQo=" password.inherit="false" acceptAllCertificates="true" acceptAllCertificates.inherit="false"/>
                                                                                     </applicationProperties>
+                                                                                </item>
+                                                                            </nestedSteps>
+                                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                        </item>
+                                                                        <item guid="6838b15e-59a4-437b-87d6-d908a92eee79" action="comment" useFieldsInCommand="false">
+                                                                            <command>
+                                                                                <body>Write to Result CSV File for Eth Port</body>
+                                                                            </command>
+                                                                            <nestedSteps>
+                                                                                <item guid="2564d399-861a-47c2-b571-b1571dae43cf" action="command" session="RESULT">
+                                                                                    <command>
+                                                                                        <body>write [ethPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],NA,[throughput_eth],[avgLatency_eth],[dfcounts_eth],NA,[reportId]</body>
+                                                                                    </command>
+                                                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                                 </item>
                                                                             </nestedSteps>
                                                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -3667,6 +3936,20 @@
                                                     </nestedSteps>
                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 </item>
+                                                <item guid="61560202-4f49-4ba1-a8a7-41c1c4247ac3" action="comment" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>Write to Result CSV File for Wifi Port</body>
+                                                    </command>
+                                                    <nestedSteps>
+                                                        <item guid="09efb964-cc3d-405f-a157-01177286c836" action="command" session="RESULT">
+                                                            <command>
+                                                                <body>write [wifiPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],[throughput_wifi],NA,[avgLatency_wifi],[dfcounts_wifi],[rssi_wifi],[reportId]</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                        </item>
+                                                    </nestedSteps>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
                                                 <item guid="b7f72b8a-3b20-4256-a6e3-d283ce497392" action="comment" useFieldsInCommand="false">
                                                     <command>
                                                         <body>Insert data to ELK for Ethi Port</body>
@@ -3763,6 +4046,20 @@
 }</message>
                                                                 <authentication transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.AuthenticationProperties" authenticationType="Basic" authenticationType.inherit="false" user="user" user.inherit="false" password.masked="true" password="lRcyT7thbQo=" password.inherit="false" acceptAllCertificates="true" acceptAllCertificates.inherit="false"/>
                                                             </applicationProperties>
+                                                        </item>
+                                                    </nestedSteps>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                                <item guid="ef6c21f7-29ee-4c5a-8e2b-a46d294902b5" action="comment" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>Write to Result CSV File for Eth Port</body>
+                                                    </command>
+                                                    <nestedSteps>
+                                                        <item guid="58d08709-bfc8-4875-bb1a-eeb3d26d2eac" action="command" session="RESULT">
+                                                            <command>
+                                                                <body>write [ethPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],NA,[throughput_eth],[avgLatency_eth],[dfcounts_eth],NA,[reportId]</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                         </item>
                                                     </nestedSteps>
                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>

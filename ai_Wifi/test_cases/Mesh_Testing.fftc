@@ -1,0 +1,1953 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <documentation>Rate vs Range</documentation>
+        <notes>Rate vs. range test using a configurable attenuator to set attenuation</notes>
+        <owner>Alex Orr</owner>
+        <language>Python</language>
+    </general>
+    <execution>
+        <parameters version="7.2.0.201811011532">
+            <parameters escape="true">
+                <parameters xmlns:pt="http://www.fnfr.com/schemas/parameterTree">
+                    <sample_interval>10</sample_interval>
+                    <mobility_time>360</mobility_time>
+                    <clientProfile>PLUME</clientProfile>
+                    <mimo_configuration pt:description="Other MIMO options, MIMO_1X1, MIMO_2X2,MIMO_3X3">MIMO_1X1</mimo_configuration>
+                    <STC>
+                        <IP>172.30.245.61</IP>
+                        <WifiPort>3/3</WifiPort>
+                        <EthPort>4/1</EthPort>
+                        <ConfigFile>attenuation_singleClient</ConfigFile>
+                        <duration pt:description="In Seconds">10</duration>
+                        <sample_size>4</sample_size>
+                        <header>tcp</header>
+                    </STC>
+                    <attenuation_port>1</attenuation_port>
+                    <attenuationIncrement pt:description="By what value channel powet attenuation is changed">5</attenuationIncrement>
+                    <max_attenuation>60</max_attenuation>
+                    <orientation pt:description="If Rate vs Range with orientation need to be run, otherwise set to no">yes</orientation>
+                    <vertex>
+                        <channelProfile>QUAD_2X2_BI_TDD</channelProfile>
+                        <channelFrequency>5320</channelFrequency>
+                        <channelModel>WLAN_TGac_B_NLOS</channelModel>
+                        <inPowerLevel>-10</inPowerLevel>
+                        <outPowerLevel>-50</outPowerLevel>
+                        <inputPorts>A(1-8)</inputPorts>
+                        <outputPorts>B(1-8)</outputPorts>
+                    </vertex>
+                    <AP>
+                        <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">2.4</ChannelFrequency>
+                        <ChannelFreq_2_4>
+                            <channel_number>1</channel_number>
+                            <channel_BW>40</channel_BW>
+                            <hw_mode>11ng</hw_mode>
+                        </ChannelFreq_2_4>
+                        <ChannelFreq_5_0>
+                            <channel_number>157</channel_number>
+                            <channel_BW>60</channel_BW>
+                            <hw_mode>11ac</hw_mode>
+                        </ChannelFreq_5_0>
+                        <channel_number/>
+                        <channel_BW/>
+                        <hw_mode/>
+                        <vendor>Plume</vendor>
+                    </AP>
+                    <result_dir pt:description="Don&apos;t forget include &quot;/&quot; at the end, example: project path: project://di_jfw/Results/ or path in location machin: C:/Users/WifiTester/Results/  ">C:/Users/WifiTester/Results/</result_dir>
+                    <AP_Vendor>PLUME</AP_Vendor>
+                </parameters>
+            </parameters>
+        </parameters>
+    </execution>
+    <testbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</testbed>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="1f2fd6f1-a4b4-4560-b3b1-bdbe50dc22e1" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Initialize Variables</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="5189037f-d6bb-4463-bf7c-a8be90617bf1" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>mcsActual = 0</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="b02ccffd-30b9-4545-bf1b-433f473ba0d5" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>mcsActualLong = 0</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="98a66834-0221-437c-8e79-af797367145b" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>atten_port = param(&apos;attenuation_port&apos;)</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="d0a34b52-a552-492f-94cb-7e74a6415365" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Open session to attenuator</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="83e266cb-a1a6-41a6-b236-e168d0249d72" action="open" session="attenuator" skip="true">
+                            <command>
+                                <body>device:Attenuator#telnet</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties">
+                                    <completionProperties>
+                                        <completeWhen inherit="false">AUTO_OR_IDLE</completeWhen>
+                                    </completionProperties>
+                                </stepProperties>
+                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                    <TerminalProperties>
+                                        <captureProperties>
+                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                        </captureProperties>
+                                    </TerminalProperties>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="827cc8b8-62c5-4b27-9f87-37091e478ffc" action="open" session="attenuator">
+                            <command>
+                                <body>device:JFW%20Attenuator#telnet</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties">
+                                    <completionProperties>
+                                        <completeWhen inherit="false">AUTO_OR_IDLE</completeWhen>
+                                    </completionProperties>
+                                </stepProperties>
+                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                    <TerminalProperties>
+                                        <captureProperties>
+                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                        </captureProperties>
+                                    </TerminalProperties>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="812b022e-3702-4e3e-958d-b4af5d3bd707" action="SetPrompt" session="attenuator" useFieldsInCommand="false">
+                            <command>
+                                <body> -prompt attenuator&gt;</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="24e53c62-95a1-40eb-b3f9-36f0572c8f55" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Open Session to Elastic Search Database</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="2462143e-e1ac-4fea-82f7-4d75bc12b0ea" action="open" session="ELK" skip="true">
+                            <command>
+                                <body>device:elastic#REST</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties"/>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="7de4fe5a-8dd0-49b3-9163-4b3ac3f5ba5b" action="open" session="ELK">
+                            <command>
+                                <body>device:STC#REST</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties"/>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="63ea562a-f7c1-4896-8e1a-4e318b493b50" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>import json</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="2a7e4fb0-8c1d-4bc9-820b-85afc33b51ee" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Open session to turn table</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="c49d17fc-8d5e-4989-aeca-661fcdfc8652" action="open" session="turnTable" skip="true">
+                            <command>
+                                <body>device:RF%20Enclosure/Turntable#cmd</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                <sessionProperties type="com.fnfr.svt.applications.cmd.CmdSessionProperties"/>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="a8cb1ac2-9b8d-47ed-ae3d-0e6a2c00baf0" action="open" session="turnTable">
+                            <command>
+                                <body>device:OctoBox_1#cmd</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                <sessionProperties type="com.fnfr.svt.applications.cmd.CmdSessionProperties"/>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="2edfde13-f961-495e-952f-bc7010703ef2" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Open trafficGen and load configuration subscribe to results</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="745ce373-61bb-4a4f-9f62-585f465e7350" action="open" session="trafficGen" skip="true">
+                            <command>
+                                <body>device:TrafficGen#Spirent_TestCenter</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TestCenterGUISessionProperties" ipAddress="[param(&apos;STC/IP&apos;)]" ipAddress.inherit="false" ports="[param(&apos;STC/WifiPort&apos;)] [param(&apos;STC/EthPort&apos;)]" ports.inherit="false" config="project://di_stc_com/configFiles/[param(&apos;STC/ConfigFile&apos;)]" config.inherit="false">
+                                    <tcl transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TclInterpreterProperties" interpreterLocation="file:/C:/Program%20Files%20(x86)/Spirent%20Communications/Spirent%20TestCenter%204.85/TCL/bin/tclsh85.exe" interpreterLocation.inherit="false"/>
+                                    <configureCustom16bitFilter transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.Analyzer16BitFilterProperties" mask="ffff" mask.inherit="false" endOfRange="ffff" endOfRange.inherit="false"/>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="f20d50d1-ea08-4dd5-ac04-587b1126e1f3" action="open" session="trafficGen">
+                            <command>
+                                <body>device:STC#Spirent_TestCenter</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TestCenterGUISessionProperties" ipAddress="[velocity(&apos;property&apos;,&apos;ipAddress&apos;)]" ipAddress.inherit="false" ports="[param(&apos;STC/WifiPort&apos;)] [param(&apos;STC/EthPort&apos;)]" ports.inherit="false" config="project://di_stc_com/configFiles/[param(&apos;STC/ConfigFile&apos;)]_[param(&apos;STC/header&apos;)].tcc" config.inherit="false">
+                                    <tcl transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TclInterpreterProperties" interpreterLocation="file:/C:/Program%20Files%20(x86)/Spirent%20Communications/Spirent%20TestCenter%204.85/TCL/bin/tclsh85.exe" interpreterLocation.inherit="false"/>
+                                    <configureCustom16bitFilter transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.Analyzer16BitFilterProperties" mask="ffff" mask.inherit="false" endOfRange="ffff" endOfRange.inherit="false"/>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="6fd2dcd5-6d88-4c82-bb26-aac1f1f42250" action="subscribeView" session="trafficGen" normalOffset="31.011" estimatedStepExecutionTime="0.985">
+                            <command>
+                                <body>BasicTrafficResults</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="e8aec4a3-3693-4af5-b1e2-f8fec08a89aa" action="subscribeView" session="trafficGen">
+                            <command>
+                                <body>Ieee802.11ClientResults</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="724116c0-6a59-40a4-8cca-50ef1532b853" action="subscribeView" session="trafficGen">
+                            <command>
+                                <body>StreamBlockResults</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="b4634d52-003c-47b2-b2c1-e5ab9ed7ae2d" action="showSubscriptionViews" session="trafficGen" normalOffset="1.374" estimatedStepExecutionTime="0.084">
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="2d3dd6ed-05ee-4553-9fcf-449374fcba70" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Open Session to AP and configure AP as per test case parameter</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="26901c2f-eb91-43ff-a376-6e887fdc46f8" action="open" session="AP">
+                            <command>
+                                <body>device:DUT1#telnet</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                    <TerminalProperties>
+                                        <captureProperties>
+                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                        </captureProperties>
+                                    </TerminalProperties>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="04b3515d-37a9-48e9-9b3e-0190c9d9df6c" action="configureAP" session="AP" useFieldsInCommand="false">
+                            <command>
+                                <body> -frenqncyChannel [param AP/ChannelFrequency] -channelNumber_2_4 [param AP/ChannelFreq_2_4/channel_number] -channelNumber_5_0 [param AP/ChannelFreq_5_0/channel_number] -channelMode_2_4 [param AP/ChannelFreq_2_4/hw_mode] -channelMode_5_0 [param AP/ChannelFreq_5_0/hw_mode]</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="4838b91c-8074-4de4-8d82-d85c1786f5f7" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>AP Vendor</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="987e0336-4f93-4af2-95a7-f90092d9910e" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>ap_vendor = param(&apos;AP/vendor&apos;)</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="6cbefba3-b0be-4bb2-a734-ba0400f06d89" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Create Result File at the result dir, create file and then open File Session to append the result</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="37b70f40-5ba9-4462-a50a-2a49b908e91f" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Create Report file at the location mentioned in parameter</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="572a7167-b397-456c-a60e-7e501d32950e" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>report_loc = param(&apos;result_location&apos;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="94c11582-46f7-4516-b23e-b22a8b2d458d" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>testCaseName = info(&apos;testCaseName&apos;, &apos;main&apos;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a8785f3e-b28e-420d-8f52-0f531d8c539b" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>dateTime = info(&apos;timestamp&apos;, &quot;yyyy_MM_dd_HH_mm_ss&quot;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="1807eb0b-bd03-45b5-98bc-a78c2e43b1bb" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(report_loc)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="20a06128-03a4-44b3-b15d-6ecccfbb90be" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(testCaseName)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="6062fead-afc5-4dc8-816f-6391fb894b33" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(dateTime)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="5b896f7a-6154-480b-bf8e-30607b35d77e" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>report_file = str(report_loc)+str(testCaseName)+&quot;_&quot;+str(dateTime)+&quot;.csv&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="70ae7f52-88aa-4654-bd6f-733025a868c2" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(report_file)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a88fdcdd-e073-4640-b8b8-050899d551e2" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>header = str(&quot;Port,Attenuation,Orienation,Vendor,DL Throughput,UL Throughput,Latency,Packet Loss,RSSI,ReportId&quot;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="051dc5b8-aa3a-47c3-88da-93a5d9c4faff" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>header = str(&quot;Port,Attenuation,Vendor,DL Throughput,UL Throughput,RSSI,BSSID,ReportId&quot;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="4fefc3a2-28bd-4c26-b3b7-f792c62a07bc" action="call" useFieldsInCommand="false">
+                                    <command>
+                                        <body>project://ai_common/library/common_procedure.fftc#createFile -report_file [report_file] -header [header]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="a34b75d3-8776-4ea2-97d3-cf2bf0830a1f" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Open File Session type to write the Result</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="4e5070e3-c877-46f1-b6e5-f44df0957d54" action="open" session="RESULT" useFieldsInCommand="false">
+                                    <command>
+                                        <body>project://ai_common/session_profiles/report_session.ffsp</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                        <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        <sessionProperties type="com.fnfr.itest.applications.file.properties.FileSessionProperties">
+                                            <sessionbuilderInitializeAction type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </sessionProperties>
+                                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                    </applicationProperties>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="c15f2484-476c-4bdd-864d-7c8ab15ee0bb" action="comment" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>Test</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="b992c791-757d-4aaf-9b18-1e7258046cc1" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Test Data Wifie</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="afd62798-0d6f-413f-9754-0d385038745e" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>port = &quot;//172.30.245.61/2/3&quot;</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="2a77e8d9-53c5-4e8e-8371-514960911c0b" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>atten_elk = 35</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="1575b055-0581-4218-8ebd-068b04482c37" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>orientation = 0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="3df0066c-169b-4cbb-8a7d-e287506c9eb7" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>throughput_wifi = 8</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="666b5aaf-8bcd-46db-9bad-94310ce19325" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_wifi = 106833</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="fcc110ca-d04f-4fa2-9cd0-5b8248048784" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>dfcounts_wifi = 63435422</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="595a545b-09c7-4c2a-910e-d60fe0df5856" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>rssi_wifi = -66</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="cd4bd88e-29d9-49ee-a6ca-e3c9d15bcae0" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>reportId = 640</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a5a41fca-2ae8-4c1d-9f97-32c46aa6b959" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Write to Result CSV File for Wifi Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="f7a3d184-b259-4261-a5e8-2b10d81901e7" action="command" session="RESULT">
+                                            <command>
+                                                <body>write [wifiPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],[throughput_wifi],NA,[avgLatency_wifi],[dfcounts_wifi],[rssi_wifi],[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="1d73a00d-ad52-4980-b3be-7d5bdaebd01a" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Test Data Eth</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="08b6f413-8da9-4069-aba1-79ee9717ae08" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>port = &quot;//172.30.245.61/4/1&quot;</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="453f75a3-2a88-4894-bc3b-a85accaf1966" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>atten_elk = 35</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="db7318f2-9b20-4a21-9303-5082aff9b53b" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>orientation = 0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="6f30fb97-0280-4472-9351-0c50395e2d31" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>throughput_eth = 35</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="9bf35f2b-a178-4cb7-ba68-14ad31fbbb7b" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_eth = 33425</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="a965df32-3199-40d8-96f2-b582196cc3bc" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>dfcounts_eth = 7392927</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="54587356-2822-4016-9dc8-cee2802ad3ac" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>reportId = 640</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="ab8208f9-2e0d-4bc1-9cfd-d7b8aa6a4143" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Write to Result CSV File for Eth Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="e96e693f-47cb-405c-84e9-c475cd50251c" action="command" session="RESULT">
+                                            <command>
+                                                <body>write [wifiPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],NA,[throughput_eth],[avgLatency_eth],[dfcounts_eth],NA,[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="cbb96d25-0b68-4b9b-ac51-1c2aaa4ef6eb" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Open Vertex, setup frequncy,power,and Channel B and start emulator</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="90a9fd11-e506-4920-a6e7-472da7596645" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Open Connection to Emulator</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="253cf6ce-8f28-47d0-9939-ad098b7dc13b" action="open" session="vertex">
+                                    <command>
+                                        <body>device:Vertex-1#telnet</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                        <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                            <TerminalProperties>
+                                                <captureProperties>
+                                                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                                </captureProperties>
+                                            </TerminalProperties>
+                                        </sessionProperties>
+                                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                    </applicationProperties>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="f0bf15d0-5fe2-4fdf-9b59-f787d2ae7d17" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set connection type (Proifle)</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="b0fe0aa3-cc0c-469b-a5d8-ff284254b613" action="SetConnectionType" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body>-connection_profile [param(&apos;vertex/channelProfile&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="e0563188-1dc5-425a-b105-1cc7b3a781c5" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set Carrier Frequency inputPort</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="3d8096d0-cb88-44b6-92fa-e51fae8beefd" action="SetCarrierFrequency" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -port [param(&apos;vertex/inputPorts&apos;)] -frequency [param(&apos;vertex/channelFrequency&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="d7a983b4-d6cc-4ec2-952f-b4a1c0ccffe7" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set Input Power</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="1c0feb5e-29ac-437f-8885-6efc9eb27908" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Input Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="7feb780d-9bd3-4a12-8142-e1e1248dd44b" action="SetInputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/inputPorts&apos;)] -power [param(&apos;vertex/inPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="2cb2a0c2-d63c-48fa-b4c0-e8fb1f5306f8" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Output Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="443073e9-bb53-46d7-acc8-45890b232a88" action="SetInputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/outputPorts&apos;)] -power [param(&apos;vertex/inPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="9588ed5b-4ba2-4555-8f2e-3bd6276a6a95" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set outPut Power</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="ad714b5e-b198-47ce-9ab9-099ca9c4bfbe" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Input Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="c9a94942-80cd-4880-8336-14a709b21a4b" action="SetOutputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/inputPorts&apos;)] -power [param(&apos;vertex/outPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="1dc6f85e-88d9-496b-9c70-6d13814cdeb6" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Output Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="2c8359c7-959b-430f-92af-1c1980df8950" action="SetOutputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/outputPorts&apos;)] -power [param(&apos;vertex/outPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="81fdcdd9-4bae-4ecb-bce3-985edc322c49" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Load channel Model</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="e98c6ffd-8383-4687-9638-91bf474bc56a" action="setChannelModel" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -channelModel [param(&apos;vertex/channelModel&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="43cc209e-a62f-4866-9fde-d7933df52eb3" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Start Emulator</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="7800d06b-1450-4903-b0d0-3525fd9f2045" action="StartEmulation" session="vertex" useFieldsInCommand="false">
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="0b5fc2c0-5a3c-4b5c-ae2d-0973fced7e97" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Get Test Report Id</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="007e7ff8-cf66-48ff-a0e1-0c6e39af35e0" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>reportId = info(&apos;testReportId&apos;)</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="4fad5e93-62f4-49e9-8660-f8c6a8c7d59d" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>print(reportId)</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="6f1ef960-4791-480d-8dc2-39da15929a20" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>reportId = int(reportId)</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="ac8c353b-0a73-4c9c-85d1-9461015a3c16" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Modify MIMO, Attach Profile, ARP and PASS Traffic</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="d70c5f5a-0dfe-4b33-a432-edf6b012ad72" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Get Port Id </body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="f0b7f7c1-0bb3-4b24-a797-ccc1ca4a60d3" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>ethPortLoc = &quot;//&quot;+str(param(&apos;STC/IP&apos;))+&quot;/&quot;+ str(param(&apos;STC/EthPort&apos;))</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="54d6f3db-343e-4a32-9b15-db10c8498438" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>wifiPortLoc =  &quot;//&quot;+str(param(&apos;STC/IP&apos;))+&quot;/&quot;+ str(param(&apos;STC/WifiPort&apos;))</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="1bc0d6ff-2f78-4c89-8dbe-9cebf7f59291" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(ethPortLoc)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="16124b83-91c1-41bb-be71-56cf9b1605a0" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print(wifiPortLoc)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="70bc2c4c-87c6-47be-893c-2c01b02887fb" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>ethPortLoc = &quot;//172.30.245.61/4/4&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="9f728cd2-6600-4b8d-a7b1-6cea566a27a9" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>wifiPortLoc = &quot;//172.30.245.61/2/4&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="e41ea8c8-68db-4826-ac00-74735864813b" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>ethPortLoc = [tbml(&apos;property&apos;, &apos;-name&apos;, &apos;trafficGen&apos;, &apos;ipAddress&apos;)]+&apos;/&apos;+[tbml(&apos;property&apos;, &apos;-name&apos;, &apos;trafficGen ethPort&apos;, &apos;inventoryName&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a84423da-9299-4002-9bca-a8fd8a718fb7" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>wifiPortLoc = &quot;//&quot;+ str([tbml(&apos;property&apos;, &apos;-name&apos;, &apos;STC&apos;, &apos;ipAddress&apos;)]) + &quot;/&quot; + str([tbml(&apos;property&apos;, &apos;-name&apos;, &apos;STC/wifiPort&apos;, &apos;portNumber&apos;)])</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="4282a923-a233-4697-b144-728dae0f1a16" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print([wifiPortLoc])</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="683b910e-eeee-4396-a3b1-0e50b4119cb7" action="get_port_id_by_location" session="trafficGen" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -location $ethPortLoc</body>
+                                    </command>
+                                    <postProcessing>
+                                        <storeResponseAt>ethPortId</storeResponseAt>
+                                        <storeResponseText>true</storeResponseText>
+                                    </postProcessing>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="8ecc74fe-fede-4933-9bf8-88be64247485" action="get_port_id_by_location" session="trafficGen" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -location $wifiPortLoc</body>
+                                    </command>
+                                    <postProcessing>
+                                        <storeResponseAt>wifiPortId</storeResponseAt>
+                                        <storeResponseText>true</storeResponseText>
+                                    </postProcessing>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="653d8189-d66b-455d-8e81-4774332b8f74" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>puts &quot;Port Ids Ethernet Port Id: $ethPortId    #####    Wifi Port Id: $wifiPortId&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="6df52b41-4ddf-4317-bd81-59ea726c1fa4" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Modify MIMO Type based on parameter</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="0b3e9544-7ace-4f92-983e-a3cd9811d25b" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>mimo_type = param(&apos;Mimo_configuration&apos;)</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="3b736269-9b93-45d6-aa05-ef6f54230dce" action="modifyMIMO" session="trafficGen" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -wifiPort [wifiPortId] -mimoType [mimo_type]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="27f663bd-a281-40c8-a0d2-7f74ae9d5d12" action="comment" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>Modify Frequncy Channel Based on the input</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="4d0e74cc-bc43-45ab-b66d-6f4db0d077cc" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Find the Freqncy type</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="161c5ff9-8bda-4fa6-8c62-65458d54c136" action="if" useFieldsInCommand="false">
+                                            <command>
+                                                <body>param(&apos;AP/channel_frequncy&apos;) == &quot;2.4&quot;:</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="e5812342-0a79-45ca-bc3a-02ba9fd05716" action="comment" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>Insert steps here for when expression is true</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                                <item guid="01100a3d-fa04-4006-85b4-9b219dd68e74" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>freqBand = &quot;FREQ_2_4_GHZ&quot;</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="c1bc1b4f-22e9-4d19-b04c-3a28c95cba38" action="elif">
+                                            <command>
+                                                <body>param(&apos;AP/channel_frequncy&apos;) == &quot;5.0&quot;:</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="188373f3-2fc7-46d3-8547-18d6a63a7b85" action="comment" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>Insert steps here for when expression is false</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                                <item guid="db6d995c-eba6-42b4-842a-a78da63c441b" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>freqBand = &quot;FREQ_5_0_GHZ&quot;</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="c6fb06d8-92be-4dc5-a983-752391f076a1" action="else" useFieldsInCommand="false">
+                                            <nestedSteps>
+                                                <item guid="2729d5b9-aadb-4268-b86d-466fcd4fdf89" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>freqBand = &quot;FREQ_AUTO&quot;</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="37b5adea-cfb5-4306-a732-e03db850bd15" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Modify the Freqncy channel type</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="90e89553-68e1-445d-afdd-752c6d230adc" action="modifyChannelFreqncy" session="trafficGen" useFieldsInCommand="false">
+                                            <command>
+                                                <body>-wifiPort [wifiPortId] -frqBand [freqBand]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="ba24bdc8-4f74-4e2d-aae3-8811029802bf" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Attach Profile</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="8250dfc5-5500-445d-8059-109167b7124c" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Get Client Profile Id</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="00d94a59-4013-443c-95f1-010470baa335" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>ethClientProfile = param(&apos;SBClientProfile&apos;)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="4903f85b-86ca-475b-a72b-d6e5a8000451" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(ethClientProfile )</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="3a7716cb-cbd8-46e7-a8d8-49d5d60a9ccb" action="getClientProfileId" session="trafficGen" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -clientProfileName [ethClientProfile]</body>
+                                            </command>
+                                            <postProcessing>
+                                                <storeResponseAt>clientProfileId</storeResponseAt>
+                                                <storeResponseText>true</storeResponseText>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="16f503ae-6459-4bb8-99f7-44e246f67c88" action="attachClientProfile" session="trafficGen" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -clientProfileId [clientProfileId] -port [ethPortId]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="5ceddfb7-f9da-4193-b762-b78be26447de" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Associate Client Profile with Wifi Port, Cleint profile is part of  pre-configured trafficGen Configuration file</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="17dff15d-af15-45b0-ac89-f824626c3a1a" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::perform Ieee80211AssociateCommand -ClientList [wifiPortId]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="19d300d0-7326-4e67-a90c-bd10eb978e7d" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::apply</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="7fe4d7ad-2912-4bdb-8e91-e47614499260" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Wait for Client Association</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="3ebebee4-8181-430f-86db-3864c3232999" action="sleep">
+                                    <command>
+                                        <body>120</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="0ecdbec5-4f0e-440c-bc6a-451e02623fc7" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>ArpNd</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="899fe8e9-cfb7-455a-8007-c2fa88987bf0" action="startArpNdOnAllStreamBlocks" session="trafficGen" normalOffset="132.922" estimatedStepExecutionTime="1.452">
+                                    <postProcessing>
+                                        <analysisRules>
+                                            <item>
+                                                <extractorInfo extractorType="contains">
+                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.ExtractorContainsPropertyGroup">
+                                                        <searchString>could not</searchString>
+                                                    </extractorProperties>
+                                                </extractorInfo>
+                                                <processorInfo ruleType="assert">
+                                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.AssertionPropertyGroup">
+                                                        <expression>value == 1</expression>
+                                                        <actionsWhenTrue>
+                                                            <item actionId="DeclareExecutionIssue">
+                                                                <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup">
+                                                                    <message> ARP is not successfull,  Skip exeuction</message>
+                                                                </actionProperties>
+                                                            </item>
+                                                            <item actionId="AbortTest">
+                                                                <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                            </item>
+                                                        </actionsWhenTrue>
+                                                        <actionsWhenFalse>
+                                                            <item actionId="DeclareExecutionIssue">
+                                                                <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup" severity="OK">
+                                                                    <message> ARP is successful</message>
+                                                                </actionProperties>
+                                                            </item>
+                                                        </actionsWhenFalse>
+                                                    </ruleProperties>
+                                                </processorInfo>
+                                            </item>
+                                        </analysisRules>
+                                    </postProcessing>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="84116282-d34b-4685-9a3e-e5f3387c2d02" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Start Stream Block</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="a59670f3-f1a4-4194-87ec-8a02a14b2d4e" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::get [ethPortId] -children-streamblock</body>
+                                    </command>
+                                    <postProcessing>
+                                        <analysisRules>
+                                            <item>
+                                                <extractorInfo extractorType="regex">
+                                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                                    </extractorProperties>
+                                                </extractorInfo>
+                                                <processorInfo ruleType="store">
+                                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                        <storageLocation>sb_handle</storageLocation>
+                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                    </ruleProperties>
+                                                </processorInfo>
+                                            </item>
+                                        </analysisRules>
+                                    </postProcessing>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="ce28a651-b7e5-4a17-8871-19c6899a3384" action="eval" session="trafficGen" skip="true" normalOffset="131.018" estimatedStepExecutionTime="1.392">
+                                    <command>
+                                        <body>stc::perform StreamBlockStartCommand -StreamBlockList  &quot;[sb_handle]&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="ca28c798-f0b0-4ad1-8db9-a8fe62467deb" action="startGenerator" session="trafficGen">
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="b0a1b939-52c0-4dc1-ace3-9ccbba42af5c" action="comment" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>Start Capture on Wifi Port</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="edcf44ff-dbcc-48ac-93c2-ac2f565c212b" action="startCapture" session="trafficGen">
+                                    <command>
+                                        <body>[wifiPortId]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="b8e3ea0f-59cf-4337-a920-e781964675cb" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Port name was not appropriate, change as per PortLocation</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="4328eb39-6fb1-441d-9ca8-28cea3ec07ae" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::config [wifiPortId] -name [wifiPortLoc]  -AppendLocationToPortName false</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="fd6468d8-3f9d-4726-83c8-ddcc48a2fe94" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::config [ethPortId] -name [ethPortLoc]  -AppendLocationToPortName false</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="e53a0794-eb54-4ed8-9c2d-4dca2dfba996" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::apply</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="453c7c20-7ac7-4d2d-b9ab-145370bb89a5" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Loop through turn Table position and attenuation </body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="149580c2-974c-4760-875f-707c467cd7de" action="eval" useFieldsInCommand="false">
+                            <command>
+                                <body>sample_time = 0</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="58ba7851-7ec0-4dc6-b8b3-5f226461f506" action="while" useFieldsInCommand="false">
+                            <command>
+                                <body>sample_time &lt;= int(param(&apos;STC/sample_size&apos;)):</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="d6ba2bf4-e783-404d-9c54-3665fe989275" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Measure Throughput</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="8377daa4-d162-4807-940f-ec66d1f841b3" action="showResults" session="trafficGen" normalOffset="139.477" estimatedStepExecutionTime="0.05">
+                                            <command>
+                                                <body>BasicTrafficResults Basic Counters</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">RxL1Rate_bps_(&quot;[wifiPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>var1</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">RxL1Rate_bps_(&quot;[ethPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>var2</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="4c4104db-ee81-4128-bf8a-7850d8d2d2fa" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>value1 = int(var1)/1000000</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="f1bce548-f702-4afa-90e9-ce6f5e98ce2b" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>value2 = int(var2)/1000000</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="1837f597-b702-47d3-aaf5-a5e005a96f30" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(value1)</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>group1()</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="chart_as_xy">
+                                                            <ruleProperties type="com.fnfr.svt.execution.charting.processors.ChartUsingXYPropertyGroup" chartName="xychart1" xAxisLabel="Time" yAxisLabel="Value" maxItemCount="400" series="MbpsWifi1">
+                                                                <yValue>int(value)</yValue>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="3284f2fe-5afb-4164-84be-8943f40e2921" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(value2)</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>group1()</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="chart_as_xy">
+                                                            <ruleProperties type="com.fnfr.svt.execution.charting.processors.ChartUsingXYPropertyGroup" chartName="xychart1" xAxisLabel="Time" yAxisLabel="Value" maxItemCount="400" series="MbpsWifi2">
+                                                                <yValue>int(value)</yValue>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="9b3f8f9a-d019-41ac-a0f1-3a6d8acdb473" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>throughput_wifi = int(value1)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="a26a0228-5aeb-47f4-813d-3055b34af8d2" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>throughput_eth = int(value2)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="51e16687-d24e-4b41-830e-c0f026ec516e" action="comment" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Measure Latency from Stream Block</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="fc4ab885-69e6-4593-af8d-b925b3408877" action="showResults" session="trafficGen" normalOffset="139.477" estimatedStepExecutionTime="0.05">
+                                            <command>
+                                                <body>StreamBlockResults &quot;Basic Counters&quot;</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">AvgLatency_us_(&quot;[ethPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>avgLatency_eth</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">AvgLatency_us_(&quot;[wifiPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>avgLatency_wifi</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="26a2ea40-a6c6-4c98-a810-26d8014ce853" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(avgLatency_eth)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="8639dc76-40a7-4320-b93e-89779d7883c1" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(avgLatency_wifi)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="721550c9-ce6d-4963-ac5b-2e7fae75edbd" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_eth = float(avgLatency_eth)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="d6cb92af-198a-4474-8279-5dc67b71f16f" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_wifi = float(avgLatency_wifi)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="5ad1790c-2d86-4c44-86e1-1320822d8194" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_eth = int(avgLatency_eth)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="967b9faa-fda7-4827-9907-84565c061147" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>avgLatency_wifi = int(avgLatency_wifi)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="22609b8c-adc8-4a4a-bc29-cd421e011672" action="comment" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Measure Packet Loss</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="58a68a5c-0eed-4c47-a341-693769361e33" action="showResults" session="trafficGen" normalOffset="139.477" estimatedStepExecutionTime="0.05">
+                                            <command>
+                                                <body>StreamBlockResults &quot;Advanced Sequencing&quot;</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">DroppedCount_Frames_(&quot;[ethPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>dfcounts_eth</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">DroppedCount_Frames_(&quot;[wifiPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>dfcounts_wifi</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="cf18b87e-7746-4bc8-a302-d02ebe3c550a" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(dfcounts_wifi)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="398c6745-cf9e-41a0-ba55-957d058d0475" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(dfcounts_eth)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="b43d6d02-e3d4-4eca-b4e0-feb7182ee4df" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>dfcounts_wifi = int(dfcounts_wifi)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="7c07d148-8496-483c-a546-0fb9297686bf" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>dfcounts_eth = int(dfcounts_eth)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="36b124bd-2536-45b3-8a05-c66a804eae6e" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Measure RSSI and Get BSSID</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="d56a12e5-fdc6-48c0-b6c9-4789df45547d" action="showResults" session="trafficGen" normalOffset="9.754" estimatedStepExecutionTime="0.55">
+                                            <command>
+                                                <body>Ieee802.11ClientResults</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">Ieee80211ClientConfigSignalStrength(&quot;[wifiPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>rssi_wifi</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>Ieee80211ClientConfigBssid(&quot;[wifiPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>bssid</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query sub="true">Ieee80211ClientConfigSignalStrength(&quot;[wifiPortLoc]&quot;)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="chart_as_xy">
+                                                            <ruleProperties type="com.fnfr.svt.execution.charting.processors.ChartUsingXYPropertyGroup" chartName="xychart1" maxItemCount="400" series="RSSI">
+                                                                <yValue>int(value)</yValue>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="12cdf9d2-a2d7-4fa6-b33d-667f331d352f" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>rssi_wifi = int(rssi_wifi)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="fc8f63a5-7a8d-42ca-b26b-0b3ea520bed5" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>print(bssid)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="c804f1d2-985b-41cf-b13b-90387d7b77ff" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Insert data to ELK for Wifi Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="96414892-60d2-4874-acdd-cf60651f9000" action="eval" useFieldsInCommand="false">
+                                            <command>
+                                                <body>atten_elk = int(attenuation)</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="9125b6aa-b23c-4c9b-8db0-a1f65355ab60" action="POST" session="ELK" estimatedStepExecutionTime="4.72">
+                                            <command>
+                                                <body>mesh_downlink/_doc</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>boolean(mapped/Json/error)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="assert">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.AssertionPropertyGroup">
+                                                                <expression>value != True</expression>
+                                                                <actionsWhenTrue>
+                                                                    <item actionId="Eval">
+                                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.EvalActionPropertyGroup">
+                                                                            <statement>status = &quot;ok&quot;</statement>
+                                                                        </actionProperties>
+                                                                    </item>
+                                                                    <item actionId="SkipRemainingRules">
+                                                                        <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                    </item>
+                                                                </actionsWhenTrue>
+                                                                <actionsWhenFalse>
+                                                                    <item actionId="Eval">
+                                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.EvalActionPropertyGroup">
+                                                                            <statement>status = &quot;error&quot;</statement>
+                                                                        </actionProperties>
+                                                                    </item>
+                                                                </actionsWhenFalse>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>mapped/Json/error</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>error_type</storageLocation>
+                                                                <query>error_type</query>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>mapped/Json/error/reason</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>error_message</storageLocation>
+                                                                <query>error_message</query>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulInvokeProperties" httpMethod="POST" httpMethod.inherit="false" action="mesh_downlink/_doc" action.inherit="false">
+                                                <message inherit="false">{
+ &quot;port&quot;:&quot;[wifiPortLoc]&quot;,
+ &quot;attenuation&quot;:[atten_elk],
+ &quot;dl_througput&quot;:[throughput_wifi],
+ &quot;rssi&quot;:[rssi_wifi],
+ &quot;bssid&quot;:&quot;[bssid]&quot;,
+  &quot;ap_vendor&quot;:&quot;[ap_vendor]&quot;,
+ &quot;reportId&quot;:[reportId]
+}</message>
+                                                <authentication transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.AuthenticationProperties" authenticationType="Basic" authenticationType.inherit="false" user="user" user.inherit="false" password.masked="true" password="lRcyT7thbQo=" password.inherit="false" acceptAllCertificates="true" acceptAllCertificates.inherit="false"/>
+                                            </applicationProperties>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="09126728-131b-4d40-b348-9c9bfe966e98" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Write to Result CSV File for Wifi Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="09b0b747-265e-4f6e-87d9-1f8522e59c85" action="command" session="RESULT">
+                                            <command>
+                                                <body>write [wifiPortLoc],[atten_elk],[param(&apos;AP_Vendor&apos;)],[throughput_wifi],NA,[rssi_wifi],[bssid],[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="215adb53-79e5-4668-880d-29f347a55203" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Insert data to ELK for Ethi Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="e850be8b-052b-4c8a-843b-445256e47b98" action="POST" session="ELK" estimatedStepExecutionTime="4.72">
+                                            <command>
+                                                <body>mesh_uplink/_doc</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>boolean(mapped/Json/error)</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="assert">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.AssertionPropertyGroup">
+                                                                <expression>value != True</expression>
+                                                                <actionsWhenTrue>
+                                                                    <item actionId="Eval">
+                                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.EvalActionPropertyGroup">
+                                                                            <statement>status = &quot;ok&quot;</statement>
+                                                                        </actionProperties>
+                                                                    </item>
+                                                                    <item actionId="SkipRemainingRules">
+                                                                        <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                    </item>
+                                                                </actionsWhenTrue>
+                                                                <actionsWhenFalse>
+                                                                    <item actionId="Eval">
+                                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.EvalActionPropertyGroup">
+                                                                            <statement>status = &quot;error&quot;</statement>
+                                                                        </actionProperties>
+                                                                    </item>
+                                                                </actionsWhenFalse>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>mapped/Json/error</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>error_type</storageLocation>
+                                                                <query>error_type</query>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                    <item>
+                                                        <extractorInfo extractorType="query">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                <query>mapped/Json/error/reason</query>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>error_message</storageLocation>
+                                                                <query>error_message</query>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">true</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulInvokeProperties" httpMethod="POST" httpMethod.inherit="false" action="mesh_uplink/_doc" action.inherit="false">
+                                                <message inherit="false">{
+ &quot;port&quot;:&quot;[ethPortLoc]&quot;,
+ &quot;attenuation&quot;:[atten_elk],
+ &quot;ul_througput&quot;:[throughput_eth],
+ &quot;ap_vendor&quot;:&quot;[ap_vendor]&quot;,
+  &quot;reportId&quot;:[reportId]
+}</message>
+                                                <authentication transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.AuthenticationProperties" authenticationType="Basic" authenticationType.inherit="false" user="user" user.inherit="false" password.masked="true" password="lRcyT7thbQo=" password.inherit="false" acceptAllCertificates="true" acceptAllCertificates.inherit="false"/>
+                                            </applicationProperties>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="50a05c48-1b38-480f-9ca3-f2f280552a83" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Write to Result CSV File for Eth Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="abe3e50a-b817-45a7-990d-c41bff09935f" action="command" session="RESULT" skip="true">
+                                            <command>
+                                                <body>write [ethPortLoc],[atten_elk],[orientation],[param(&apos;AP_Vendor&apos;)],NA,[throughput_eth],[avgLatency_eth],[dfcounts_eth],NA,[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="d3e7ca54-f88d-4240-b055-6380f9885dae" action="command" session="RESULT">
+                                            <command>
+                                                <body>write [wifiPortLoc],[atten_elk],[param(&apos;AP_Vendor&apos;)],NA,[throughput_eth],NA],NA,[reportId]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="fabda126-ea92-4d92-8094-0b370056b6a8" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Wait for duration as per parameter</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="ad7d9b8f-0672-4207-9c2a-7df27434ed12" action="sleep">
+                                            <command>
+                                                <body>[param(&apos;sample_interval&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="3b0c3e41-c340-49ef-bda9-f1232b1a2543" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Clear Results</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="b206d298-1158-4afe-a52a-ab7af6d55291" action="clearResults" session="trafficGen">
+                                            <command>
+                                                <body>BasicTrafficResults Basic Counters</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="ae767941-89e4-4ed8-8fb8-14d19460e627" action="clearResults" session="trafficGen">
+                                            <command>
+                                                <body>StreamBlockResults &quot;Advanced Sequencing&quot;</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="a27d4362-705c-42d6-8833-37efb732a6bd" action="clearResults" session="trafficGen">
+                                            <command>
+                                                <body>Ieee802.11ClientResults</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="9f09cab1-1f26-4b01-bea2-aba1770b3c1c" action="eval" useFieldsInCommand="false">
+                                    <command>
+                                        <body>sample_time = int(sample_time)+ int(param(&apos;sample_interval&apos;))</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="7ed9985e-c0aa-43f6-8a89-3056857820db" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Stop traffic</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="3fcd16dc-90a3-4d16-8eaa-f33427bd4490" action="comment" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>Stop Capture on Wifi Port</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="67b20b12-57b6-4ef9-bc4b-aea141498c40" action="stopCapture" session="trafficGen" useFieldsInCommand="false">
+                                    <command>
+                                        <body>[wifiPortId]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="f1a61af2-d504-496a-8aff-1787abcd0737" action="comment" skip="true" useFieldsInCommand="false">
+                            <command>
+                                <body>Save Capture</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="24631081-c19b-4665-b691-3f945714119a" action="saveCapture" session="trafficGen">
+                                    <command>
+                                        <body>[wifiPortId] [capture_loc]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.SaveCaptureProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="82ace314-553f-45b2-be17-117f38c00581" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Stop Traffic</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="8b6762ac-d82a-472c-9884-c7442d9d1769" action="eval" session="trafficGen" skip="true" normalOffset="61.652" estimatedStepExecutionTime="0.048">
+                                    <command>
+                                        <body>stc::perform StreamBlockStopCommand -StreamBlockList  &quot;[sb_handle]&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="69c087a3-1e38-4b6b-8a75-21ed70c5e90c" action="stopGenerator" session="trafficGen">
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="3bba5c09-4a6e-48e1-a30e-a8a2f4e5286b" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>deattach the profile</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="fff9a457-2e4f-4219-af27-5db30c6119a2" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::perform Ieee80211DeAssociateCommand  -ClientList  [wifiPortId]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="64fd7c04-cb35-464a-b421-e53ea109662d" action="eval" session="trafficGen">
+                                    <command>
+                                        <body>stc::apply</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="779dbe9b-3e71-48b2-b640-b01e83627ef2" action="comment" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Set turn table poistion to 0</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="ac4fb1d0-3f5b-4a12-a3e4-b3246fb9b745" action="SetTurntablePosition" session="turnTable" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -device_number 0 -orientation 0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="2a232549-5acf-401d-a9f4-68330d54a2ad" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>set Port Attenuation to 0</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="39e6e1b1-a96b-4da6-aff0-2de5f231a94d" action="SetAttenuation" session="attenuator" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port_number [atten_port] -level 0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="bffbd629-2c7d-470e-b62f-60f58b1bfe2e" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Stop Emulation and setup Vertex to default mode</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="996ea9a5-936b-44f6-a73e-97521add86b6" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>stop Emulator</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="5cc19e84-0a11-4d38-ae6b-916a48698410" action="StopEmulation" session="vertex" useFieldsInCommand="false">
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="7417f49a-e1a1-4482-8753-e765eb539a59" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set channel Model to default</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="590071ae-5508-446a-afb2-c778fa41d195" action="setChannelModel" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -channelModel default</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="5685c420-3733-4574-9911-b28b08e27e15" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Close all open devices</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="4051e951-8f31-4492-9d26-aff86758b4ae" action="close" session="attenuator">
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                        <item guid="f7c934ad-938d-4eae-8ed6-1f46a8330c7f" action="close" session="turnTable" skip="true">
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                        <item guid="aa053c8c-03fb-4b22-8827-b17d336a3790" action="close" session="trafficGen">
+                            <postProcessing>
+                                <analysisRules>
+                                    <item>
+                                        <extractorInfo extractorType="contains">
+                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.ExtractorContainsPropertyGroup">
+                                                <searchString>OK</searchString>
+                                            </extractorProperties>
+                                        </extractorInfo>
+                                        <processorInfo ruleType="assert">
+                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.AssertionPropertyGroup">
+                                                <expression>value == 1</expression>
+                                                <actionsWhenTrue>
+                                                    <item actionId="DeclareExecutionIssue">
+                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup" severity="OK">
+                                                            <message>Test  Case Passed</message>
+                                                        </actionProperties>
+                                                    </item>
+                                                    <item actionId="PassTestIfNotAlreadyFailed">
+                                                        <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                    </item>
+                                                </actionsWhenTrue>
+                                                <actionsWhenFalse>
+                                                    <item actionId="DeclareExecutionIssue">
+                                                        <actionProperties type="com.fnfr.svt.execution.builtin.actions.ExecutionIssuePropertyGroup">
+                                                            <message>Test  Case Failed</message>
+                                                        </actionProperties>
+                                                    </item>
+                                                    <item actionId="FailTest">
+                                                        <actionProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                    </item>
+                                                </actionsWhenFalse>
+                                            </ruleProperties>
+                                        </processorInfo>
+                                    </item>
+                                </analysisRules>
+                            </postProcessing>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>

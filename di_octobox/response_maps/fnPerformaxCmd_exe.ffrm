@@ -48,6 +48,54 @@ Motor connection has been closed
             </aliases>
             <duration>1.4</duration>
         </item>
+        <item name="sample2">
+            <action actionType="command">
+                <command>
+                    <body>fnPerformaxCmd.exe -d 0 -p -30
+</body>
+                </command>
+            </action>
+            <responseBody>
+Motor Test Program
+Devices found: 1
+Opening device 0..
+Arcus Product: DMX-CFG-UV-USB
+Device Name: CFG00
+Firmware Version: V212BL
+Setting motor velocity..
+Moving position to -30 degrees. Please wait.
+Motor connection has been closed
+
+</responseBody>
+            <contentType>text</contentType>
+            <structuredData>
+&lt;structure xmlns:map=&quot;http://www.fnfr.com/svt/mapping&quot;&gt;
+    &lt;isEmpty&gt;false&lt;/isEmpty&gt;
+    &lt;responseLine/&gt;
+    &lt;promptName&gt;defaultPrompt&lt;/promptName&gt;
+    &lt;echo&gt;fnPerformaxCmd.exe -d 0 -p -30&lt;/echo&gt;
+    &lt;prompt&gt;C:\\\\Users\\\\WifiTester\\\\git\\\\Wifi_Rogers\\\\RogersWifi\\\\di_octobox\\\\executables&amp;gt;&lt;/prompt&gt;
+&lt;/structure&gt;
+</structuredData>
+            <aliases>
+                <item name="isEmpty">
+                    <queryFormatString>.//isEmpty</queryFormatString>
+                </item>
+                <item name="responseLine">
+                    <queryFormatString>.//responseLine</queryFormatString>
+                </item>
+                <item name="promptName">
+                    <queryFormatString>.//promptName</queryFormatString>
+                </item>
+                <item name="echo">
+                    <queryFormatString>.//echo</queryFormatString>
+                </item>
+                <item name="prompt">
+                    <queryFormatString>.//prompt</queryFormatString>
+                </item>
+            </aliases>
+            <duration>1.6</duration>
+        </item>
     </sampleDictionary>
     <mapperProperties>
         <item type="com.fnfr.svt.mapping.regex.RegexMapperProperties">
@@ -76,6 +124,7 @@ Motor connection has been closed
                     </groups>
                     <sampleMatch>Devices found: 1</sampleMatch>
                     <regexMapMode>Line</regexMapMode>
+                    <optional>true</optional>
                 </item>
                 <item name="pattern2">
                     <groups>
@@ -85,7 +134,7 @@ Motor connection has been closed
                             <end>19</end>
                         </item>
                         <item name="new_position">
-                            <regex>\\d+</regex>
+                            <regex>([-+\\d]+)</regex>
                             <named>true</named>
                             <start>19</start>
                             <end>21</end>
@@ -106,6 +155,7 @@ Motor connection has been closed
                     </groups>
                     <sampleMatch>Moving position to 10 degrees. Please wait.</sampleMatch>
                     <regexMapMode>Line</regexMapMode>
+                    <optional>true</optional>
                 </item>
                 <item name="pattern3">
                     <groups>
@@ -129,6 +179,7 @@ Motor connection has been closed
                     </groups>
                     <sampleMatch>Device Name: CFG00</sampleMatch>
                     <regexMapMode>Line</regexMapMode>
+                    <optional>true</optional>
                 </item>
             </regexMaps>
         </item>
