@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<ResponseMap version="5.0.0.77059">
+    <sampleDictionary>
+        <item name="sample1">
+            <action actionType="command">
+                <command>
+                    <body>query decode</body>
+                </command>
+            </action>
+            <responseBody>Id | Time   | Source      | Destination | Protocol | Length | Info                                                                                   
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31 | 47.950 | 10.211.21.4 | 10.211.22.5 | DIAMETER | 274    | SACK cmd=Credit-ControlAnswer(272) flags=-P-- appl=3GPP Gx(16777238) h2h=3 e2e=43a00003
+
+
+</responseBody>
+            <contentType>text</contentType>
+            <structuredData>
+&lt;structure xmlns:map=&quot;http://www.fnfr.com/svt/mapping&quot;&gt;
+    &lt;messages map:nodetype=&quot;table&quot;&gt;
+        &lt;item map:nodetype=&quot;row&quot;&gt;
+            &lt;id map:endcol=&quot;2&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;0&quot;&gt;31&lt;/id&gt;
+            &lt;time map:endcol=&quot;11&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;5&quot;&gt;47.950&lt;/time&gt;
+            &lt;source map:endcol=&quot;25&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;14&quot;&gt;10.211.21.4&lt;/source&gt;
+            &lt;destination map:endcol=&quot;39&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;28&quot;&gt;10.211.22.5&lt;/destination&gt;
+            &lt;protocol map:endcol=&quot;50&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;42&quot;&gt;DIAMETER&lt;/protocol&gt;
+            &lt;length map:endcol=&quot;56&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;53&quot;&gt;274&lt;/length&gt;
+            &lt;info map:endcol=&quot;149&quot; map:line=&quot;2&quot; map:linecount=&quot;1&quot; map:nodetype=&quot;token&quot; map:startcol=&quot;62&quot;&gt;SACK cmd=Credit-ControlAnswer(272) flags=-P-- appl=3GPP Gx(16777238) h2h=3 e2e=43a00003&lt;/info&gt;
+        &lt;/item&gt;
+    &lt;/messages&gt;
+    &lt;rowCount&gt;1&lt;/rowCount&gt;
+    &lt;success&gt;true&lt;/success&gt;
+&lt;/structure&gt;
+</structuredData>
+            <aliases>
+                <item name="time">
+                    <queryFormatString>/structure/messages/item[id = &apos;{0}&apos;]/time</queryFormatString>
+                    <arguments>
+                        <item name="id">
+                            <defaultvalue>31</defaultvalue>
+                            <valuesQuery>/structure/messages/item/id</valuesQuery>
+                            <interpretAs>SampleValues</interpretAs>
+                        </item>
+                    </arguments>
+                </item>
+                <item name="source">
+                    <queryFormatString>/structure/messages/item[id = &apos;{0}&apos;]/source</queryFormatString>
+                    <arguments>
+                        <item name="id">
+                            <defaultvalue>31</defaultvalue>
+                            <valuesQuery>/structure/messages/item/id</valuesQuery>
+                            <interpretAs>SampleValues</interpretAs>
+                        </item>
+                    </arguments>
+                </item>
+                <item name="destination">
+                    <queryFormatString>/structure/messages/item[id = &apos;{0}&apos;]/destination</queryFormatString>
+                    <arguments>
+                        <item name="id">
+                            <defaultvalue>31</defaultvalue>
+                            <valuesQuery>/structure/messages/item/id</valuesQuery>
+                            <interpretAs>SampleValues</interpretAs>
+                        </item>
+                    </arguments>
+                </item>
+                <item name="protocol">
+                    <queryFormatString>/structure/messages/item[id = &apos;{0}&apos;]/protocol</queryFormatString>
+                    <arguments>
+                        <item name="id">
+                            <defaultvalue>31</defaultvalue>
+                            <valuesQuery>/structure/messages/item/id</valuesQuery>
+                            <interpretAs>SampleValues</interpretAs>
+                        </item>
+                    </arguments>
+                </item>
+                <item name="length">
+                    <queryFormatString>/structure/messages/item[id = &apos;{0}&apos;]/length</queryFormatString>
+                    <arguments>
+                        <item name="id">
+                            <defaultvalue>31</defaultvalue>
+                            <valuesQuery>/structure/messages/item/id</valuesQuery>
+                            <interpretAs>SampleValues</interpretAs>
+                        </item>
+                    </arguments>
+                </item>
+                <item name="info">
+                    <queryFormatString>/structure/messages/item[id = &apos;{0}&apos;]/info</queryFormatString>
+                    <arguments>
+                        <item name="id">
+                            <defaultvalue>31</defaultvalue>
+                            <valuesQuery>/structure/messages/item/id</valuesQuery>
+                            <interpretAs>SampleValues</interpretAs>
+                        </item>
+                    </arguments>
+                </item>
+                <item name="rowCount">
+                    <queryFormatString>.//rowCount</queryFormatString>
+                </item>
+                <item name="success">
+                    <queryFormatString>.//success</queryFormatString>
+                </item>
+            </aliases>
+        </item>
+    </sampleDictionary>
+    <mapperProperties>
+        <item type="com.fnfr.svt.mapping.regex.RegexMapperProperties">
+            <regexMaps>
+                <item name="pattern1">
+                    <groups>
+                        <item name="ID">
+                            <regex>\\d+</regex>
+                            <named>true</named>
+                            <start>0</start>
+                            <end>2</end>
+                            <suggestions>
+                                <item name=".+">one or more of any character</item>
+                                <item name="[^\r\n]+">one or more of any character except line endings</item>
+                                <item name="\S+">one or more non-whitespace characters</item>
+                                <item name="\w+">one or more word characters</item>
+                                <item name="([-+]?\d+\.?\d*([eE][-+]?\d+)?)">one complex decimal number</item>
+                                <item name="\d+">one or more digits</item>
+                            </suggestions>
+                        </item>
+                        <item name="anchor0">
+                            <regex>\\s+\\|\\s+</regex>
+                            <start>2</start>
+                            <end>5</end>
+                        </item>
+                        <item name="group1">
+                            <regex>.+</regex>
+                            <start>5</start>
+                            <end>149</end>
+                            <suggestions>
+                                <item name=".+">one or more of any character</item>
+                                <item name="[^\r\n]+">one or more of any character except line endings</item>
+                            </suggestions>
+                        </item>
+                    </groups>
+                    <sampleMatch>31 | 47.950 | 10.211.21.4 | 10.211.22.5 | DIAMETER | 274    | SACK cmd=Credit-ControlAnswer(272) flags=-P-- appl=3GPP Gx(16777238) h2h=3 e2e=43a00003</sampleMatch>
+                    <regexMapMode>Line</regexMapMode>
+                    <optional>true</optional>
+                </item>
+            </regexMaps>
+        </item>
+    </mapperProperties>
+    <applicabilityProperties actionType="command" command="query decode"/>
+</ResponseMap>

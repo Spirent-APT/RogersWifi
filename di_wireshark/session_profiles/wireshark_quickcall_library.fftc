@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <sessionClass includeTestCase="true" sessionType="wireshark.ffsp"/>
+    </general>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="2b7dc663-8782-4192-8e97-14a6d7fb0b36" action="comment" useFieldsInCommand="false">
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="load_pcap_file" isPublic="true">
+            <steps>
+                <item guid="b4e21d41-9dff-4b64-a7be-c39e6b28873f" action="command" session="$session" skip="true">
+                    <command>
+                        <body>query load \\&quot;[param report_folder_location]/$pcap_file\\&quot;</body>
+                    </command>
+                    <postProcessing>
+                        <storeResponseAt>temp_output</storeResponseAt>
+                        <storeResponseText>true</storeResponseText>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="960d993c-9cbb-4aac-b3a8-b5611a53281b" action="command" session="$session">
+                    <command>
+                        <body>query load \\&quot;$pcap_file\\&quot;</body>
+                    </command>
+                    <postProcessing>
+                        <storeResponseAt>temp_output</storeResponseAt>
+                        <storeResponseText>true</storeResponseText>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="779bce9c-3549-497f-a43c-fab9046ec1f8" action="command" session="$session" skip="true">
+                    <command>
+                        <body>query load \\&quot;${pcap_file}\\&quot;</body>
+                    </command>
+                    <postProcessing>
+                        <storeResponseAt>temp_output</storeResponseAt>
+                        <storeResponseText>true</storeResponseText>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="d88ec004-d9be-4d81-bc65-7a6e024f8b2d" action="return">
+                    <command>
+                        <body>$temp_output</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="pcap_file"/>
+            </arguments>
+        </item>
+    </procedures>
+</testCase>

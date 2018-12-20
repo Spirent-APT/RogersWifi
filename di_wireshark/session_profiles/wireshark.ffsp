@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.2.0.201811011532">
+    <baseApplication>com.fnfr.svt.applications.wireshark</baseApplication>
+    <sessionProperties type="com.fnfr.svt.applications.wireshark.WiresharkSessionProperties">
+        <sessionbuilderInitializeAction type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+    </sessionProperties>
+    <responseLibrary inherit="false">project://di_wireshark</responseLibrary>
+    <formMapLibrary inherit="false">project://di_wireshark/</formMapLibrary>
+    <sessionClassTestCase inherit="false">wireshark_quickcall_library.fftc</sessionClassTestCase>
+    <nickName>shark</nickName>
+    <isReferenceProfile>true</isReferenceProfile>
+</SessionTemplate>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="1e95e920-95f5-489b-8b01-3ac678dc980a" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>run test case with Orientation set to yes</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="15fdfc20-dfb0-4512-a031-f24e46dc340b" action="run">
+                            <command>
+                                <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
+                                <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
+                                <params>orientation=yes</params>
+                            </applicationProperties>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="b25b9181-d40e-4c6c-8004-5006b94a5bed" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>run test case with Orientation set to no</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="110518cf-eac2-4af4-9c9e-92010995d22e" action="run">
+                            <command>
+                                <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
+                                <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
+                                <params>orientation=no</params>
+                            </applicationProperties>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>
