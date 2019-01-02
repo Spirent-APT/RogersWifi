@@ -22,7 +22,7 @@
                     </command>
                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                 </item>
-                <item guid="0c4b39b9-5ce1-4388-9fdd-c9984b6fc289" action="command" session="$session">
+                <item guid="0c4b39b9-5ce1-4388-9fdd-c9984b6fc289" action="command" session="$session" skip="true">
                     <command>
                         <body>cd templates</body>
                     </command>
@@ -125,6 +125,38 @@
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
+                                <item guid="96de23f9-729d-470f-9c7f-59a2da02b256" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Find the line number from where configuration for 5 GHz starts</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="ea623325-f358-45a6-a2e3-71a5a4942101" action="command" session="$session">
+                                            <command>
+                                                <body>grep -n &quot;config wifi-device  wifi1&quot; wireless.bak | cut -f1 -d:</body>
+                                            </command>
+                                            <postProcessing>
+                                                <analysisRules>
+                                                    <item>
+                                                        <extractorInfo extractorType="regex">
+                                                            <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup">
+                                                                <regex>(\\d+)</regex>
+                                                            </extractorProperties>
+                                                        </extractorInfo>
+                                                        <processorInfo ruleType="store">
+                                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                <storageLocation>line_num</storageLocation>
+                                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                            </ruleProperties>
+                                                        </processorInfo>
+                                                    </item>
+                                                </analysisRules>
+                                            </postProcessing>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
                                 <item guid="92c58c46-ae20-4c32-a5b4-909a248837df" action="comment" useFieldsInCommand="false">
                                     <command>
                                         <body>Configure Wireless file for 5.0 GHz</body>
@@ -135,9 +167,15 @@
                                                 <body>Enable 5.0 GHz</body>
                                             </command>
                                             <nestedSteps>
+                                                <item guid="81518399-8a74-4d01-a07e-b6edf5c18d79" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>set line_temp [expr $line_num+5]</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
                                                 <item guid="83c8e6a6-1269-461e-93ae-aabaa4a34a43" action="command" session="$session">
                                                     <command>
-                                                        <body>sed &apos;21c\\\\#\\\\toption disabled 1&apos;  wireless.bak &gt; wireless.mod</body>
+                                                        <body>sed &apos;${line_temp}c\\\\#\\\\toption disabled 1&apos;  wireless.bak &gt; wireless.mod</body>
                                                     </command>
                                                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                                 </item>
@@ -149,9 +187,15 @@
                                                 <body>Modify hwmode</body>
                                             </command>
                                             <nestedSteps>
+                                                <item guid="98ab1e24-fcfa-429f-9f83-e1e07d2bfe84" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>set line_temp [expr $line_num+3]</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
                                                 <item guid="1f3da95e-3db0-4ffb-a54e-845a133a84a1" action="command" session="$session">
                                                     <command>
-                                                        <body>sed &apos;19c\\\\\\\\toption hwmode\\\\t$channelMode_5_0&apos; wireless.mod &gt; wireless.mod1</body>
+                                                        <body>sed &apos;${line_temp}c\\\\\\\\toption hwmode\\\\t$channelMode_5_0&apos; wireless.mod &gt; wireless.mod1</body>
                                                     </command>
                                                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                                 </item>
@@ -163,9 +207,15 @@
                                                 <body>Modify Channel Number</body>
                                             </command>
                                             <nestedSteps>
+                                                <item guid="6bcf4e05-8836-4027-b6fe-25957c9c5674" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>set line_temp [expr $line_num+2]</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
                                                 <item guid="6c04cbeb-ed1f-47cf-9e88-fd7edc0d5121" action="command" session="$session">
                                                     <command>
-                                                        <body>sed &apos;18c\\\\\\\\toption channel\\\\t$channelNumber_5_0&apos; wireless.mod1 &gt; wireless.mod2</body>
+                                                        <body>sed &apos;${line_temp}c\\\\\\\\toption channel\\\\t$channelNumber_5_0&apos; wireless.mod1 &gt; wireless.mod2</body>
                                                     </command>
                                                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                                 </item>
@@ -264,50 +314,102 @@
                                         <body>Configure 5.0</body>
                                     </command>
                                     <nestedSteps>
-                                        <item guid="b244aa99-f63a-425c-bab7-72586b17fe25" action="comment" useFieldsInCommand="false">
+                                        <item guid="3507d28f-c6a3-46e2-b319-8b845ddcf5e4" action="comment" useFieldsInCommand="false">
                                             <command>
-                                                <body>Enable 5.0 GHz</body>
+                                                <body>Find the line number from where configuration for 5 GHz starts</body>
                                             </command>
                                             <nestedSteps>
-                                                <item guid="2ad711d9-f338-4e3b-bf49-598483e93797" action="command" session="$session">
+                                                <item guid="c0572268-8e03-4c2b-bfda-1c48bef5e96d" action="command" session="$session">
                                                     <command>
-                                                        <body>sed &apos;21c\\\\#\\\\toption disabled 1&apos;   wireless.mod2 &gt; wireless.mod3</body>
+                                                        <body>grep -n &quot;config wifi-device  wifi1&quot; wireless.bak | cut -f1 -d:</body>
                                                     </command>
+                                                    <postProcessing>
+                                                        <analysisRules>
+                                                            <item>
+                                                                <extractorInfo extractorType="regex">
+                                                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup">
+                                                                        <regex>(\\d+)</regex>
+                                                                    </extractorProperties>
+                                                                </extractorInfo>
+                                                                <processorInfo ruleType="store">
+                                                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                                        <storageLocation>line_num</storageLocation>
+                                                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                                                    </ruleProperties>
+                                                                </processorInfo>
+                                                            </item>
+                                                        </analysisRules>
+                                                    </postProcessing>
                                                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                                 </item>
                                             </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="1f394e09-83c5-4783-9438-335d71d8d3a3" action="comment" useFieldsInCommand="false">
+                                        <item guid="3ecb4941-518b-4c23-b318-1c6054cc2a06" action="comment" useFieldsInCommand="false">
                                             <command>
-                                                <body>Modify hwmode</body>
+                                                <body>Configure Wireless file for 5.0 GHz</body>
                                             </command>
                                             <nestedSteps>
-                                                <item guid="07e77bf6-14fa-4c9b-a19b-c459191b70d8" action="command" session="$session">
+                                                <item guid="38335af4-f88e-4dd4-93e3-8ebf56135932" action="comment" useFieldsInCommand="false">
                                                     <command>
-                                                        <body>sed &apos;19c\\\\\\\\toption hwmode\\\\t$channelMode_5_0&apos; wireless.mod3 &gt; wireless.mod4</body>
+                                                        <body>Enable 5.0 GHz</body>
                                                     </command>
-                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                    <nestedSteps>
+                                                        <item guid="03d9856f-99e6-45a3-a02b-d1263e42dc78" action="eval" useFieldsInCommand="false">
+                                                            <command>
+                                                                <body>set line_temp [expr $line_num+5]</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                        </item>
+                                                        <item guid="39b614e1-f4f8-4475-a401-b1d992f8a11d" action="command" session="$session">
+                                                            <command>
+                                                                <body>sed &apos;${line_temp}c\\\\#\\\\toption disabled 1&apos;  wireless.bak &gt; wireless.mod</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                        </item>
+                                                    </nestedSteps>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 </item>
-                                            </nestedSteps>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="60772dd1-46c0-4a20-8192-947bb7f61551" action="comment" useFieldsInCommand="false">
-                                            <command>
-                                                <body>Modify Channel Number</body>
-                                            </command>
-                                            <nestedSteps>
-                                                <item guid="cdb13898-d210-4d5c-9bd7-b2c8b8586437" action="command" session="$session">
+                                                <item guid="810c2b76-411e-4ba5-86c0-93db79f9a963" action="comment" useFieldsInCommand="false">
                                                     <command>
-                                                        <body>sed &apos;18c\\\\\\\\toption channel\\\\t$channelNumber_5_0&apos; wireless.mod4 &gt; wireless.final</body>
+                                                        <body>Modify hwmode</body>
                                                     </command>
-                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                    <nestedSteps>
+                                                        <item guid="dea8ad73-e46d-4b76-b58c-8f700e931eaa" action="eval" useFieldsInCommand="false">
+                                                            <command>
+                                                                <body>set line_temp [expr $line_num+3]</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                        </item>
+                                                        <item guid="11be0d57-8550-4fcd-8c06-61dd1007246c" action="command" session="$session">
+                                                            <command>
+                                                                <body>sed &apos;${line_temp}c\\\\\\\\toption hwmode\\\\t$channelMode_5_0&apos; wireless.mod &gt; wireless.mod1</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                        </item>
+                                                    </nestedSteps>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 </item>
-                                                <item guid="3b51e66f-b9d1-4eb1-be6e-60053c916c53" action="command" session="$session">
+                                                <item guid="e23b096a-47ba-4076-9ad5-f44cd91f543b" action="comment" useFieldsInCommand="false">
                                                     <command>
-                                                        <body>rm wireless.mod*</body>
+                                                        <body>Modify Channel Number</body>
                                                     </command>
-                                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                    <nestedSteps>
+                                                        <item guid="a895cf2f-9bf6-433f-8ea7-ddaf11ae749e" action="eval" useFieldsInCommand="false">
+                                                            <command>
+                                                                <body>set line_temp [expr $line_num+2]</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                        </item>
+                                                        <item guid="be0bc159-fa08-4e52-839d-38f062ec40d5" action="command" session="$session">
+                                                            <command>
+                                                                <body>sed &apos;${line_temp}c\\\\\\\\toption channel\\\\t$channelNumber_5_0&apos; wireless.mod1 &gt; wireless.mod2</body>
+                                                            </command>
+                                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                                        </item>
+                                                    </nestedSteps>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 </item>
                                             </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -321,7 +423,7 @@
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="554ae0bc-0bbd-42a9-8548-fcf4555f4cf3" action="comment" skip="true" useFieldsInCommand="false">
+                <item guid="554ae0bc-0bbd-42a9-8548-fcf4555f4cf3" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Copy modified file as wireless file</body>
                     </command>
@@ -335,7 +437,7 @@
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="e5e488fb-cd4c-43b0-89ee-78907faead3c" action="command" session="$session" skip="true">
+                <item guid="e5e488fb-cd4c-43b0-89ee-78907faead3c" action="command" session="$session">
                     <command>
                         <body>reboot</body>
                     </command>
@@ -376,6 +478,140 @@ ac</description>
                 </item>
             </arguments>
             <response>{}</response>
+        </item>
+        <item name="configureAP_BW" isPublic="true">
+            <steps>
+                <item guid="1edd5fcb-5823-4cb2-96f5-d84b119c20f9" action="if" useFieldsInCommand="false">
+                    <command>
+                        <body>[string match -nocase $frenqncyChannel &quot;2.4&quot;]</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="573e6177-0c23-4473-a717-cba437832d0b" action="then" useFieldsInCommand="false">
+                            <nestedSteps>
+                                <item guid="efe27084-78cd-4918-aeed-9194ce96b7ad" action="command" session="$session">
+                                    <command>
+                                        <body>uci set wireless.wifi0.htmode=$bandwitdh_2_4</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="63817905-dd1b-49bf-9bc5-8a3bd4ee54a6" action="elseif" useFieldsInCommand="false">
+                            <command>
+                                <body>[string match -nocase $frenqncyChannel &quot;5.0&quot;]</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="293790cf-08f8-4ff4-aa34-c15c1502db96" action="command" session="$session">
+                                    <command>
+                                        <body>uci set wireless.wifi1.htmode=$bandwitdh_5_0</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="dbb49a8c-1f1b-43d3-b2bf-fcc60a259836" action="elseif" useFieldsInCommand="false">
+                            <command>
+                                <body>[string match -nocase $frenqncyChannel &quot;0&quot;]</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="9eda7df1-360b-488d-a36f-aa6d7a949f19" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure both the band</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="cd54dfe4-fbfa-4c9e-b0ee-4493ebf445b7" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure 2.4</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="1869baa2-83f6-4e05-aacb-fd9f93de78a5" action="command" session="$session">
+                                            <command>
+                                                <body>uci set wireless.wifi0.htmode=$bandwitdh_2_4</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="b98d1b83-0d78-430c-88a1-ae0f4c0f99f8" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Configure 5.0</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="b551fbec-6759-4241-bafa-f235e29a369a" action="command" session="$session">
+                                            <command>
+                                                <body>uci set wireless.wifi1.htmode=$bandwitdh_5_0</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="93deab03-367a-49dd-b0a4-4c8207795f4b" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>commit the changes</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="93d85123-260f-4d58-baae-e1912c1f7c70" action="command" session="$session">
+                            <command>
+                                <body>uci commit wireless</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                        <item guid="e53fd8e3-39f8-4f05-b8b8-86de624404a0" action="command" session="$session">
+                            <command>
+                                <body>wifi up</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="frenqncyChannel">
+                    <description>frenqncyChannel --&gt; Frequency Channel 2.4 or 5 G HZ
+Values
+5.0 --&gt; 5 GHz
+2.4 --&gt; 2.4 GHz
+0 --&gt; dual</description>
+                    <defaultValue>5</defaultValue>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="bandwitdh_2_4">
+                    <description>
+For 2.4 GHz, valid values
+
+HT20|HT40
+
+</description>
+                </item>
+                <item name="bandwitdh_5_0">
+                    <description>For 5.0 GHz Valid values
+
+&lt;HT20|HT40|HT80&gt;</description>
+                    <defaultValue>HT20</defaultValue>
+                </item>
+            </arguments>
+        </item>
+        <item name="rebootAP" isPublic="true">
+            <steps>
+                <item guid="360c74e9-0782-4f09-a4e8-74a76e86944b" action="command" session="$session">
+                    <command>
+                        <body>reboot</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+            </steps>
         </item>
     </procedures>
 </testCase>
