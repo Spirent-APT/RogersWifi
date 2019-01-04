@@ -11,18 +11,19 @@
             <parameters escape="true">
                 <parameters xmlns:pt="http://www.fnfr.com/schemas/parameterTree">
                     <attenuation_port>1 2 3 4</attenuation_port>
-                    <attenuationIncrement pt:description="By what value channel powet attenuation is changed">30</attenuationIncrement>
+                    <attenuationIncrement pt:description="By what value channel powet attenuation is changed">5</attenuationIncrement>
                     <max_attenuation>60</max_attenuation>
                     <STC>
                         <IP>172.30.245.61</IP>
-                        <WifiPort>2/1</WifiPort>
+                        <WifiPort>2/2</WifiPort>
                         <EthPort>1/1</EthPort>
-                        <ConfigFile>5_GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE</ConfigFile>
+                        <ConfigFile pt:description="2.4GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE 5_GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE">2.4GHz_WLAN_LAN_Config_AC_TCP_Upload_1UE</ConfigFile>
                         <duration pt:description="In Seconds">10</duration>
                         <sample_size>5</sample_size>
-                        <header>tcp</header>
+                        <header>TCP</header>
+                        <direction pt:description="DL --&gt; Downlink UP --&gt; Uplink BI --&gt; Both directions">UL</direction>
                     </STC>
-                    <SBClientProfile>we.factory.5@0C:E6</SBClientProfile>
+                    <SBClientProfile>PLUME_24</SBClientProfile>
                     <Mimo_configuration pt:description="Other MIMO options, MIMO_1X1, MIMO_2X2,MIMO_3X3">MIMO_2X2</Mimo_configuration>
                     <max_position>360</max_position>
                     <vertex>
@@ -36,15 +37,15 @@
                     </vertex>
                     <orientation pt:description="If Rate vs Range with orientation need to be run, otherwise set to no">no</orientation>
                     <AP>
-                        <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">5.0</ChannelFrequency>
+                        <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">2.4</ChannelFrequency>
                         <ChannelFreq_2_4>
                             <channel_number>1</channel_number>
-                            <channel_BW>40</channel_BW>
+                            <channel_BW pt:description="HT20 or HT40">HT40</channel_BW>
                             <hw_mode>11ng</hw_mode>
                         </ChannelFreq_2_4>
                         <ChannelFreq_5_0>
                             <channel_number>157</channel_number>
-                            <channel_BW>HT40</channel_BW>
+                            <channel_BW pt:description="HT20 HT40  HT80">HT40</channel_BW>
                             <hw_mode>11ac</hw_mode>
                         </ChannelFreq_5_0>
                     </AP>
@@ -206,6 +207,43 @@
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
+                <item guid="2d3dd6ed-05ee-4553-9fcf-449374fcba70" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Open Session to AP and configure AP as per test case parameter</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="26901c2f-eb91-43ff-a376-6e887fdc46f8" action="open" session="AP">
+                            <command>
+                                <body>device:DUT1#telnet</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                    <TerminalProperties>
+                                        <captureProperties>
+                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                        </captureProperties>
+                                    </TerminalProperties>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="82e9a28d-34f6-4086-8027-da22557f248a" action="configureAP" session="AP" useFieldsInCommand="false">
+                            <command>
+                                <body> -frenqncyChannel [param(&apos;AP/ChannelFrequency&apos;)] -channelNumber_2_4 [param(&apos;AP/ChannelFreq_2_4/channel_number&apos;)] -channelNumber_5_0 [param(&apos;AP/ChannelFreq_5_0/channel_number&apos;)] -channelMode_2_4 [param(&apos;AP/ChannelFreq_2_4/hw_mode&apos;)] -channelMode_5_0 [param(&apos;AP/ChannelFreq_5_0/hw_mode&apos;)] -channelBW_2_4 [param(&apos;AP/ChannelFreq_2_4/channel_BW&apos;)] -channelBW_5_0 [param(&apos;AP/ChannelFreq_5_0/channel_BW&apos;)]</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                        <item guid="757b14b0-54ff-49eb-92e4-821c3fcfde54" action="sleep">
+                            <command>
+                                <body>120</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
                 <item guid="2edfde13-f961-495e-952f-bc7010703ef2" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Open trafficGen and load configuration subscribe to results</body>
@@ -263,49 +301,6 @@
                     </nestedSteps>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="2d3dd6ed-05ee-4553-9fcf-449374fcba70" action="comment" skip="true" useFieldsInCommand="false">
-                    <command>
-                        <body>Open Session to AP and configure AP as per test case parameter</body>
-                    </command>
-                    <nestedSteps>
-                        <item guid="26901c2f-eb91-43ff-a376-6e887fdc46f8" action="open" session="AP">
-                            <command>
-                                <body>device:DUT1#telnet</body>
-                            </command>
-                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
-                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
-                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
-                                    <TerminalProperties>
-                                        <captureProperties>
-                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
-                                        </captureProperties>
-                                    </TerminalProperties>
-                                </sessionProperties>
-                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                            </applicationProperties>
-                        </item>
-                        <item guid="82e9a28d-34f6-4086-8027-da22557f248a" action="configureAP" session="AP" useFieldsInCommand="false">
-                            <command>
-                                <body> -frenqncyChannel [param(&apos;AP/ChannelFrequency&apos;)] -channelNumber_2_4 [param(&apos;AP/ChannelFreq_2_4/channel_number&apos;)] -channelNumber_5_0 [param(&apos;AP/ChannelFreq_5_0/channel_number&apos;)] -channelMode_2_4 [param(&apos;AP/ChannelFreq_2_4/hw_mode&apos;)] -channelMode_5_0 [param(&apos;AP/ChannelFreq_5_0/hw_mode&apos;)]</body>
-                            </command>
-                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
-                        </item>
-                        <item guid="757b14b0-54ff-49eb-92e4-821c3fcfde54" action="sleep">
-                            <command>
-                                <body>90</body>
-                            </command>
-                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                        </item>
-                        <item guid="a25114d3-24d5-497c-bd5d-0e78482e7b4d" action="configureAP_BW" session="AP" useFieldsInCommand="false">
-                            <command>
-                                <body> -frenqncyChannel [param(&apos;AP/ChannelFrequency&apos;)] -bandwitdh_2_4 [param(&apos;AP/ChannelFreq_2_4/channel_BW&apos;)] -bandwitdh_5_0 [param(&apos;AP/ChannelFreq_5_0/channel_BW&apos;)]</body>
-                            </command>
-                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
-                        </item>
-                    </nestedSteps>
-                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                </item>
                 <item guid="cfa5c8cb-f778-49a1-a1a5-8a6f32c4f142" action="comment" useFieldsInCommand="false">
                     <command>
                         <body>Create Result File at the result dir, create file and then open File Session to append the result</body>
@@ -354,7 +349,7 @@
                                 </item>
                                 <item guid="8bf73f6a-6b29-4576-aea3-87d894dacb97" action="eval" useFieldsInCommand="false">
                                     <command>
-                                        <body>report_file = str(report_loc)+str(testCaseName)+&quot;_&quot;+str(dateTime)+&quot;.csv&quot;</body>
+                                        <body>report_file = str(report_loc)+str(testCaseName)+&quot;_&quot;+str(param(&apos;STC/header&apos;))+&quot;_&quot;+str(param(&apos;STC/direction&apos;))+&quot;_&quot;+str(param(&apos;AP/ChannelFrequency&apos;))+&quot;GHz&quot;+&quot;_&quot;+str(param(&apos;AP/ChannelFreq_2_4/channel_number&apos;))+&quot;_&quot;+str(param(&apos;AP/ChannelFreq_2_4/channel_BW&apos;))+&quot;_&quot;+str(param(&apos;AP/ChannelFreq_2_4/hw_mode&apos;))+&quot;_&quot;+str(dateTime)+&quot;.csv&quot;</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
@@ -396,7 +391,7 @@
                                 </item>
                                 <item guid="2ecd8fb2-8715-4657-8087-76672351bba5" action="eval" useFieldsInCommand="false">
                                     <command>
-                                        <body>header = str(&quot;Frequency,Channel Number,Channel BW,Traffic Type,Attenuation,Orientation,Vendor,DL Throughput,DL Latency,DL Packet Loss,RSSI,UL Througput,UL Latency,UL Packet Loss,Rx MCS Type,Rx MCS Type,Noise Floor,Tx Guard Interval,Rx Guard Interval,Client State,MIMO Config,Report Id&quot;)</body>
+                                        <body>header = str(&quot;Frequency,Channel Number,Channel BW,Traffic Type,Attenuation,Orientation,Vendor,DL Throughput,DL Latency,DL Packet Loss,RSSI,UL Througput,UL Latency,UL Packet Loss,Tx MCS Type,Rx MCS Type,Noise Floor,Tx Guard Interval,Rx Guard Interval,Client State,MIMO Config,Report Id&quot;)</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
@@ -912,7 +907,7 @@
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
-                        <item guid="27f663bd-a281-40c8-a0d2-7f74ae9d5d12" action="comment" useFieldsInCommand="false">
+                        <item guid="27f663bd-a281-40c8-a0d2-7f74ae9d5d12" action="comment" skip="true" useFieldsInCommand="false">
                             <command>
                                 <body>Modify Frequncy Channel Based on the input</body>
                             </command>
@@ -1120,7 +1115,7 @@
                                 <body>Start Stream Block</body>
                             </command>
                             <nestedSteps>
-                                <item guid="a59670f3-f1a4-4194-87ec-8a02a14b2d4e" action="eval" session="trafficGen">
+                                <item guid="a59670f3-f1a4-4194-87ec-8a02a14b2d4e" action="eval" session="trafficGen" skip="true">
                                     <command>
                                         <body>stc::get [ethPortId] -children-streamblock</body>
                                     </command>
@@ -1465,7 +1460,7 @@
                                                                                         <analysisRules>
                                                                                             <item>
                                                                                                 <extractorInfo extractorType="query">
-                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                                         <query sub="true">RxL1Rate_bps_(&quot;[wifiPortLoc]&quot;)</query>
                                                                                                     </extractorProperties>
                                                                                                 </extractorInfo>
@@ -1479,7 +1474,7 @@
                                                                                             </item>
                                                                                             <item>
                                                                                                 <extractorInfo extractorType="query">
-                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                                         <query sub="true">RxL1Rate_bps_(&quot;[ethPortLoc]&quot;)</query>
                                                                                                     </extractorProperties>
                                                                                                 </extractorInfo>
@@ -1579,7 +1574,7 @@
                                                                                         <analysisRules>
                                                                                             <item>
                                                                                                 <extractorInfo extractorType="query">
-                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                                         <query sub="true">AvgLatency_us_(&quot;[ethPortLoc]&quot;)</query>
                                                                                                     </extractorProperties>
                                                                                                 </extractorInfo>
@@ -1593,7 +1588,7 @@
                                                                                             </item>
                                                                                             <item>
                                                                                                 <extractorInfo extractorType="query">
-                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                                         <query sub="true">AvgLatency_us_(&quot;[wifiPortLoc]&quot;)</query>
                                                                                                     </extractorProperties>
                                                                                                 </extractorInfo>
@@ -1623,7 +1618,7 @@
                                                                                 </item>
                                                                                 <item guid="b317ef06-3bae-4e83-80b0-33bb2a7633ed" action="if" useFieldsInCommand="false">
                                                                                     <command>
-                                                                                        <body>avgLatency_eth != &quot;N/A&quot;:</body>
+                                                                                        <body>avgLatency_eth != &quot;N/A&quot; and avgLatency_eth != &quot;&quot;:</body>
                                                                                     </command>
                                                                                     <nestedSteps>
                                                                                         <item guid="b88c44b5-74b0-4639-8914-0b8572f41180" action="eval" useFieldsInCommand="false">
@@ -1660,7 +1655,7 @@
                                                                                 </item>
                                                                                 <item guid="4612093f-dbca-45a2-b524-17001f5d4f85" action="if" useFieldsInCommand="false">
                                                                                     <command>
-                                                                                        <body>avgLatency_wifi != &quot;N/A&quot; :</body>
+                                                                                        <body>avgLatency_wifi != &quot;N/A&quot; and avgLatency_wifi != &quot;&quot;:</body>
                                                                                     </command>
                                                                                     <nestedSteps>
                                                                                         <item guid="c8527312-321d-4843-ac1b-5e38ee2975c8" action="eval" useFieldsInCommand="false">
@@ -1711,7 +1706,7 @@
                                                                                         <analysisRules>
                                                                                             <item>
                                                                                                 <extractorInfo extractorType="query">
-                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                                         <query sub="true">DroppedCount_Frames_(&quot;[ethPortLoc]&quot;)</query>
                                                                                                     </extractorProperties>
                                                                                                 </extractorInfo>
@@ -1725,7 +1720,7 @@
                                                                                             </item>
                                                                                             <item>
                                                                                                 <extractorInfo extractorType="query">
-                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                                                    <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                                         <query sub="true">DroppedCount_Frames_(&quot;[wifiPortLoc]&quot;)</query>
                                                                                                     </extractorProperties>
                                                                                                 </extractorInfo>
@@ -1741,13 +1736,13 @@
                                                                                     </postProcessing>
                                                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                                 </item>
-                                                                                <item guid="74044359-2423-4dee-a7aa-acedf98fc541" action="eval" useFieldsInCommand="false">
+                                                                                <item guid="74044359-2423-4dee-a7aa-acedf98fc541" action="eval" skip="true" useFieldsInCommand="false">
                                                                                     <command>
                                                                                         <body>dfcounts_wifi = int(dfcounts_wifi)/1000000</body>
                                                                                     </command>
                                                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                                 </item>
-                                                                                <item guid="4966f45a-3e4d-4229-b64e-db6d87edefaa" action="eval" useFieldsInCommand="false">
+                                                                                <item guid="4966f45a-3e4d-4229-b64e-db6d87edefaa" action="eval" skip="true" useFieldsInCommand="false">
                                                                                     <command>
                                                                                         <body>dfcounts_eth = int(dfcounts_eth)/1000000</body>
                                                                                     </command>
@@ -1765,16 +1760,32 @@
                                                                                     </command>
                                                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                                 </item>
-                                                                                <item guid="d604246c-eef8-4b7d-8430-6601a0738e4a" action="eval" useFieldsInCommand="false">
+                                                                                <item guid="e631092b-522c-429e-970f-3bcd30edb3d7" action="if" useFieldsInCommand="false">
                                                                                     <command>
-                                                                                        <body>dfcounts_wifi = int(dfcounts_wifi)</body>
+                                                                                        <body>dfcounts_wifi != &quot;&quot;:</body>
                                                                                     </command>
+                                                                                    <nestedSteps>
+                                                                                        <item guid="08216068-800c-44cd-b7ef-17f322b8012b" action="eval" useFieldsInCommand="false">
+                                                                                            <command>
+                                                                                                <body>dfcounts_wifi = int(dfcounts_wifi)</body>
+                                                                                            </command>
+                                                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                                        </item>
+                                                                                    </nestedSteps>
                                                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                                 </item>
-                                                                                <item guid="8d42a85b-3d08-4845-a5d4-393807ae59f6" action="eval" useFieldsInCommand="false">
+                                                                                <item guid="e51be2e9-8300-4540-a3e4-3cbd20b8fcad" action="if" useFieldsInCommand="false">
                                                                                     <command>
-                                                                                        <body>dfcounts_eth = int(dfcounts_eth)</body>
+                                                                                        <body>dfcounts_eth != &quot;&quot;:</body>
                                                                                     </command>
+                                                                                    <nestedSteps>
+                                                                                        <item guid="389f2446-43ac-4899-be7c-4d77fc0157ec" action="eval" useFieldsInCommand="false">
+                                                                                            <command>
+                                                                                                <body>dfcounts_eth = int(dfcounts_eth)</body>
+                                                                                            </command>
+                                                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                                        </item>
+                                                                                    </nestedSteps>
                                                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                                                 </item>
                                                                             </nestedSteps>
@@ -2939,7 +2950,7 @@
                                                                 <analysisRules>
                                                                     <item>
                                                                         <extractorInfo extractorType="query">
-                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                 <query sub="true">AvgLatency_us_(&quot;[ethPortLoc]&quot;)</query>
                                                                             </extractorProperties>
                                                                         </extractorInfo>
@@ -2953,7 +2964,7 @@
                                                                     </item>
                                                                     <item>
                                                                         <extractorInfo extractorType="query">
-                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                 <query sub="true">AvgLatency_us_(&quot;[wifiPortLoc]&quot;)</query>
                                                                             </extractorProperties>
                                                                         </extractorInfo>
@@ -2983,7 +2994,7 @@
                                                         </item>
                                                         <item guid="81d17d10-a8fb-471f-a705-c7e59da7bad0" action="if" useFieldsInCommand="false">
                                                             <command>
-                                                                <body>avgLatency_eth != &quot;N/A&quot;:</body>
+                                                                <body>avgLatency_eth != &quot;N/A&quot; and avgLatency_eth != &quot;&quot;:</body>
                                                             </command>
                                                             <nestedSteps>
                                                                 <item guid="bb3fb251-0a5d-4b16-9777-a0a94bffa038" action="eval" useFieldsInCommand="false">
@@ -3020,7 +3031,7 @@
                                                         </item>
                                                         <item guid="5ec442d8-97d7-435f-9cd0-c48977274757" action="if" useFieldsInCommand="false">
                                                             <command>
-                                                                <body>avgLatency_wifi != &quot;N/A&quot; :</body>
+                                                                <body>avgLatency_wifi != &quot;N/A&quot; and avgLatency_wifi != &quot;&quot;:</body>
                                                             </command>
                                                             <nestedSteps>
                                                                 <item guid="24c7c06e-051c-4980-b627-63d02506ef18" action="eval" useFieldsInCommand="false">
@@ -3071,7 +3082,7 @@
                                                                 <analysisRules>
                                                                     <item>
                                                                         <extractorInfo extractorType="query">
-                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                 <query sub="true">DroppedCount_Frames_(&quot;[ethPortLoc]&quot;)</query>
                                                                             </extractorProperties>
                                                                         </extractorInfo>
@@ -3085,7 +3096,7 @@
                                                                     </item>
                                                                     <item>
                                                                         <extractorInfo extractorType="query">
-                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup">
+                                                                            <extractorProperties type="com.fnfr.svt.mapping.execution.extractors.QueryDataExtractorPropertyGroup" declareNoMatchIssue="false">
                                                                                 <query sub="true">DroppedCount_Frames_(&quot;[wifiPortLoc]&quot;)</query>
                                                                             </extractorProperties>
                                                                         </extractorInfo>
@@ -3113,16 +3124,32 @@
                                                             </command>
                                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                         </item>
-                                                        <item guid="5de056c9-9cdd-4edc-a088-43c20924fdf9" action="eval" useFieldsInCommand="false">
+                                                        <item guid="93bcc5a5-5bed-486d-a957-b187eadb4995" action="if" useFieldsInCommand="false">
                                                             <command>
-                                                                <body>dfcounts_wifi = int(dfcounts_wifi)</body>
+                                                                <body>dfcounts_wifi != &quot;&quot;:</body>
                                                             </command>
+                                                            <nestedSteps>
+                                                                <item guid="5de056c9-9cdd-4edc-a088-43c20924fdf9" action="eval" useFieldsInCommand="false">
+                                                                    <command>
+                                                                        <body>dfcounts_wifi = int(dfcounts_wifi)</body>
+                                                                    </command>
+                                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                </item>
+                                                            </nestedSteps>
                                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                         </item>
-                                                        <item guid="ab6c396a-d29e-4c7e-be1f-9532179ea84e" action="eval" useFieldsInCommand="false">
+                                                        <item guid="583d35dc-d5b5-4e94-a192-c39c8ee9d7a6" action="if" useFieldsInCommand="false">
                                                             <command>
-                                                                <body>dfcounts_eth = int(dfcounts_eth)</body>
+                                                                <body>dfcounts_eth != &quot;&quot;:</body>
                                                             </command>
+                                                            <nestedSteps>
+                                                                <item guid="ab6c396a-d29e-4c7e-be1f-9532179ea84e" action="eval" useFieldsInCommand="false">
+                                                                    <command>
+                                                                        <body>dfcounts_eth = int(dfcounts_eth)</body>
+                                                                    </command>
+                                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                                </item>
+                                                            </nestedSteps>
                                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                         </item>
                                                     </nestedSteps>
@@ -3718,7 +3745,7 @@
                             <nestedSteps>
                                 <item guid="fff9a457-2e4f-4219-af27-5db30c6119a2" action="eval" session="trafficGen">
                                     <command>
-                                        <body>stc::perform Ieee80211DeAssociateCommand  -ClientList  [wifiPortId]</body>
+                                        <body>stc::perform Ieee80211DeAssociateCommand  -ClientList [wifiPortId]</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
@@ -3797,7 +3824,7 @@
                 </item>
                 <item guid="5685c420-3733-4574-9911-b28b08e27e15" action="comment" useFieldsInCommand="false">
                     <command>
-                        <body>Close all open devices</body>
+                        <body>Close all open sessions</body>
                     </command>
                     <nestedSteps>
                         <item guid="4051e951-8f31-4492-9d26-aff86758b4ae" action="close" session="attenuator">
@@ -3805,6 +3832,15 @@
                         </item>
                         <item guid="f7c934ad-938d-4eae-8ed6-1f46a8330c7f" action="close" session="turnTable">
                             <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                        <item guid="d6c79b70-a4b1-42a2-a67a-1a23eb2ff517" action="close" session="AP" skip="true" useFieldsInCommand="false">
+                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                        </item>
+                        <item guid="6402bd28-32c0-4dd1-af48-18c1b9d49511" action="close" session="RESULT">
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="a0b4782a-26e0-423a-adc5-12dd140b52b1" action="close" session="ELK">
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                         </item>
                         <item guid="aa053c8c-03fb-4b22-8827-b17d336a3790" action="close" session="trafficGen">
                             <postProcessing>

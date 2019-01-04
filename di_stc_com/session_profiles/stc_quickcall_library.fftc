@@ -1739,7 +1739,7 @@ Example: file:/C:/stc.pcap</description>
         </item>
         <item name="attachClientProfile" isPublic="true">
             <steps>
-                <item guid="e50e1ac9-2687-4420-9810-49c76e878dd4" action="eval" session="$session">
+                <item guid="e50e1ac9-2687-4420-9810-49c76e878dd4" action="eval" session="$session" skip="true">
                     <command>
                         <body>stc::get $port -children-streamblock</body>
                     </command>
@@ -1763,9 +1763,15 @@ Example: file:/C:/stc.pcap</description>
                     </postProcessing>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
-                <item guid="f46478fe-c5b3-4c89-aaae-26969853934d" action="eval" session="$session">
+                <item guid="f46478fe-c5b3-4c89-aaae-26969853934d" action="eval" session="$session" skip="true">
                     <command>
                         <body>stc::perform Ieee80211AssignClientProfileCommand -ClientProfileList $clientProfileId -StreamBlockList $streamblock</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="a81b0dd3-a8c7-4d2e-a910-547d5a365525" action="eval" session="$session">
+                    <command>
+                        <body>stc::perform Ieee80211AssignClientProfileCommand -ClientProfileList $clientProfileId</body>
                     </command>
                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                 </item>
