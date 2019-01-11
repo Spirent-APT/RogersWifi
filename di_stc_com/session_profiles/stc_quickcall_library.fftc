@@ -1987,5 +1987,190 @@ FREQ_5_0_GHZ                 5.0 GHz</description>
             </arguments>
             <response>{&quot;bssid&quot;:&quot;value&quot;}</response>
         </item>
+        <item name="setChannelBW" isPublic="true">
+            <steps>
+                <item guid="085902ed-0077-42b8-88dd-1eb709b560db" action="eval" session="$session">
+                    <command>
+                        <body>stc::get $wifiPort -Children-ieee80211phy</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="regex">
+                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>iee80211phy_handle</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="2cf99933-72c3-4d76-bce7-d0b4fdee1e71" action="eval" session="$session">
+                    <command>
+                        <body>stc::config $iee80211phy_handle -$channelType true</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="7740c7cd-9231-4ba5-95d6-f8d5df78c5f7" action="eval" session="$session">
+                    <command>
+                        <body>stc::apply</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="wifiPort">
+                    <description>Port where the MIMO configuration need to be modified</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="channelType">
+                    <description>It will be of type 
+ChannelBandWidth20Mhz
+ChannelBandWidth40Mhz
+ChannelBandWidth80Mhz</description>
+                    <isMandatory>true</isMandatory>
+                </item>
+            </arguments>
+        </item>
+        <item name="clearChannelBW" isPublic="true">
+            <steps>
+                <item guid="ccebcdf4-97d0-4d48-bff4-316613627130" action="eval" session="$session">
+                    <command>
+                        <body>stc::get $wifiPort -Children-ieee80211phy</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="regex">
+                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>iee80211phy_handle</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="698ca184-7abc-4ad6-a47e-2216df449416" action="eval" session="$session">
+                    <command>
+                        <body>stc::config $iee80211phy_handle -$channelType false</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="365bdc16-cbc0-47d2-8d1e-7b028bed31f7" action="eval" session="$session">
+                    <command>
+                        <body>stc::apply</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="getEmulateDeviceIdForPort" isPublic="true">
+            <steps>
+                <item guid="8d646a06-6e9f-4e0c-852d-884afbd04425" action="eval" session="$session">
+                    <command>
+                        <body>stc::get Project1 -Children-emulateddevice</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="regex">
+                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>device_list</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="1ca9d1b3-0080-432f-86e6-0f45b5e3d060" action="foreach" useFieldsInCommand="false">
+                    <command>
+                        <body>deviceId $device_list</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="fb3a7dc2-df83-4c52-b23f-9f2d93c6ade7" action="eval" session="$session">
+                            <command>
+                                <body>stc::get $deviceId -affiliationport-Targets</body>
+                            </command>
+                            <postProcessing>
+                                <analysisRules>
+                                    <item>
+                                        <extractorInfo extractorType="regex">
+                                            <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                                <regex>Result=([^\\r\\n]+)$</regex>
+                                            </extractorProperties>
+                                        </extractorInfo>
+                                        <processorInfo ruleType="store">
+                                            <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                                <storageLocation>portId</storageLocation>
+                                                <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                                <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                            </ruleProperties>
+                                        </processorInfo>
+                                    </item>
+                                </analysisRules>
+                            </postProcessing>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="b0106743-6553-4f33-ba5d-c4bb1e6f825b" action="if" useFieldsInCommand="false">
+                            <command>
+                                <body>[string match -nocase $InPort $portId]</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="0c31423c-209c-440e-bee8-cd26575e16e3" action="then" useFieldsInCommand="false">
+                                    <nestedSteps>
+                                        <item guid="e0184227-a720-4272-bd58-3d6c55681dda" action="return">
+                                            <command>
+                                                <body>$deviceId</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="dd096811-e693-48be-a49b-53ba76183b2c" action="else" useFieldsInCommand="false">
+                                    <nestedSteps>
+                                        <item guid="a367f715-9ede-4e1a-a82f-2facf86bb69f" action="continue" useFieldsInCommand="false">
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="InPort">
+                    <description>Port for Which user wants to get the the emulated device id. This works for existing device (1 device) for a port</description>
+                </item>
+            </arguments>
+        </item>
     </procedures>
 </testCase>

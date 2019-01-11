@@ -1266,7 +1266,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="cf1553cd-1e72-4acb-abc3-d8f030343c51" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1293,7 +1293,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="dabf98ef-4816-4b65-8174-0cac3391b063" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1319,7 +1319,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="73aa4370-d71f-4eb1-bb99-44efae91bada" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1345,7 +1345,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="74024eb7-8214-481f-abe3-2eb4658ddbda" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1371,7 +1371,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="1a6a5a80-ce26-4925-8854-7d5a044c5119" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1397,7 +1397,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="6970e443-92ca-4471-a867-07d369238959" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1517,7 +1517,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="0b6c7825-1840-4ac7-b9ca-081ed13cedfb" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1543,7 +1543,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="2fca49f4-f60c-4441-b0c1-e30416725fec" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1569,7 +1569,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="a1fbd106-adb3-4c04-a76a-60c061ec9d23" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1595,7 +1595,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="5077c4e0-416e-415b-a5bd-97849633305a" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1621,7 +1621,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="ad1a31d1-9758-4295-998b-c55cbf97f9d6" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -1647,7 +1647,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="843a310a-dfd8-424b-91d6-9672bb2a97c7" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2553,7 +2553,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="634fa816-f7d6-4c16-ae37-1bd10c099903" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2579,7 +2579,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="7303b26b-bf83-42f2-9cc3-c8578f7a952e" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2605,7 +2605,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="563539e8-686a-4f30-89e5-46c269403886" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2631,7 +2631,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="64f27f09-79ed-4462-a0ce-056407a61661" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2657,7 +2657,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="b8612b89-8d87-49e5-b734-430e27414411" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2683,7 +2683,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="0ead3dbe-aa44-4c2a-afe1-398612ee12e5" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2803,7 +2803,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="05359124-606c-4ba8-9521-2d2dffe0bc65" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2829,7 +2829,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="64f3c9d0-d2a4-47ec-9a8c-9d4138ddf128" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2855,7 +2855,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="6986b595-e0d9-4626-9f9c-f1758102dd7a" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2881,7 +2881,7 @@ AP/ChannelFreq_5_0/channel_BW=HT40</params>
                                                             <nestedSteps>
                                                                 <item guid="a7bdcd14-1e75-4f79-952c-2a3ce03955fb" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2907,7 +2907,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="4595f297-0d9d-48e2-8cc6-171eaf96ec0f" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>
@@ -2933,7 +2933,7 @@ AP/ChannelFreq_5_0/channel_BW=HT80</params>
                                                             <nestedSteps>
                                                                 <item guid="175e6b9e-a69d-48d5-bf4e-3696bb0d06bb" action="run">
                                                                     <command>
-                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator_velocity.fftc</body>
+                                                                        <body>project://ai_Wifi/test_cases/Rate_vs_Range_Attenuator.fftc</body>
                                                                     </command>
                                                                     <applicationProperties type="com.fnfr.svt.execution.kernel.ExecRunPropertyGroup" testbedSelection="UseSpecified">
                                                                         <specifiedTestbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</specifiedTestbed>

@@ -11,26 +11,32 @@
             <parameters escape="true">
                 <parameters xmlns:pt="http://www.fnfr.com/schemas/parameterTree">
                     <attenuation_port>1 2 3 4</attenuation_port>
-                    <attenuationIncrement pt:description="By what value channel powet attenuation is changed">5</attenuationIncrement>
+                    <attenuationIncrement pt:description="By what value channel powet attenuation is changed">60</attenuationIncrement>
                     <max_attenuation>60</max_attenuation>
-                    <SBClientProfile>WIFI5</SBClientProfile>
-                    <Mimo_configuration pt:description="Other MIMO options, MIMO_1X1, MIMO_2X2,MIMO_3X3">MIMO_2X2</Mimo_configuration>
-                    <max_position>360</max_position>
-                    <orientation pt:description="If Rate vs Range with orientation need to be run, otherwise set to no">no</orientation>
-                    <result_dir pt:description="Don&apos;t forget include &quot;/&quot; at the end, example: project path: project://di_jfw/Results/ or path in location machin: C:/Users/WifiTester/Results/  ">C:/Users/WifiTester/Results/</result_dir>
-                    <AP_Vendor pt:description="PLUME, Arris, Technicolor">Arris</AP_Vendor>
                     <STC>
                         <IP>172.30.245.61</IP>
                         <WifiPort>2/3</WifiPort>
                         <EthPort>1/5</EthPort>
-                        <ConfigFile pt:description="2.4GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE 5_GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE">5_GHz_WLAN_LAN_Config_AC_UDP_Upload_1UE</ConfigFile>
+                        <ConfigFile pt:description="2.4GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE 5_GHz_WLAN_LAN_Config_AC_TCP_Bidirection_1UE">5_GHz_WLAN_LAN_Config_N_UDP_Upload_1UE</ConfigFile>
                         <duration pt:description="In Seconds">10</duration>
-                        <sample_size>5</sample_size>
+                        <sample_size>1</sample_size>
                         <header>TCP</header>
                         <direction pt:description="DL --&gt; Downlink UP --&gt; Uplink BI --&gt; Both directions">DL</direction>
                     </STC>
-                    <AP_PLUME>
-                        <IP>192.168.1.1</IP>
+                    <SBClientProfile>WIFI5</SBClientProfile>
+                    <Mimo_configuration pt:description="Other MIMO options, MIMO_1X1, MIMO_2X2,MIMO_3X3">MIMO_2X2</Mimo_configuration>
+                    <max_position>360</max_position>
+                    <vertex>
+                        <channelProfile>QUAD_2X2_BI_TDD</channelProfile>
+                        <channelFrequency>5320</channelFrequency>
+                        <channelModel>WLAN_TGac_B_NLOS</channelModel>
+                        <inPowerLevel>-10</inPowerLevel>
+                        <outPowerLevel>-50</outPowerLevel>
+                        <inputPorts>A(1-8)</inputPorts>
+                        <outputPorts>B(1-8)</outputPorts>
+                    </vertex>
+                    <orientation pt:description="If Rate vs Range with orientation need to be run, otherwise set to no">no</orientation>
+                    <AP>
                         <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">5.0</ChannelFrequency>
                         <ChannelFreq_2_4>
                             <channel_number>1</channel_number>
@@ -42,11 +48,12 @@
                             <channel_BW pt:description="HT20 HT40  HT80">HT80</channel_BW>
                             <hw_mode>11ac</hw_mode>
                         </ChannelFreq_5_0>
-                    </AP_PLUME>
+                    </AP>
+                    <result_dir pt:description="Don&apos;t forget include &quot;/&quot; at the end, example: project path: project://di_jfw/Results/ or path in location machin: C:/Users/WifiTester/Results/  ">C:/Users/WifiTester/Results/</result_dir>
+                    <AP_Vendor pt:description="PLUME, Arris, Technicolor">Arris</AP_Vendor>
                     <AP_Arris>
-                        <IP>10.0.0.1</IP>
+                        <IP>192.168.0.1</IP>
                         <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">5.0</ChannelFrequency>
-                        <channel_BW_STC>40</channel_BW_STC>
                         <ChannelFreq_2_4>
                             <channel_number pt:description="1 to 11 ">1</channel_number>
                             <channel_BW pt:description="20/40 or 20">20/40</channel_BW>
@@ -59,9 +66,8 @@
                         </ChannelFreq_5_0>
                     </AP_Arris>
                     <AP_Technicolor>
-                        <IP>192.168.0.1</IP>
+                        <IP>10.0.0.1</IP>
                         <ChannelFrequency pt:description="Values: 2.4 --&gt; 2.4 Ghz, 5.0 --&gt; 5 GHz, 0 --&gt; Dual">5.0</ChannelFrequency>
-                        <channel_BW_STC>80</channel_BW_STC>
                         <ChannelFreq_2_4>
                             <channel_number>1</channel_number>
                             <channel_BW pt:description="802.11 g/n 802.11 n">802.11 g/n</channel_BW>
@@ -77,7 +83,7 @@
             </parameters>
         </parameters>
     </execution>
-    <testbed>project://ai_Wifi/topologies/Wifi_Automation.tbml</testbed>
+    <testbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</testbed>
     <procedures>
         <item name="main">
             <steps>
@@ -112,9 +118,30 @@
                         <body>Open session to attenuator</body>
                     </command>
                     <nestedSteps>
-                        <item guid="827cc8b8-62c5-4b27-9f87-37091e478ffc" action="open" session="attenuator">
+                        <item guid="83e266cb-a1a6-41a6-b236-e168d0249d72" action="open" session="attenuator" skip="true">
                             <command>
                                 <body>device:Attenuator#telnet</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties">
+                                    <completionProperties>
+                                        <completeWhen inherit="false">AUTO_OR_IDLE</completeWhen>
+                                    </completionProperties>
+                                </stepProperties>
+                                <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                    <TerminalProperties>
+                                        <captureProperties>
+                                            <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                        </captureProperties>
+                                    </TerminalProperties>
+                                </sessionProperties>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
+                        <item guid="827cc8b8-62c5-4b27-9f87-37091e478ffc" action="open" session="attenuator">
+                            <command>
+                                <body>device:JFW%20Attenuator#telnet</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                 <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties">
@@ -160,7 +187,7 @@
                         </item>
                         <item guid="7de4fe5a-8dd0-49b3-9163-4b3ac3f5ba5b" action="open" session="ELK">
                             <command>
-                                <body>device:elastic#REST</body>
+                                <body>device:STC#REST</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                 <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -183,9 +210,20 @@
                         <body>Open session to turn table</body>
                     </command>
                     <nestedSteps>
+                        <item guid="c49d17fc-8d5e-4989-aeca-661fcdfc8652" action="open" session="turnTable" skip="true">
+                            <command>
+                                <body>device:RF%20Enclosure/Turntable#cmd</body>
+                            </command>
+                            <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                <sessionProperties type="com.fnfr.svt.applications.cmd.CmdSessionProperties"/>
+                                <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                            </applicationProperties>
+                        </item>
                         <item guid="a8cb1ac2-9b8d-47ed-ae3d-0e6a2c00baf0" action="open" session="turnTable">
                             <command>
-                                <body>device:RF_Enclosure/Turntable#cmd</body>
+                                <body>device:OctoBox_1#cmd</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                 <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
@@ -221,7 +259,7 @@
                                 </item>
                                 <item guid="26901c2f-eb91-43ff-a376-6e887fdc46f8" action="open" session="AP">
                                     <command>
-                                        <body>device:RF_Enclosure/RG#telnet</body>
+                                        <body>device:DUT1#telnet</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                         <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
@@ -238,7 +276,7 @@
                                 </item>
                                 <item guid="82e9a28d-34f6-4086-8027-da22557f248a" action="configureAP" session="AP" useFieldsInCommand="false">
                                     <command>
-                                        <body> -frenqncyChannel [param(&apos;AP_PLUME/ChannelFrequency&apos;)] -channelNumber_2_4 [param(&apos;AP_PLUME/ChannelFreq_2_4/channel_number&apos;)] -channelNumber_5_0 [param(&apos;AP_PLUME/ChannelFreq_5_0/channel_number&apos;)] -channelMode_2_4 [param(&apos;AP_PLUME/ChannelFreq_2_4/hw_mode&apos;)] -channelMode_5_0 [param(&apos;AP_PLUME/ChannelFreq_5_0/hw_mode&apos;)] -channelBW_2_4 [param(&apos;AP_PLUME/ChannelFreq_2_4/channel_BW&apos;)] -channelBW_5_0 [param(&apos;AP_PLUME/ChannelFreq_5_0/channel_BW&apos;)]</body>
+                                        <body> -frenqncyChannel [param(&apos;AP/ChannelFrequency&apos;)] -channelNumber_2_4 [param(&apos;AP/ChannelFreq_2_4/channel_number&apos;)] -channelNumber_5_0 [param(&apos;AP/ChannelFreq_5_0/channel_number&apos;)] -channelMode_2_4 [param(&apos;AP/ChannelFreq_2_4/hw_mode&apos;)] -channelMode_5_0 [param(&apos;AP/ChannelFreq_5_0/hw_mode&apos;)] -channelBW_2_4 [param(&apos;AP/ChannelFreq_2_4/channel_BW&apos;)] -channelBW_5_0 [param(&apos;AP/ChannelFreq_5_0/channel_BW&apos;)]</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                 </item>
@@ -347,7 +385,7 @@
                                         </item>
                                         <item guid="f740eedb-b242-4088-8dfb-aa38816d531b" action="elif">
                                             <command>
-                                                <body>param(&apos;AP_Vendor&apos;) == &quot;Technicolor&quot;:</body>
+                                                <body>vendor = param(&apos;AP_Vendor&apos;) == &quot;Technicolor&quot;:</body>
                                             </command>
                                             <nestedSteps>
                                                 <item guid="436330b8-3faf-472d-9d2e-507a7fd63a5f" action="comment" useFieldsInCommand="false">
@@ -364,7 +402,7 @@
                                                 </item>
                                                 <item guid="7b9604a9-ddf1-4e86-b068-9d5d65d64704" action="eval" useFieldsInCommand="false">
                                                     <command>
-                                                        <body>frequency=param(&apos;AP_Technicolor/ChannelFrequency&apos;)</body>
+                                                        <body>frequency=param(&apos;AP_Technicolor/IP&apos;)</body>
                                                     </command>
                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 </item>
@@ -396,7 +434,7 @@
                                                 </item>
                                                 <item guid="38426428-af6b-47ea-ac88-463683c99304" action="elif">
                                                     <command>
-                                                        <body>param(&apos;AP_Technicolor/ChannelFrequency&apos;)== &quot;2.4&quot;:</body>
+                                                        <body>param(&apos;AP_Arris/ChannelFrequency&apos;)== &quot;2.4&quot;:</body>
                                                     </command>
                                                     <nestedSteps>
                                                         <item guid="a3068fe4-f092-4acb-aa0c-ec032b021ec6" action="eval" useFieldsInCommand="false">
@@ -456,9 +494,9 @@
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="295e3bab-05ec-4908-b4c6-cb6137a33596" action="open" session="AP_XB6">
+                                <item guid="a98a0389-2e6b-4ad1-90ae-f0ce7009fdbe" action="open" session="AP_XB6" useFieldsInCommand="false">
                                     <command>
-                                        <body>device:RF_Enclosure/RG#Selenium</body>
+                                        <body>project://di_xb6/session_profiles/selenium_base.ffsp</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                         <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -521,11 +559,11 @@
                         </item>
                         <item guid="f20d50d1-ea08-4dd5-ac04-587b1126e1f3" action="open" session="trafficGen">
                             <command>
-                                <body>device:TrafficGen#Spirent_TestCenter</body>
+                                <body>device:STC#Spirent_TestCenter</body>
                             </command>
                             <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
                                 <stepProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TestCenterGUISessionProperties" ipAddress="[param(&apos;STC/IP&apos;)]" ipAddress.inherit="false" ports="[param(&apos;STC/WifiPort&apos;)] [param(&apos;STC/EthPort&apos;)]" ports.inherit="false" config="project://di_stc_com/configFiles/[param(&apos;STC/ConfigFile&apos;)].tcc" config.inherit="false">
+                                <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TestCenterGUISessionProperties" ipAddress="[velocity(&apos;property&apos;,&apos;ipAddress&apos;)]" ipAddress.inherit="false" ports="[param(&apos;STC/WifiPort&apos;)] [param(&apos;STC/EthPort&apos;)]" ports.inherit="false" config="project://di_stc_com/configFiles/[param(&apos;STC/ConfigFile&apos;)].tcc" config.inherit="false">
                                     <tcl transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TclInterpreterProperties" interpreterLocation="file:/C:/Program%20Files%20(x86)/Spirent%20Communications/Spirent%20TestCenter%204.93/TCL/bin/tclsh84.exe" interpreterLocation.inherit="false"/>
                                     <configureCustom16bitFilter transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.Analyzer16BitFilterProperties" mask="ffff" mask.inherit="false" endOfRange="ffff" endOfRange.inherit="false"/>
                                 </sessionProperties>
@@ -603,171 +641,61 @@
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="62994fb6-1a89-40ff-b6f0-3e8d31c16780" action="if" useFieldsInCommand="false">
+                                <item guid="c776cd1d-c30a-425c-a4c7-78346a4b223e" action="if" useFieldsInCommand="false">
                                     <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;PLUME&quot;:</body>
+                                        <body>param(&apos;AP/ChannelFrequency&apos;)== &quot;5.0&quot;:</body>
                                     </command>
                                     <nestedSteps>
-                                        <item guid="017187cc-052c-4cc5-a666-071cd3e5d5ff" action="eval" useFieldsInCommand="false">
+                                        <item guid="2950089f-3eae-4735-8024-8b3f0218cbac" action="eval" useFieldsInCommand="false">
                                             <command>
-                                                <body>frequency=param(&apos;AP_PLUME/ChannelFrequency&apos;)</body>
+                                                <body>channel_bw=&apos;AP/ChannelFreq_5_0/channel_BW&apos;</body>
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="c776cd1d-c30a-425c-a4c7-78346a4b223e" action="if" useFieldsInCommand="false">
+                                        <item guid="754df8a4-8368-4f56-9698-37ed876bcab8" action="eval" useFieldsInCommand="false">
                                             <command>
-                                                <body>param(&apos;AP_PLUME/ChannelFrequency&apos;)== &quot;5.0&quot;:</body>
+                                                <body>channel_mode=&apos;AP/ChannelFreq_5_0/hw_mode&apos;</body>
                                             </command>
-                                            <nestedSteps>
-                                                <item guid="2950089f-3eae-4735-8024-8b3f0218cbac" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_bw=param(&apos;AP_PLUME/ChannelFreq_5_0/channel_BW&apos;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="754df8a4-8368-4f56-9698-37ed876bcab8" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_mode=param(&apos;AP_PLUME/ChannelFreq_5_0/hw_mode&apos;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="a16a5d3b-6ec9-4580-b993-2a99c1f7752a" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_num=param(&apos;AP_PLUME/ChannelFreq_5_0/channel_number&apos;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                            </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="082b5316-d303-4c81-9002-8c72d3214cad" action="elif">
+                                        <item guid="a16a5d3b-6ec9-4580-b993-2a99c1f7752a" action="eval" useFieldsInCommand="false">
                                             <command>
-                                                <body>param(&apos;AP/ChannelFrequency&apos;)== &quot;2.4&quot;:</body>
+                                                <body>channel_num=&apos;AP/ChannelFreq_5_0/channel_number&apos;</body>
                                             </command>
-                                            <nestedSteps>
-                                                <item guid="02908858-d51e-49a1-918c-5367c2ccadd9" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_bw=param(&apos;AP_PLUME/ChannelFreq_2_4/channel_BW&apos;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="fd2bb473-1bc4-4d7a-b24a-5ca98558941d" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_mode=param(&apos;AP_PLUME/ChannelFreq_2_4/hw_mode&apos;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="4a10299f-eddf-426e-9916-8e3422ccd687" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_num=param(&apos;AP_PLUME/ChannelFreq_2_4/channel_number&apos;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                            </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="bfa26718-97f3-4d35-8852-7e0be0ba46d4" action="elif">
+                                <item guid="082b5316-d303-4c81-9002-8c72d3214cad" action="elif">
                                     <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;Arris&quot; or param(&apos;AP_Vendor&apos;) == &quot;Technicolor&quot;  :</body>
+                                        <body>param(&apos;AP/ChannelFrequency&apos;)== &quot;2.4&quot;:</body>
                                     </command>
                                     <nestedSteps>
-                                        <item guid="6dcc6e75-58b2-4133-b563-76be199c1728" action="comment" useFieldsInCommand="false">
+                                        <item guid="02908858-d51e-49a1-918c-5367c2ccadd9" action="eval" useFieldsInCommand="false">
                                             <command>
-                                                <body>Insert steps here for when the expression evaluates to false</body>
+                                                <body>channel_bw=&apos;AP/ChannelFreq_2_4/channel_BW&apos;</body>
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="928e79a8-c375-4465-baaa-8ecdffc8d568" action="comment" useFieldsInCommand="false">
+                                        <item guid="fd2bb473-1bc4-4d7a-b24a-5ca98558941d" action="eval" useFieldsInCommand="false">
                                             <command>
-                                                <body>Channel BW</body>
+                                                <body>channel_mode=&apos;AP/ChannelFreq_2_4/hw_mode&apos;</body>
                                             </command>
-                                            <nestedSteps>
-                                                <item guid="583ba09c-f414-481d-9286-ce5b5d5c428a" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>mode_split = channel_bw.split(&quot;/&quot;)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="f1d8b5e4-4ec1-4dc8-a640-1df5d71fb790" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>print(mode_split)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="bb4862f3-6a5c-42ef-b9bf-49421414efe4" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>s=&quot;_&quot;</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="e5da15b4-d898-4331-98d3-de6701652a7d" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_bw = s.join(mode_split)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="3a4f783e-2030-4337-8504-fc19470f3f64" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>print(channel_bw)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                            </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="c2547b6e-49ab-484d-b89f-bf7ca3e865e3" action="comment" useFieldsInCommand="false">
+                                        <item guid="4a10299f-eddf-426e-9916-8e3422ccd687" action="eval" useFieldsInCommand="false">
                                             <command>
-                                                <body>Channel_mode</body>
+                                                <body>channel_num=&apos;AP/ChannelFreq_2_4/channel_number&apos;</body>
                                             </command>
-                                            <nestedSteps>
-                                                <item guid="a44c0d71-7b07-4750-85b1-f777c725985e" action="comment" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>Insert steps here for when the expression evaluates to false</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="a9275405-aab2-45f8-91a8-52927b21fd83" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_mode_list = channel_mode.split()</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="b1013a85-e9f1-4f2e-9a1e-e1992ad43beb" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>print(channel_mode_list)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="5173f003-5b74-427b-9d71-f1f9d8182bac" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>s=&quot;_&quot;</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="27c659c4-63e5-44ef-a0f2-20e902407f2c" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>channel_mode = s.join(channel_mode_list)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="39356b03-0473-4aa2-805f-376ecb9767f4" action="eval" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>print(channel_mode)</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                            </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
-                                <item guid="d5b8c71a-f228-457d-b91d-5a16540dd0a0" action="eval" useFieldsInCommand="false">
+                                <item guid="a935b979-5117-4221-b9d0-5d07833716a3" action="eval" useFieldsInCommand="false">
                                     <command>
-                                        <body>report_file = str(report_loc)+str(testCaseName)+&quot;_&quot;+str(param(&apos;STC/header&apos;))+&quot;_&quot;+str(param(&apos;STC/direction&apos;))+&quot;_&quot;+str(frequency)+&quot;GHz&quot;+&quot;_&quot;+str(channel_num)+&quot;_&quot;+str(channel_bw)+&quot;_&quot;+str(channel_mode)+&quot;_&quot;+str(dateTime)+&quot;.csv&quot;</body>
+                                        <body>report_file = str(report_loc)+str(testCaseName)+&quot;_&quot;+str(param(&apos;STC/header&apos;))+&quot;_&quot;+str(param(&apos;STC/direction&apos;))+&quot;_&quot;+str(param(&apos;AP/ChannelFrequency&apos;))+&quot;GHz&quot;+&quot;_&quot;+str(param(channel_num))+&quot;_&quot;+str(param(channel_bw))+&quot;_&quot;+str(param(channel_mode))+&quot;_&quot;+str(dateTime)+&quot;.csv&quot;</body>
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
@@ -809,6 +737,164 @@
                                         <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                     </applicationProperties>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="cbb96d25-0b68-4b9b-ac51-1c2aaa4ef6eb" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Open Vertex, setup frequncy,power,and Channel B and start emulator</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="90a9fd11-e506-4920-a6e7-472da7596645" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Open Connection to Emulator</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="253cf6ce-8f28-47d0-9939-ad098b7dc13b" action="open" session="vertex">
+                                    <command>
+                                        <body>device:Vertex-1#telnet</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.OpenStepPropertyGroup">
+                                        <stepProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                                            <TerminalProperties>
+                                                <captureProperties>
+                                                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                                                </captureProperties>
+                                            </TerminalProperties>
+                                        </sessionProperties>
+                                        <sessionClass type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        <sessionVersion type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                    </applicationProperties>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="f0bf15d0-5fe2-4fdf-9b59-f787d2ae7d17" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set connection type (Proifle)</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="b0fe0aa3-cc0c-469b-a5d8-ff284254b613" action="SetConnectionType" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body>-connection_profile [param(&apos;vertex/channelProfile&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="e0563188-1dc5-425a-b105-1cc7b3a781c5" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set Carrier Frequency inputPort</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="3d8096d0-cb88-44b6-92fa-e51fae8beefd" action="SetCarrierFrequency" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -port [param(&apos;vertex/inputPorts&apos;)] -frequency [param(&apos;vertex/channelFrequency&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="d7a983b4-d6cc-4ec2-952f-b4a1c0ccffe7" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set Input Power</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="1c0feb5e-29ac-437f-8885-6efc9eb27908" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Input Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="7feb780d-9bd3-4a12-8142-e1e1248dd44b" action="SetInputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/inputPorts&apos;)] -power [param(&apos;vertex/inPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="2cb2a0c2-d63c-48fa-b4c0-e8fb1f5306f8" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Output Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="443073e9-bb53-46d7-acc8-45890b232a88" action="SetInputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/outputPorts&apos;)] -power [param(&apos;vertex/inPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="9588ed5b-4ba2-4555-8f2e-3bd6276a6a95" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set outPut Power</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="ad714b5e-b198-47ce-9ab9-099ca9c4bfbe" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Input Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="c9a94942-80cd-4880-8336-14a709b21a4b" action="SetOutputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/inputPorts&apos;)] -power [param(&apos;vertex/outPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="1dc6f85e-88d9-496b-9c70-6d13814cdeb6" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Output Port</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="2c8359c7-959b-430f-92af-1c1980df8950" action="SetOutputPower" session="vertex" useFieldsInCommand="false">
+                                            <command>
+                                                <body> -port [param(&apos;vertex/outputPorts&apos;)] -power [param(&apos;vertex/outPowerLevel&apos;)]</body>
+                                            </command>
+                                            <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="81fdcdd9-4bae-4ecb-bce3-985edc322c49" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Load channel Model</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="e98c6ffd-8383-4687-9638-91bf474bc56a" action="setChannelModel" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -channelModel [param(&apos;vertex/channelModel&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="43cc209e-a62f-4866-9fde-d7933df52eb3" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>Start Emulator</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="7800d06b-1450-4903-b0d0-3525fd9f2045" action="StartEmulation" session="vertex" useFieldsInCommand="false">
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
@@ -876,6 +962,36 @@
                                     </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
+                                <item guid="70bc2c4c-87c6-47be-893c-2c01b02887fb" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>ethPortLoc = &quot;//172.30.245.61/4/4&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="9f728cd2-6600-4b8d-a7b1-6cea566a27a9" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>wifiPortLoc = &quot;//172.30.245.61/2/4&quot;</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="e41ea8c8-68db-4826-ac00-74735864813b" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>ethPortLoc = [tbml(&apos;property&apos;, &apos;-name&apos;, &apos;trafficGen&apos;, &apos;ipAddress&apos;)]+&apos;/&apos;+[tbml(&apos;property&apos;, &apos;-name&apos;, &apos;trafficGen ethPort&apos;, &apos;inventoryName&apos;)]</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="a84423da-9299-4002-9bca-a8fd8a718fb7" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>wifiPortLoc = &quot;//&quot;+ str([tbml(&apos;property&apos;, &apos;-name&apos;, &apos;STC&apos;, &apos;ipAddress&apos;)]) + &quot;/&quot; + str([tbml(&apos;property&apos;, &apos;-name&apos;, &apos;STC/wifiPort&apos;, &apos;portNumber&apos;)])</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="4282a923-a233-4697-b144-728dae0f1a16" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>print([wifiPortLoc])</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
                                 <item guid="683b910e-eeee-4396-a3b1-0e50b4119cb7" action="get_port_id_by_location" session="trafficGen" useFieldsInCommand="false">
                                     <command>
                                         <body> -location $ethPortLoc</body>
@@ -894,6 +1010,12 @@
                                         <storeResponseAt>wifiPortId</storeResponseAt>
                                         <storeResponseText>true</storeResponseText>
                                     </postProcessing>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="653d8189-d66b-455d-8e81-4774332b8f74" action="eval" skip="true" useFieldsInCommand="false">
+                                    <command>
+                                        <body>puts &quot;Port Ids Ethernet Port Id: $ethPortId    #####    Wifi Port Id: $wifiPortId&quot;</body>
+                                    </command>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
                             </nestedSteps>
@@ -1005,123 +1127,23 @@
                                 <body>Set Channel Bandwidth based on Input</body>
                             </command>
                             <nestedSteps>
-                                <item guid="16f3e3b7-a6eb-43e8-85f2-aade5ac8a47a" action="if" useFieldsInCommand="false">
+                                <item guid="418e8c7e-7044-4644-a14f-f0d0d16d1ad3" action="if" useFieldsInCommand="false">
                                     <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;PLUME&quot;:</body>
+                                        <body>param(&apos;AP/ChannelFrequency&apos;)== &quot;5.0&quot;:</body>
                                     </command>
                                     <nestedSteps>
-                                        <item guid="418e8c7e-7044-4644-a14f-f0d0d16d1ad3" action="if" useFieldsInCommand="false">
+                                        <item guid="1e45c1c8-e308-4c4b-9f23-0ecf335618b7" action="comment" useFieldsInCommand="false">
                                             <command>
-                                                <body>param(&apos;AP_PLUME/ChannelFrequency&apos;)== &quot;5.0&quot;:</body>
-                                            </command>
-                                            <nestedSteps>
-                                                <item guid="1e45c1c8-e308-4c4b-9f23-0ecf335618b7" action="comment" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>Check what is the Channel Bandwidth and set accordingly</body>
-                                                    </command>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="48b6ad34-d53b-47ce-83c9-a22fa1233719" action="if" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>param(&apos;AP_PLUME/ChannelFreq_5_0/channel_BW&apos;)== &quot;HT20&quot;:</body>
-                                                    </command>
-                                                    <nestedSteps>
-                                                        <item guid="1bca2007-eed8-4267-a88e-a342e7678062" action="eval" useFieldsInCommand="false">
-                                                            <command>
-                                                                <body>channel = &quot;ChannelBandWidth20Mhz&quot;</body>
-                                                            </command>
-                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                        </item>
-                                                    </nestedSteps>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="2dc8c4d1-49c9-4888-802b-482830ebc884" action="elif">
-                                                    <command>
-                                                        <body>param(&apos;AP_PLUME/ChannelFreq_5_0/channel_BW&apos;)== &quot;HT40&quot;:</body>
-                                                    </command>
-                                                    <nestedSteps>
-                                                        <item guid="26cacfa6-db49-4002-874e-7b23de52c277" action="eval" useFieldsInCommand="false">
-                                                            <command>
-                                                                <body>channel = &quot;ChannelBandWidth40Mhz&quot;</body>
-                                                            </command>
-                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                        </item>
-                                                    </nestedSteps>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="1318ae5c-7c03-4361-9887-f9c90ef496f3" action="elif">
-                                                    <command>
-                                                        <body>param(&apos;AP_PLUME/ChannelFreq_5_0/channel_BW&apos;)== &quot;HT80&quot;:</body>
-                                                    </command>
-                                                    <nestedSteps>
-                                                        <item guid="a3bf6905-f362-447b-9e07-d3f10bc12ff4" action="eval" useFieldsInCommand="false">
-                                                            <command>
-                                                                <body>channel = &quot;ChannelBandWidth80Mhz&quot;</body>
-                                                            </command>
-                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                        </item>
-                                                    </nestedSteps>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                            </nestedSteps>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="46d25c91-72ee-4b42-971c-34ff7fb0e66b" action="elif">
-                                            <command>
-                                                <body>param(&apos;AP_PLUME/ChannelFrequency&apos;)== &quot;2.4&quot;:</body>
-                                            </command>
-                                            <nestedSteps>
-                                                <item guid="0bace044-2a35-44fb-b495-85e3c1ba3cb7" action="if" useFieldsInCommand="false">
-                                                    <command>
-                                                        <body>param(&apos;AP_PLUME/ChannelFreq_2_4/channel_BW&apos;)== &quot;HT20&quot;:</body>
-                                                    </command>
-                                                    <nestedSteps>
-                                                        <item guid="0407672e-37f9-49fe-99b5-141799d46f1a" action="eval" useFieldsInCommand="false">
-                                                            <command>
-                                                                <body>channel = &quot;ChannelBandWidth20Mhz&quot;</body>
-                                                            </command>
-                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                        </item>
-                                                    </nestedSteps>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                                <item guid="2bcba7ec-c196-478c-8919-7c5c9517d500" action="elif">
-                                                    <command>
-                                                        <body>param(&apos;AP_PLUME/ChannelFreq_2_4/channel_BW&apos;)== &quot;HT40&quot;:</body>
-                                                    </command>
-                                                    <nestedSteps>
-                                                        <item guid="5cf8fb5a-185c-4197-a77b-721de4af5a46" action="eval" useFieldsInCommand="false">
-                                                            <command>
-                                                                <body>channel = &quot;ChannelBandWidth40Mhz&quot;</body>
-                                                            </command>
-                                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                        </item>
-                                                    </nestedSteps>
-                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                                </item>
-                                            </nestedSteps>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="2035bc20-0a11-4bf6-bac9-1aa29fe93c7c" action="elif">
-                                    <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;Arris&quot; or param(&apos;AP_Vendor&apos;) == &quot;Technicolor&quot;  :</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="6a92b614-4bc4-43af-a5c7-2e488c8fcb7b" action="comment" useFieldsInCommand="false">
-                                            <command>
-                                                <body>Insert steps here for when the expression evaluates to false</body>
+                                                <body>Check what is the Channel Bandwidth and set accordingly</body>
                                             </command>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="9a942532-ba56-496a-b847-0ce20a2355ae" action="if" useFieldsInCommand="false">
+                                        <item guid="48b6ad34-d53b-47ce-83c9-a22fa1233719" action="if" useFieldsInCommand="false">
                                             <command>
-                                                <body>param(&apos;AP_Arris/channel_BW_STC&apos;) == &quot;20&quot; or param(&apos;AP_Technicolor/channel_BW_STC&apos;)==&quot;20&quot;:</body>
+                                                <body>param(&apos;AP/ChannelFreq_5_0/channel_BW&apos;)== &quot;HT20&quot;:</body>
                                             </command>
                                             <nestedSteps>
-                                                <item guid="b7682d94-eadb-4df3-8513-17c6a87de21a" action="eval" useFieldsInCommand="false">
+                                                <item guid="1bca2007-eed8-4267-a88e-a342e7678062" action="eval" useFieldsInCommand="false">
                                                     <command>
                                                         <body>channel = &quot;ChannelBandWidth20Mhz&quot;</body>
                                                     </command>
@@ -1130,12 +1152,12 @@
                                             </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="09fcddd8-f9aa-4ab3-930e-fc702342a9d9" action="elif">
+                                        <item guid="2dc8c4d1-49c9-4888-802b-482830ebc884" action="elif">
                                             <command>
-                                                <body>param(&apos;AP_Arris/channel_BW_STC&apos;) == &quot;40&quot; or param(&apos;AP_Technicolor/channel_BW_STC&apos;)==&quot;40&quot;:</body>
+                                                <body>param(&apos;AP/ChannelFreq_5_0/channel_BW&apos;)== &quot;HT40&quot;:</body>
                                             </command>
                                             <nestedSteps>
-                                                <item guid="19b52897-a0b9-4b3c-9847-01bd9c02ef1a" action="eval" useFieldsInCommand="false">
+                                                <item guid="26cacfa6-db49-4002-874e-7b23de52c277" action="eval" useFieldsInCommand="false">
                                                     <command>
                                                         <body>channel = &quot;ChannelBandWidth40Mhz&quot;</body>
                                                     </command>
@@ -1144,12 +1166,12 @@
                                             </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="3df2d918-a1bd-4b32-81ca-b6036bdbcfa6" action="elif">
+                                        <item guid="1318ae5c-7c03-4361-9887-f9c90ef496f3" action="elif">
                                             <command>
-                                                <body>param(&apos;AP_Arris/channel_BW_STC&apos;) == &quot;80&quot; or param(&apos;AP_Technicolor/channel_BW_STC&apos;)==&quot;80&quot;:</body>
+                                                <body>param(&apos;AP/ChannelFreq_5_0/channel_BW&apos;)== &quot;HT80&quot;:</body>
                                             </command>
                                             <nestedSteps>
-                                                <item guid="f2b813a4-5f65-4c1d-ac8e-af9c5e37d68d" action="eval" useFieldsInCommand="false">
+                                                <item guid="a3bf6905-f362-447b-9e07-d3f10bc12ff4" action="eval" useFieldsInCommand="false">
                                                     <command>
                                                         <body>channel = &quot;ChannelBandWidth80Mhz&quot;</body>
                                                     </command>
@@ -1158,14 +1180,36 @@
                                             </nestedSteps>
                                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                         </item>
-                                        <item guid="e2f10445-576c-468c-9506-7668a285fde1" action="elif">
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="46d25c91-72ee-4b42-971c-34ff7fb0e66b" action="elif">
+                                    <command>
+                                        <body>param(&apos;AP/ChannelFrequency&apos;)== &quot;2.4&quot;:</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="0bace044-2a35-44fb-b495-85e3c1ba3cb7" action="if" useFieldsInCommand="false">
                                             <command>
-                                                <body>param(&apos;AP_Arris/channel_BW_STC&apos;) == &quot;160&quot;or param(&apos;AP_Technicolor/channel_BW_STC&apos;)==&quot;160&quot;:</body>
+                                                <body>param(&apos;AP/ChannelFreq_2_4/channel_BW&apos;)== &quot;HT20&quot;:</body>
                                             </command>
                                             <nestedSteps>
-                                                <item guid="1d83d500-fd2f-40cb-8d7d-b438d0e9abaa" action="eval" useFieldsInCommand="false">
+                                                <item guid="0407672e-37f9-49fe-99b5-141799d46f1a" action="eval" useFieldsInCommand="false">
                                                     <command>
-                                                        <body>channel = &quot;ChannelBandWidth160Mhz&quot;</body>
+                                                        <body>channel = &quot;ChannelBandWidth20Mhz&quot;</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="2bcba7ec-c196-478c-8919-7c5c9517d500" action="elif">
+                                            <command>
+                                                <body>param(&apos;AP/ChannelFreq_2_4/channel_BW&apos;)== &quot;HT40&quot;:</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="5cf8fb5a-185c-4197-a77b-721de4af5a46" action="eval" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>channel = &quot;ChannelBandWidth40Mhz&quot;</body>
                                                     </command>
                                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                                 </item>
@@ -1179,168 +1223,6 @@
                                     <command>
                                         <body> -wifiPort [wifiPortId] -channelType [channel]</body>
                                     </command>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                            </nestedSteps>
-                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                        </item>
-                        <item guid="b2cf13be-7cae-414a-aa53-f242c597aa5c" action="comment" useFieldsInCommand="false">
-                            <command>
-                                <body>Change Emulated Device Id based on IP address for the device</body>
-                            </command>
-                            <nestedSteps>
-                                <item guid="e27c03da-389a-41fd-a80f-0c5afd349433" action="if" useFieldsInCommand="false">
-                                    <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;PLUME&quot;:</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="cb8d88ea-b7b0-4b4e-ab08-6859d77eee46" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>gw_ip = param(&apos;AP_PLUME/IP&apos;)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="30c4cfce-64ed-4207-8745-c03d0ba3a3f4" action="elif">
-                                    <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;Arris&quot; :</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="5c0d81d2-f16f-4695-a7d2-d1e44c060709" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>gw_ip=param(&apos;AP_Arris/IP&apos;)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="ad2bda13-5fe5-4f3a-b466-3bc1690390ed" action="elif">
-                                    <command>
-                                        <body>param(&apos;AP_Vendor&apos;) == &quot;Technicolor&quot;:</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="727ba0a3-4afe-4f93-85df-41cc775f4265" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>gw_ip = param(&apos;AP_Technicolor/IP&apos;)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="a5a73ac0-f6e4-46c0-a95a-3d86b5932774" action="comment" useFieldsInCommand="false">
-                                    <command>
-                                        <body>Get emulated device ID for ports</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="829974d0-7a2d-42d0-bb9b-1c1454a7861a" action="getEmulateDeviceIdForPort" session="trafficGen" useFieldsInCommand="false">
-                                            <command>
-                                                <body>-InPort [ethPortId]</body>
-                                            </command>
-                                            <postProcessing>
-                                                <storeResponseAt>eth_emulatedDevice</storeResponseAt>
-                                                <storeResponseText>true</storeResponseText>
-                                            </postProcessing>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="2b9e2dad-ba91-4106-88aa-c75b23e2f6a9" action="getEmulateDeviceIdForPort" session="trafficGen" useFieldsInCommand="false">
-                                            <command>
-                                                <body>-InPort [wifiPortId]</body>
-                                            </command>
-                                            <postProcessing>
-                                                <storeResponseAt>wifi_emulatedDevice</storeResponseAt>
-                                                <storeResponseText>true</storeResponseText>
-                                            </postProcessing>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="426d084d-8302-487a-8ab6-749ca2b4239d" action="comment" useFieldsInCommand="false">
-                                    <command>
-                                        <body>Create IPv4 address for Eth and Wifi Port</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="fbc20084-36ed-4d76-aab4-4bd71eb37650" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>ip_temp = gw_ip.split(&quot;.&quot;)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="177be31b-8e25-4d27-8312-2c97292928b0" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>ip_temp[-1]=&apos;2&apos;</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="94085368-c6ef-4f9d-a21c-4cc9fe86277b" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>ip_wifi=&quot;.&quot;.join(ip_temp)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="216e6683-6652-40d6-b441-30598cd7fcca" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>print(ip_wifi)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="9a5e758f-19b8-4e01-a0ca-5602c83f0d92" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>ip_temp[-1]=&apos;3&apos;</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="bed0809a-877d-4d18-9ac4-3fcdc78e7785" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>ip_eth=&quot;.&quot;.join(ip_temp)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="9e7a7c3d-4068-4ff5-a093-5f9c25b3800d" action="eval" useFieldsInCommand="false">
-                                            <command>
-                                                <body>print(ip_eth)</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="4e724f67-c652-4fe9-a639-44431ac49c62" action="comment" useFieldsInCommand="false">
-                                    <command>
-                                        <body>Modify IPv4 address parameter for ethPort</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="5ed9969f-6439-4b11-976c-618f6fb41903" action="eval" session="trafficGen">
-                                            <command>
-                                                <body>stc::config [eth_emulatedDevice] -Ipv4If.Address [ip_eth] -Ipv4If.Gateway [gw_ip] -Ipv4If.ResolveGatewayMac true</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
-                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                </item>
-                                <item guid="35dca43d-c038-4135-b293-151a9d210c64" action="comment" useFieldsInCommand="false">
-                                    <command>
-                                        <body>Modify IPv4 address parameter for Wifi</body>
-                                    </command>
-                                    <nestedSteps>
-                                        <item guid="45864208-891b-4f66-958c-2dbc9eef25c4" action="eval" session="trafficGen">
-                                            <command>
-                                                <body>stc::config [wifi_emulatedDevice] -Ipv4If.Address [ip_wifi] -Ipv4If.Gateway [gw_ip] -Ipv4If.ResolveGatewayMac true</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                        <item guid="b2b7e837-eb8b-4f97-886d-387526fddbfd" action="eval" session="trafficGen">
-                                            <command>
-                                                <body>stc::apply</body>
-                                            </command>
-                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
-                                        </item>
-                                    </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
                                 </item>
                             </nestedSteps>
@@ -4214,6 +4096,39 @@
                                         </item>
                                     </nestedSteps>
                                     <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="bffbd629-2c7d-470e-b62f-60f58b1bfe2e" action="comment" skip="true" useFieldsInCommand="false">
+                    <command>
+                        <body>Stop Emulation and setup Vertex to default mode</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="996ea9a5-936b-44f6-a73e-97521add86b6" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>stop Emulator</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="5cc19e84-0a11-4d38-ae6b-916a48698410" action="StopEmulation" session="vertex" useFieldsInCommand="false">
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="7417f49a-e1a1-4482-8753-e765eb539a59" action="comment" useFieldsInCommand="false">
+                            <command>
+                                <body>set channel Model to default</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="590071ae-5508-446a-afb2-c778fa41d195" action="setChannelModel" session="vertex" useFieldsInCommand="false">
+                                    <command>
+                                        <body> -channelModel default</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
                                 </item>
                             </nestedSteps>
                             <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
