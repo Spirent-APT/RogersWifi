@@ -59,6 +59,7 @@
             </parameters>
         </parameters>
     </execution>
+    <testbed>project://ai_Wifi/topologies/AP_4x4_Octobox1.tbml</testbed>
     <procedures>
         <item name="main">
             <steps>

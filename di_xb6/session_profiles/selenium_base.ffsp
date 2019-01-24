@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<SessionTemplate version="7.2.0.201811011532">
+    <baseApplication>com.fnfr.itest.applications.selenium</baseApplication>
+    <sessionProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionProperties">
+        <profile transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionProfileProperties" profilePath="192.168.0.1" profilePath.inherit="false"/>
+        <capture transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionCaptureProperties">
+            <browser transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionCaptureBrowserProperties" browserType.inherit="false" browserPath="file:/C:/Program%20Files%20(x86)/Mozilla%20Firefox/firefox.exe" browserPath.inherit="false"/>
+        </capture>
+        <replay transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionReplayProperties">
+            <browser transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionBrowserProperties" browserType="Chrome" browserType.inherit="false" browserPath="file:/C:/Program%20Files%20(x86)/Google/Chrome/Application/chrome.exe" browserPath.inherit="false" downloadPath="file:/C:/Program%20Files%20(x86)/Google/Chrome/Application/chrome.exe" downloadPath.inherit="false"/>
+        </replay>
+    </sessionProperties>
+    <responseLibrary inherit="false">project://di_xb6/</responseLibrary>
+    <formMapLibrary inherit="false">project://di_xb6/</formMapLibrary>
+    <sessionClassTestCase inherit="false">selenium_quickcall_library.fftc</sessionClassTestCase>
+    <isReferenceProfile>true</isReferenceProfile>
+</SessionTemplate>

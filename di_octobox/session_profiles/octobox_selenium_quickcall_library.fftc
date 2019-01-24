@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <sessionClass includeTestCase="true" sessionType="octobox_selenium_base.ffsp"/>
+    </general>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="5f2319ab-d16c-4219-86ac-47ee43570463" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>SetTurntablePosition</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
+        <item name="SetTurntablePosition" isPublic="true">
+            <steps>
+                <item guid="a2a8c0ea-6bf7-4333-9050-dbde889e2a03" action="type" session="$session" target="id=pos_target" normalOffset="16.155" estimatedStepExecutionTime="0.032">
+                    <command>
+                        <body>$position</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumAbstractCommandProperties"/>
+                </item>
+                <item guid="80857c5b-e32a-4665-93a4-be8ceb06116b" action="click" session="$session" target="id=btn_goto" normalOffset="60.466" estimatedStepExecutionTime="0.047">
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="position">
+                    <description>position in degrees</description>
+                </item>
+            </arguments>
+        </item>
+    </procedures>
+</testCase>

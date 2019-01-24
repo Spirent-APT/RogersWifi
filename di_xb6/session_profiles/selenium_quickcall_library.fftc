@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<testCase version="7.2.0.201811011532">
+    <general>
+        <sessionClass includeTestCase="true" sessionType="selenium_base.ffsp"/>
+    </general>
+    <procedures>
+        <item name="main">
+            <steps>
+                <item guid="0a63cc13-a085-4fd7-8818-5d0855949401" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>main procedure</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="frequencyChannel">
+                    <description>frenqncyChannel --&gt; Frequency Channel 2.4 or 5 G HZ
+Values
+5.0 --&gt; 5 GHz
+2.4 --&gt; 2.4 GHz
+0 --&gt; dual</description>
+                    <defaultValue>5</defaultValue>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="AP_IPaddress"/>
+                <item name="channelNumber"/>
+                <item name="channelMode"/>
+                <item name="channelBW"/>
+                <item name="channelNumber_2_4">
+                    <description>Channel Number for 2.4 GHz</description>
+                    <defaultValue>1</defaultValue>
+                </item>
+                <item name="channelNumber_5_0">
+                    <description>Channel Number for 5.0 GHz</description>
+                    <defaultValue>157</defaultValue>
+                </item>
+                <item name="channelMode_2_4">
+                    <description>Hardware mode type:
+
+ng
+ac</description>
+                    <defaultValue>ng</defaultValue>
+                </item>
+                <item name="channelMode_5_0">
+                    <description>Hardware mode type:
+
+ng
+ac</description>
+                    <defaultValue>ac</defaultValue>
+                </item>
+                <item name="channelBW_2_4">
+                    <description>Channel Bandwidth for 2.4 GHz Frequency channel
+
+HT20 or HT40 </description>
+                </item>
+                <item name="channelBW_5_0">
+                    <description>Channel Bandwidth for 5.0 GHz Frequency channel
+
+HT20 or HT40 or HT80</description>
+                </item>
+            </arguments>
+            <response>{}</response>
+        </item>
+        <item name="configAP" isPublic="true">
+            <steps>
+                <item guid="26b5dcaa-f76d-48bd-94d8-378e8ae86b17" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>This QC will work for Technicolor and Arris AP, both the APs has common browser window</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="24d478ef-09ca-49ca-8707-57a1c1f2967a" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Based on Frequency Channel,  BW, channel number and 802.11 mode is configured</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="ceb27ec4-f459-46eb-af6e-43e0e35109e7" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>puts $frequencyChannel</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="4cc2c140-2e86-40b9-adc9-09a6d44d2ce0" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>puts &quot;$AP_IPaddress,$channelMode, $channelBW,$channelNumber&quot;</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="c76a0c97-6de6-4083-abc1-036b2bc3e520" action="if" useFieldsInCommand="false">
+                    <command>
+                        <body>$frequencyChannel == &quot;5.0&quot;</body>
+                    </command>
+                    <nestedSteps>
+                        <item guid="922d08b9-9315-4ceb-bd0a-257827cd95dc" action="then" useFieldsInCommand="false">
+                            <nestedSteps>
+                                <item guid="4a302e83-9292-4d51-b0d2-b704d3511ffb" action="go" session="$session" normalOffset="8.98" estimatedStepExecutionTime="0.06">
+                                    <command>
+                                        <body>http://${AP_IPaddress}/wireless_network_configuration_edit.php?id=2</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumPageLoadCompletionProperties"/>
+                                </item>
+                                <item guid="bd6b74a0-14d1-42cd-95b9-979d9b250a30" action="select" session="$session" target="id=wireless_mode" normalOffset="5.213" estimatedStepExecutionTime="0.07">
+                                    <command>
+                                        <body>label=$channelMode</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumAbstractCommandProperties"/>
+                                </item>
+                                <item guid="d53102cf-d284-424b-bd1d-b7e0610a2b33" action="if" useFieldsInCommand="false">
+                                    <command>
+                                        <body>$channelBW == &quot;20&quot;</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="c89e7aa4-c4f1-43e8-829e-d27468ecee58" action="then" useFieldsInCommand="false">
+                                            <nestedSteps>
+                                                <item guid="7027a5d6-7460-4b97-9746-00e0755aa417" action="click" session="$session" target="id=channel_bandwidth20" normalOffset="2.15" estimatedStepExecutionTime="0.04">
+                                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="912e3f29-2db7-4b90-880b-bc81222ffe31" action="elseif" useFieldsInCommand="false">
+                                            <command>
+                                                <body>$channelBW == &quot;20/40&quot;</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="210217b6-1dcb-4bc9-ac99-369cb1deb5d3" action="click" session="$session" target="id=channel_bandwidth1" normalOffset="2.15" estimatedStepExecutionTime="0.04">
+                                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="5623874b-2d8a-4f74-8956-6631b7d24e9f" action="elseif" useFieldsInCommand="false">
+                                            <command>
+                                                <body>$channelBW == &quot;20/40/80&quot;</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="fe2abf83-8db1-4bfe-b378-748370da92b3" action="click" session="$session" target="id=channel_bandwidth2" normalOffset="2.15" estimatedStepExecutionTime="0.04">
+                                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="d5ea9620-ad37-44e1-98ca-c1f6845de802" action="elseif" useFieldsInCommand="false">
+                                            <command>
+                                                <body>$channelBW == &quot;20/40/80/160&quot;</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="1d8cfdf2-5d6f-45de-bf87-351cf69ec55d" action="click" session="$session" target="id=channel_bandwidth3" normalOffset="1.317" estimatedStepExecutionTime="0.05">
+                                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="01e40051-49a6-41d3-95af-2c665bbda665" action="select" session="$session" target="id=channel_number" normalOffset="2.533" estimatedStepExecutionTime="0.07">
+                                    <command>
+                                        <body>label=$channelNumber</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumAbstractCommandProperties"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                        <item guid="08f8002c-3505-4386-8551-1401614622b5" action="elseif" useFieldsInCommand="false">
+                            <command>
+                                <body>$frequencyChannel == &quot;2.4&quot;</body>
+                            </command>
+                            <nestedSteps>
+                                <item guid="7e063ea5-b8ad-4a5c-bff9-2ad24160a44f" action="comment" useFieldsInCommand="false">
+                                    <command>
+                                        <body>Insert steps here for when the expression evaluates to false</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                                <item guid="e38f6a9a-1cde-4e7b-b831-2a810a81a0eb" action="go" session="$session" normalOffset="8.98" estimatedStepExecutionTime="0.06">
+                                    <command>
+                                        <body>http://${AP_IPaddress}/wireless_network_configuration_edit.php?id=1</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumPageLoadCompletionProperties"/>
+                                </item>
+                                <item guid="fc8f2be1-8a93-4fbc-a270-e0dc6d022a5e" action="select" session="$session" target="id=wireless_mode" normalOffset="5.213" estimatedStepExecutionTime="0.07">
+                                    <command>
+                                        <body>label=$channelMode</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumAbstractCommandProperties"/>
+                                </item>
+                                <item guid="7a04ed99-23e5-4580-955b-88a97511c39e" action="select" session="$session" target="id=channel_number" normalOffset="4.741" estimatedStepExecutionTime="0.06">
+                                    <command>
+                                        <body>label=$channelNumber</body>
+                                    </command>
+                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumAbstractCommandProperties"/>
+                                </item>
+                                <item guid="dddbf75a-54c7-4e38-9172-43682eb7d096" action="if" useFieldsInCommand="false">
+                                    <command>
+                                        <body>$channelBW == &quot;20&quot;</body>
+                                    </command>
+                                    <nestedSteps>
+                                        <item guid="312bae9d-281e-4899-892e-0b19942fff23" action="then" useFieldsInCommand="false">
+                                            <nestedSteps>
+                                                <item guid="feaa40d3-4c6c-4198-8620-92b26b05ea39" action="click" session="$session" target="id=channel_bandwidth20" normalOffset="1.251" estimatedStepExecutionTime="0.03">
+                                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                        <item guid="bc7cbb86-c6c4-471b-9de9-1b4d1d5d99ae" action="elseif" useFieldsInCommand="false">
+                                            <command>
+                                                <body>$channelBW == &quot;20/40&quot;</body>
+                                            </command>
+                                            <nestedSteps>
+                                                <item guid="494ab3a8-1379-4ae5-ae14-3e482f8c9006" action="comment" useFieldsInCommand="false">
+                                                    <command>
+                                                        <body>Insert steps here for when the expression evaluates to false</body>
+                                                    </command>
+                                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                                </item>
+                                                <item guid="61729357-ddc0-43b0-8f0a-9345645ef06a" action="click" session="$session" target="id=channel_bandwidth" normalOffset="4.461" estimatedStepExecutionTime="0.07">
+                                                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                                                </item>
+                                            </nestedSteps>
+                                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                        </item>
+                                    </nestedSteps>
+                                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                                </item>
+                            </nestedSteps>
+                            <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                        </item>
+                    </nestedSteps>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="fda35b21-d9b1-4e9d-8a77-4d6764d6a396" action="click" session="$session" target="id=save_settings" normalOffset="73.613" estimatedStepExecutionTime="0.08">
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                </item>
+            </steps>
+            <arguments>
+                <item name="frequencyChannel">
+                    <description>frenqncyChannel --&gt; Frequency Channel 2.4 or 5 G HZ
+Values
+5.0 --&gt; 5 GHz
+2.4 --&gt; 2.4 GHz
+0 --&gt; dual</description>
+                    <defaultValue>5</defaultValue>
+                    <isMandatory>true</isMandatory>
+                </item>
+                <item name="AP_IPaddress"/>
+                <item name="channelNumber"/>
+                <item name="channelMode"/>
+                <item name="channelBW"/>
+            </arguments>
+            <response>{}</response>
+        </item>
+        <item name="rebootAP" isPublic="true">
+            <steps>
+                <item guid="5cc5ba73-f4d9-4c7f-84dd-e7eda918a529" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>rebooting the AP</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="3361a3f7-48e6-496e-92f4-5252e5abf5a2" action="click" session="$session" target="link=Troubleshooting" normalOffset="3.525" estimatedStepExecutionTime="0.25">
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                </item>
+                <item guid="e8e3f2c8-5431-47ec-94d3-128432998007" action="click" session="$session" target="link=Reset/Restore Gateway" normalOffset="2.137" estimatedStepExecutionTime="0.047">
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                </item>
+                <item guid="0edb6ea9-9692-408c-958b-85a66b91660a" action="click" session="$session" target="id=btn1" normalOffset="1.394" estimatedStepExecutionTime="0.033">
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties">
+                        <waitTime transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumWaitTimeProperties" popupWaitTime="10" popupWaitTime.inherit="false"/>
+                    </applicationProperties>
+                </item>
+                <item guid="e075c32c-3283-4c9d-8997-cc7140f55cb9" action="click" session="$session" target="id=popup_ok" normalOffset="43.044" estimatedStepExecutionTime="13.34">
+                    <applicationProperties type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumClickProperties"/>
+                </item>
+            </steps>
+        </item>
+    </procedures>
+</testCase>

@@ -4,7 +4,16 @@
         <sessionClass includeTestCase="true" sessionType="project://di_octobox/session_profiles/octobox_cmd_base.ffsp"/>
     </general>
     <procedures>
-        <item name="main"/>
+        <item name="main">
+            <steps>
+                <item guid="66842844-e54d-48d7-a408-2f9ea346b27b" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>Main Procedure</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
         <item name="SetTurntablePosition" isPublic="true" isVBlock="true">
             <description>Set Turntable Rotation</description>
             <steps>
@@ -62,6 +71,34 @@
                     <defaultValue>0</defaultValue>
                     <isMandatory>true</isMandatory>
                 </item>
+                <item name="orientation">
+                    <description>Desired orientation in degrees. Use values from -180 to 180. </description>
+                    <isMandatory>true</isMandatory>
+                </item>
+            </arguments>
+            <response>{
+  &quot;devices_found&quot;: &quot;value&quot;,
+  &quot;turntable_name&quot;: &quot;value&quot;
+}</response>
+        </item>
+        <item name="SetTurntablePosition_Python" isPublic="true" isVBlock="true">
+            <description>Set Turntable Rotation</description>
+            <steps>
+                <item guid="b208b626-8771-465b-8400-78ab2529783a" action="command" session="$session">
+                    <command>
+                        <body>cd [file uriToPath project://di_xb6/python_scripts/]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+                <item guid="f0f23ca6-d64e-4736-bb64-6d413277e1bc" action="command" session="$session">
+                    <command>
+                        <body>C:\\\\Python27\\\\python TT_ether.py $orientation</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.editors.terminal.documents.StepDefaultProperties"/>
+                </item>
+            </steps>
+            <multilineDescription>Set the turntable rotation to specified degree. Returns a JSON block response</multilineDescription>
+            <arguments>
                 <item name="orientation">
                     <description>Desired orientation in degrees. Use values from -180 to 180. </description>
                     <isMandatory>true</isMandatory>

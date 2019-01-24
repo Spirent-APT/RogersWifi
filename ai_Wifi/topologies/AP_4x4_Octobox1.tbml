@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tbml xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.teslaalliance.org/trs/tbml/1.0/tbml-core.xsd" xmlns="http://www.teslaalliance.org/trs/tbml/1.0">
+  <header>
+    <name>AP_4x4_Octobox1</name>
+    <description></description>
+    <property name="rmGuid">3e303602-2717-4d06-aac5-4bd2b3903bf0</property>
+    <property name="dateModified">2019-01-10T16:45:55.804-05:00</property>
+    <property name="creationTool" vendor="com.fnfr">com.fnfr.itest.topology.tbml.diagram</property>
+    <property name="creationToolVersion" vendor="com.fnfr">7.2.0.201810240214</property>
+  </header>
+  <body>
+    <resources>
+      <resource guid="6124f13a-99be-4bf1-a7b5-345d60128531" id="iab354791-2ee8-49fc-ad92-5e8554944b22" shared="true" type="device">
+        <boundary height="100" width="100" x="219" y="50"/>
+        <property isimportant="false" name="name">4 to 1 - 1</property>
+        <property isimportant="false" name="inventoryName">4 to 1 - 1</property>
+        <property isimportant="false" name="description">4 to 1 combiner/splitter</property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=6124f13a-99be-4bf1-a7b5-345d60128531</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">d12a51c7-93b5-41df-a266-8f4227fdea44</property>
+        <propertyCollection name="Location Information">
+<property id="dcd3743f-0a54-91cb-f8f7-7a3904d24b63" valuelabel="" name="Facility" type="text"/>
+<property id="15303a3b-6608-26b1-4b7d-9d9643a10676" valuelabel="" name="Room" type="text"/>
+<property id="6268c43c-51db-2c6f-887d-d6343cb6b6eb" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="4ede54ac-986c-b725-756c-f411718fae59" valuelabel="" name="ipAddress" type="text"/>
+<property id="72c78b59-3520-e2c3-f48c-76f0515a5403" valuelabel="" name="Hostname" type="text"/>
+<property id="d5618156-3f10-f29a-eb8e-6869b1a3ac33" valuelabel="" name="Make" type="text"/>
+<property id="f352094e-1ce1-2131-e9ad-12eb425dd287" valuelabel="" name="Model" type="text"/>
+<property id="f5163a08-caff-2c83-8056-30d76d5f71e4" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <resource guid="6f81227d-cbf2-4231-9881-de33af4aa4ea" id="i29704319-f94f-4fbb-b8ee-a02dee4ce9b5" type="port">
+          <property isimportant="false" name="name">Input1</property>
+          <property isimportant="false" name="inventoryName">Input1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="eea11a36-33bf-4b44-9b0c-14f580bc8240" valuelabel="" name="portNumber" type="text">Input1</property>
+<property id="95ef3a93-13c6-ec6a-7578-73d2ef35b401" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="4378320f-fd99-3b15-30c3-ee050eef3474" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="6479bd39-6209-4e5f-b94f-c79aaea2e5dc" id="i58ddfb14-8a0c-4ab5-976a-ba899417ea10" type="port">
+          <property isimportant="false" name="name">Output1</property>
+          <property isimportant="false" name="inventoryName">Output1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="11fa2ebb-cd07-4dbb-bb96-1c65429d6394" valuelabel="" name="portNumber" type="text">Output1</property>
+<property id="c060bf82-43a0-c068-d32c-f1af01fc4425" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="16e102a3-0721-7195-18ef-e66ef4aeb86c" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="dd7ef0d0-20b7-47c0-a685-11685ae8b2bb" id="iee413fef-6da2-4d7e-b5a1-ebe23b162ee6" shared="true" type="device">
+        <boundary height="100" width="100" x="219" y="180"/>
+        <property isimportant="false" name="name">4 to 1 - 2</property>
+        <property isimportant="false" name="inventoryName">4 to 1 - 2</property>
+        <property isimportant="false" name="description">4 to 1 combiner/splitter</property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=dd7ef0d0-20b7-47c0-a685-11685ae8b2bb</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">d12a51c7-93b5-41df-a266-8f4227fdea44</property>
+        <propertyCollection name="Location Information">
+<property id="3c58fe1c-6271-3e00-cc79-5977bbb63b4d" valuelabel="" name="Facility" type="text"/>
+<property id="a9ec554a-a39f-ccd6-6f97-01f96b1caba0" valuelabel="" name="Room" type="text"/>
+<property id="cb840a90-c56b-2cde-c126-31e66d29b393" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="af798d58-680f-f2b7-72dd-908f86afc621" valuelabel="" name="ipAddress" type="text"/>
+<property id="c095bc6c-16c1-e1ce-bf19-121a01578e6d" valuelabel="" name="Hostname" type="text"/>
+<property id="0f7b2f64-c3a6-86c9-7c50-3bf1405f9ae2" valuelabel="" name="Make" type="text"/>
+<property id="6c29b3cd-72f9-857e-3013-3e8139103990" valuelabel="" name="Model" type="text"/>
+<property id="61b94d48-ec9f-9c59-5a36-5e5735b4f8aa" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <resource guid="5bcbf314-eaeb-4fd6-a633-8470b4f634d4" id="i356e4675-dc91-4ed9-af26-60d945ea5d98" type="port">
+          <property isimportant="false" name="name">Input1</property>
+          <property isimportant="false" name="inventoryName">Input1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="d8ee0fd2-c20b-44a9-b385-9c48ef6d249a" valuelabel="" name="portNumber" type="text">Input1</property>
+<property id="b57a2e2b-c79a-de6a-fc08-02d9bd97c6d6" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="728b89c2-bc28-6b28-1181-700e88f23c9d" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="4d14e804-1c8e-4568-8bf3-5343f672ce2d" id="ic51faa6f-fe3f-4b7e-9eba-c7ddc73fad4f" type="port">
+          <property isimportant="false" name="name">Output1</property>
+          <property isimportant="false" name="inventoryName">Output1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="902b4efa-2880-4f73-95c2-0e8cee39c702" valuelabel="" name="portNumber" type="text">Output1</property>
+<property id="bdc7144a-86df-8aed-d206-821c36337c7f" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="a03f62b2-18cf-0c05-dec7-c17363e907c0" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="adbc3f34-79e6-421f-9dbb-9d38cf3155b3" id="i705f68ef-0ecb-4c56-aa1f-677d6e6d9958" shared="true" type="device">
+        <boundary height="100" width="100" x="219" y="303"/>
+        <property isimportant="false" name="name">4 to 1 - 3</property>
+        <property isimportant="false" name="inventoryName">4 to 1 - 3</property>
+        <property isimportant="false" name="description">4 to 1 combiner/splitter</property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=adbc3f34-79e6-421f-9dbb-9d38cf3155b3</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">d12a51c7-93b5-41df-a266-8f4227fdea44</property>
+        <propertyCollection name="Location Information">
+<property id="92c16b7d-676c-72f2-3256-66e5cd2f287f" valuelabel="" name="Facility" type="text"/>
+<property id="33b3375f-fdbb-3d7b-2a61-ccf3f5109804" valuelabel="" name="Room" type="text"/>
+<property id="09cd6325-6269-644e-8f2d-984f7e7d1ba6" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="d6692759-5ac9-bfc1-fbe0-7c2f07da6a9f" valuelabel="" name="ipAddress" type="text"/>
+<property id="b6caa5ff-9631-e221-4647-e1448d74d7de" valuelabel="" name="Hostname" type="text"/>
+<property id="4d04e115-ed37-e02f-1706-723ca35c6a37" valuelabel="" name="Make" type="text"/>
+<property id="4f9f9ca0-84c6-a5ba-cc73-e34b56425f63" valuelabel="" name="Model" type="text"/>
+<property id="3037f252-03bb-865c-70cc-6d60a5177a8f" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <resource guid="7ca73eac-c2f1-4e74-8540-b6b14c8cdf5c" id="i317b086b-a091-48c1-9894-ca45a49fdb5e" type="port">
+          <property isimportant="false" name="name">Input1</property>
+          <property isimportant="false" name="inventoryName">Input1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="6f5e07f1-be63-4530-bf71-9d51021b0d60" valuelabel="" name="portNumber" type="text">Input1</property>
+<property id="8da174a6-9ebe-4a6f-ecd1-70fa3b65578f" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="b2e82ad0-2986-1c1a-e197-b18020630180" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="902d752d-b238-41a6-b6e1-f9ebbb63e1d8" id="i52dfddc8-7c0d-4a31-9321-05d3cf41bd67" type="port">
+          <property isimportant="false" name="name">Output1</property>
+          <property isimportant="false" name="inventoryName">Output1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="c81b7f40-207c-437a-a47e-28f40a564d8f" valuelabel="" name="portNumber" type="text">Output1</property>
+<property id="a0d629d5-52aa-41d0-85aa-1b6fb85007bd" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="f6cc0f7c-a67a-2d1c-c2b2-49a9d29119d5" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="350d19df-2273-43a1-bb3b-62824f7235b5" id="idfd9beb9-465a-4a60-a609-1ab8d3635bd9" shared="true" type="device">
+        <boundary height="100" width="100" x="219" y="431"/>
+        <property isimportant="false" name="name">4 to 1 - 4</property>
+        <property isimportant="false" name="inventoryName">4 to 1 - 4</property>
+        <property isimportant="false" name="description">4 to 1 combiner/splitter</property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=350d19df-2273-43a1-bb3b-62824f7235b5</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">d12a51c7-93b5-41df-a266-8f4227fdea44</property>
+        <propertyCollection name="Location Information">
+<property id="921e5ee9-6543-d34f-fb4d-efec5ea44110" valuelabel="" name="Facility" type="text"/>
+<property id="2c14c999-b67f-93fc-d632-2af39f5bf261" valuelabel="" name="Room" type="text"/>
+<property id="a81e894a-dd5e-a0d6-14f3-2772c51800b8" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="cff91ea0-5a78-98ab-82fb-6da577c0b1ba" valuelabel="" name="ipAddress" type="text"/>
+<property id="b339ad2a-7683-1f82-c959-c5704027ba5f" valuelabel="" name="Hostname" type="text"/>
+<property id="f9ac8d42-1568-2d3d-c2e6-c316e05f19fd" valuelabel="" name="Make" type="text"/>
+<property id="366cc1ad-34f6-9b08-0a26-38a6c5a796c9" valuelabel="" name="Model" type="text"/>
+<property id="8c0fee14-eb4b-e52e-32f0-646281754b38" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <resource guid="9ea2cc6d-badf-471c-8da1-df0f9daea956" id="i5e23ebc6-7b5d-41b4-9dd3-e3fd00352a4b" type="port">
+          <property isimportant="false" name="name">Input1</property>
+          <property isimportant="false" name="inventoryName">Input1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="cc1c2f80-64bb-48b3-9569-411aacfcde05" valuelabel="" name="portNumber" type="text">Input1</property>
+<property id="bdffb80c-4437-9ea9-8795-a7bbb19be20c" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="5dc254dd-7bf7-1f0f-d87e-7b87dbd90dae" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="46dc0758-4d53-4880-8358-3b371cafc4f2" id="i9568d2e0-61b0-416f-8e16-d1a548dfe500" type="port">
+          <property isimportant="false" name="name">Output1</property>
+          <property isimportant="false" name="inventoryName">Output1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="9e14ce3d-2ece-4b34-a232-27f9911ceb25" valuelabel="" name="portNumber" type="text">Output1</property>
+<property id="1eb4b0ce-1f69-2101-338d-a41fa38c8802" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="e0fb2e29-5112-ac88-91ba-144dca092ad8" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="753e0db4-c0e0-4be6-aea1-a20c2271ea2e" id="i75555aa4-0d82-4b9a-b126-596d4c5e752e" shared="true" type="device">
+        <boundary height="100" width="100" x="678" y="150"/>
+        <property isimportant="false" name="name">OctoBox_1</property>
+        <property isimportant="false" name="inventoryName">OctoBox_1</property>
+        <property isimportant="false" name="description">38&quot; Chamber </property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=753e0db4-c0e0-4be6-aea1-a20c2271ea2e</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">7ace80c0-cb7c-4850-af89-486abb39f7cc</property>
+        <propertyCollection name="Location Information">
+<property id="5f3728f7-68bb-836a-9f4f-31feca99aa44" valuelabel="" name="Facility" type="text"/>
+<property id="a97525c7-7392-bb93-8914-fa94d897e858" valuelabel="" name="Room" type="text"/>
+<property id="6f83266d-5fc3-c82f-2706-719bc5f23c0f" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="14b3155b-02d6-3b28-cfe2-4b0a41875ff1" valuelabel="" name="ipAddress" type="text"/>
+<property id="52cd80de-2e53-f891-a1b9-d3676477d164" valuelabel="" name="Hostname" type="text"/>
+<property id="65580b46-2129-3596-f03b-53b00b03c8d8" valuelabel="" name="Make" type="text"/>
+<property id="52f43a6c-1453-58a7-54b9-34673493a95d" valuelabel="" name="Model" type="text"/>
+<property id="252ea0a8-1a4d-d5b2-1d59-bc9a6179a1a9" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="cmd" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.cmd</baseApplication>
+              <sessionProperties type="com.fnfr.svt.applications.cmd.CmdSessionProperties"/>
+              <baseProfile>project://di_octobox/session_profiles/octobox_cmd_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+        <resource guid="4ed6bcea-d00f-40dd-aa1d-10a50e5531e7" id="ie74fcad7-4724-4447-827e-224f50df9141" type="port">
+          <property isimportant="false" name="name">Port2</property>
+          <property isimportant="false" name="inventoryName">Port2</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="f34ce5c0-95c7-4bfa-9016-c68847688385" valuelabel="" name="portNumber" type="text">Port2</property>
+<property id="6305830d-0007-dc85-dbec-1a531e298186" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="3cd1109a-3ea1-12df-c2a6-311f79d7436c" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="c69f0393-c288-cd2d-ecb8-23f4ef2b637d" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="8d7885dd-b25f-4dfd-be8a-93fbf6efe843" id="i7ab29c06-8477-4c84-9b19-a3b6c50b3bd7" type="port">
+          <property isimportant="false" name="name">Port3</property>
+          <property isimportant="false" name="inventoryName">Port3</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="10eba8dd-8ab3-4d13-95e2-d430d9a7a170" valuelabel="" name="portNumber" type="text">Port3</property>
+<property id="7950d4ff-3721-fb48-2d4e-360c7f3eaf16" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="aca2686f-5a6e-9554-2e7b-15e5a2fc5383" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="244d13de-4bc5-4a4f-80ec-c7129fd41276" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="ee499670-dedc-4dfb-bcca-2c76896004d1" id="i7c301b1c-1b15-4809-b647-04e16e90ef72" type="port">
+          <property isimportant="false" name="name">Port4</property>
+          <property isimportant="false" name="inventoryName">Port4</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="6609b085-ec7f-405a-9502-cfd5df14a6e4" valuelabel="" name="portNumber" type="text">Port4</property>
+<property id="df72047d-2851-eca9-9f4d-76d82e6d8d89" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="b66da1b9-05c3-a4db-b310-eb337a0e48a7" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="99878783-d21e-17b0-516e-751eabcbb7f7" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="78f22963-57f2-4b33-9999-a88470087017" id="i66d729ac-70d9-4c54-9da0-03284b87a7c4" type="port">
+          <property isimportant="false" name="name">Port5</property>
+          <property isimportant="false" name="inventoryName">Port5</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="fca9896a-f550-4096-9022-40225ca7f0f8" valuelabel="" name="portNumber" type="text">Port5</property>
+<property id="496e7fc9-df42-3d05-ce8e-d891ce304238" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="997f19e0-bf7e-a12f-9693-14a07f8a848e" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="4501c4d8-d994-a1ce-8acb-4762c7491c4a" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="8fd0389b-e84d-414e-b3e3-a70077b96528" id="i40a785fc-5004-472a-b6d5-bdaaa155a270" shared="true" type="device">
+        <boundary height="100" width="100" x="476" y="150"/>
+        <property isimportant="false" name="name">JFW Attenuator</property>
+        <property isimportant="false" name="inventoryName">JFW Attenuator</property>
+        <property isimportant="false" name="description">JFW 48 port attenuation </property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=8fd0389b-e84d-414e-b3e3-a70077b96528</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">c1f6dcfa-06a7-436f-820a-4103469d7fe8</property>
+        <propertyCollection name="Location Information">
+<property id="715f3a2d-a84f-4bde-93a2-73e80773384e" valuelabel="" name="Facility" type="text">Rogers</property>
+<property id="ce9a0500-83e1-487f-b4c8-9ea6d8c98b6b" valuelabel="" name="Room" type="text">RNOC</property>
+<property id="28cd3ae8-d111-4241-461e-b3ce0ffb0919" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="e53504ed-8dcb-404f-ae03-45733c6456fe" valuelabel="" name="ipAddress" type="text">172.30.245.83</property>
+<property id="7c39f2c9-26c7-a41b-be54-842f885ac04e" valuelabel="" name="Hostname" type="text"/>
+<property id="4b114c1a-31c2-4bc4-b812-8619cd0b1ebb" valuelabel="" name="Make" type="text">JFW</property>
+<property id="a7b14720-d6de-d18d-ac32-adc7309d5a6d" valuelabel="" name="Model" type="text"/>
+<property id="bbae7e7b-0da3-e511-269e-0511d63c1b1a" valuelabel="" name="Serial Number" type="text"/>
+<property id="8ccd3775-8e2a-4976-b335-e7a2bfecec0a" valuelabel="" name="port" type="integer">3001</property>
+</propertyCollection>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="telnet" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+              <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                <ipAddress inherit="false">[velocity('property','ipAddress')]</ipAddress>
+                <port inherit="false">[velocity('property','port')]</port>
+                <TerminalProperties>
+                  <captureProperties>
+                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                  </captureProperties>
+                </TerminalProperties>
+              </sessionProperties>
+              <baseProfile>project://di_jfw/session_profiles/jfw_telnet_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+        <resource guid="dd3ed802-fb62-4a8b-96e3-d04708a63730" id="i6847bd88-90f7-40d2-8ce0-74c3429bd5f0" type="port">
+          <property isimportant="false" name="name">Input1</property>
+          <property isimportant="false" name="inventoryName">Input1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="c1ed7636-178f-4e52-bfbc-2d7217241984" valuelabel="" name="portNumber" type="text">Input1</property>
+<property id="95eb525d-46fe-cb65-2daa-24d3a5f8f079" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="f2ee6f57-8334-5dc9-b43a-cfe06546af1d" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="f3797f05-4df9-451c-b9b3-a51d3f5e220a" valuelabel="" name="AttenuatorInstance" type="text">1</property>
+</propertyCollection>
+        </resource>
+        <resource guid="c603da94-ff42-4602-8006-b66f1c298c6f" id="ib38e4c90-9e77-4695-9cc9-ae6c4f95d856" type="port">
+          <property isimportant="false" name="name">Input5</property>
+          <property isimportant="false" name="inventoryName">Input5</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="b649c864-677d-4281-8dc6-8b6deeb7912a" valuelabel="" name="portNumber" type="text">Input5</property>
+<property id="e596e9f9-e6f3-bb31-45fd-71ae0343bbed" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="cd20f87a-9b5c-6b2b-8b06-3d72bb4a3960" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="e3266eea-43f7-4a45-8bce-460a1b357541" valuelabel="" name="AttenuatorInstance" type="text">1</property>
+</propertyCollection>
+        </resource>
+        <resource guid="94c1d56a-f147-49e6-b3ec-5e1b7d3325fd" id="i326d2921-3e14-4a49-8da3-89d1e72ce08c" type="port">
+          <property isimportant="false" name="name">Input9</property>
+          <property isimportant="false" name="inventoryName">Input9</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="8ebcb67f-44aa-4b9e-9621-57a995e6bc5f" valuelabel="" name="portNumber" type="text">Input9</property>
+<property id="27bc1599-8654-c636-f776-2b81baa95ba9" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="f19617f7-9ed8-cd76-e85d-a0aaee95d620" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="b43f77e9-cc04-4643-a234-a55b4cd52cff" valuelabel="" name="AttenuatorInstance" type="text">1</property>
+</propertyCollection>
+        </resource>
+        <resource guid="3c0aee12-9edf-4486-bb28-84813d060b9c" id="id44d83bd-e661-44f6-b88f-8ece7e877bcb" type="port">
+          <property isimportant="false" name="name">Input13</property>
+          <property isimportant="false" name="inventoryName">Input13</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="b5ec0b45-c100-4ad4-9c2e-017320129938" valuelabel="" name="portNumber" type="text">Input13</property>
+<property id="9f975c6d-ae7a-86f6-9831-0cbef4617347" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="a9f10bf2-f762-9fa0-3e72-5e4ace9a599a" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="2f2b3022-9d79-49d9-8145-4bb7519351ac" valuelabel="" name="AttenuatorInstance" type="text">1</property>
+</propertyCollection>
+        </resource>
+        <resource guid="8488bd36-106c-4d57-a61e-25e07e716dd2" id="i4d053802-ab4c-485b-ad0f-dbb7429bedf2" type="port">
+          <property isimportant="false" name="name">Output1</property>
+          <property isimportant="false" name="inventoryName">Output1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="89a69392-70e1-407e-a6ce-12ec2e55ddde" valuelabel="" name="portNumber" type="text">Output1</property>
+<property id="80acfb1b-b1ed-65b1-49d1-f603973b61ef" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="06d3888d-f7a3-65da-ccf8-a7487eeda463" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="96d419ab-2769-5d75-c3cb-96c9a2ef1059" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="d8035aa5-eb38-41c2-ab03-80af4773aa98" id="i9b73fa4c-cdbb-4920-83c5-9035ed473f76" type="port">
+          <property isimportant="false" name="name">Output5</property>
+          <property isimportant="false" name="inventoryName">Output5</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="70166b45-09df-4af5-acd8-ede58cb06f8a" valuelabel="" name="portNumber" type="text">Output5</property>
+<property id="2a7df01c-2393-4d5a-11a6-af9837eab87c" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="f01f56f5-01a2-14de-7cf1-9666aba6cdb1" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="9d872c54-d317-604f-e03d-e0ff08935da8" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="c2416809-6359-4712-8acf-689e87e1d10a" id="i125793e2-63fe-4371-b11e-878f16b9d364" type="port">
+          <property isimportant="false" name="name">Output9</property>
+          <property isimportant="false" name="inventoryName">Output9</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="691753aa-a8d2-4575-bd2d-5a53d95bc1f2" valuelabel="" name="portNumber" type="text">Output9</property>
+<property id="cf604c2a-fa62-cc50-680d-213cb0cd358d" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="01663721-ec4d-86c2-3819-1c87c28a31ab" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="9c71af6f-fb85-bdd0-4b2c-f192916a5632" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="24c9d452-ac5e-45d8-81c8-ef801cb92244" id="i7ad6023d-dadc-4ce5-b8f4-fed1424831fb" type="port">
+          <property isimportant="false" name="name">Output13</property>
+          <property isimportant="false" name="inventoryName">Output13</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="b34ede92-8769-4572-bceb-6be182083006" valuelabel="" name="portNumber" type="text">Output13</property>
+<property id="8a5c505b-7b43-d166-45a0-b9b0d718f4db" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="acdc05b7-f421-9578-642e-6f57fe219253" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="68cd5467-ebe8-b2cd-963d-a447fc25baf0" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="22b96676-de4b-4765-8083-d7834826ddb1" id="iebed4d76-03d5-462b-9a8f-c2c1657fbf47" shared="true" type="device">
+        <boundary height="100" width="100" x="844" y="150"/>
+        <property isimportant="false" name="name">DUT1</property>
+        <property isimportant="false" name="inventoryName">DUT1</property>
+        <property isimportant="false" name="description"/>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=22b96676-de4b-4765-8083-d7834826ddb1</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">b0d84c2e-9054-4881-99b7-7f64eeb54b89</property>
+        <propertyCollection name="Location Information">
+<property id="db80f4af-8638-3da4-db8e-3081023ca082" valuelabel="" name="Facility" type="text"/>
+<property id="c62185e9-0115-16b0-23c2-e3b7e903c854" valuelabel="" name="Room" type="text"/>
+<property id="0e29b472-ce5f-481d-39fd-6564812ccc44" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="bb34a108-4ea6-47c9-1e6b-49c76a920f06" valuelabel="" name="ipAddress" type="text"/>
+<property id="bd4b7f96-2291-b83c-783e-2aeb7295b733" valuelabel="" name="Hostname" type="text"/>
+<property id="f10dabf2-2d42-4ad2-8003-045d8671ce0e" valuelabel="" name="Make" type="text"/>
+<property id="aaafb5b0-9fb6-24a9-7db8-71a9d90b065f" valuelabel="" name="Model" type="text"/>
+<property id="fb70acb3-e41f-b94a-1e5b-ca90936a619b" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="telnet" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+              <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                <ipAddress inherit="false">192.168.1.1</ipAddress>
+                <TerminalProperties>
+                  <captureProperties>
+                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                  </captureProperties>
+                </TerminalProperties>
+              </sessionProperties>
+              <baseProfile>project://di_pod/session_profiles/pod_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+          <session baseSessionProfile="" name="Selenium" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.itest.applications.selenium</baseApplication>
+              <sessionProperties transferableToolId="com.fnfr.itest.applications.selenium" transferableType="com.spirent.applications.selenium.properties.SeleniumSessionProperties" type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject"/>
+              <baseProfile>project://di_xb6/session_profiles/selenium_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+      </resource>
+      <resource guid="43997f90-b14b-4ff5-8fb2-37db7b89e70e" id="i8f97d99a-096b-4684-9deb-0e339a65efd3" shared="true" type="device">
+        <boundary height="100" width="100" x="80" y="136"/>
+        <property isimportant="false" name="name">Vertex-1</property>
+        <property isimportant="false" name="inventoryName">Vertex-1</property>
+        <property isimportant="false" name="description">Vertex Chanel Emulator</property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=43997f90-b14b-4ff5-8fb2-37db7b89e70e</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">d4583a1e-c235-46ac-b7f7-543b369f3279</property>
+        <propertyCollection name="Location Information">
+<property id="0bad836b-ef2a-4005-ab05-ca8b4fb7966f" valuelabel="" name="Facility" type="text">Rogers</property>
+<property id="b553f949-ba22-7663-4f1c-f73305b3dd62" valuelabel="" name="Room" type="text"/>
+<property id="295acc79-4098-2295-0e62-e3fbfdc13231" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="76613805-db14-448a-8a35-b37d2eb14ec1" valuelabel="" name="ipAddress" type="text">172.30.245.82</property>
+<property id="c0044e1c-5610-66c3-fe6d-aa983aa2e2bd" valuelabel="" name="Hostname" type="text"/>
+<property id="a1d4fc5b-0cbf-dcf3-82ef-e1642331e07c" valuelabel="" name="Make" type="text"/>
+<property id="173144fe-3c11-f721-0ce1-30aad4444a2a" valuelabel="" name="Model" type="text"/>
+<property id="37829827-e780-c11a-f77f-c30e74c85be1" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="telnet" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.telnet</baseApplication>
+              <sessionProperties type="com.fnfr.svt.applications.telnet.documents.TelnetSessionProperties">
+                <ipAddress inherit="false">[velocity('property','ipAddress')]</ipAddress>
+                <port inherit="false">3000</port>
+                <TerminalProperties>
+                  <captureProperties>
+                    <detectScreenModeApps inherit="false">false</detectScreenModeApps>
+                  </captureProperties>
+                </TerminalProperties>
+              </sessionProperties>
+              <baseProfile>project://di_vertex/session_profiles/vertex_telnet_base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+        <resource guid="442eb4e7-4498-45bc-a400-e386e9c71d37" id="i0171994e-970f-4395-8c6e-738ed9fa9836" type="port">
+          <property isimportant="false" name="name">1-I/O1</property>
+          <property isimportant="false" name="inventoryName">1-I/O1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="b2f3da7c-fc37-4ca8-8337-d63f62a2d8b0" valuelabel="" name="portNumber" type="text">1-I/O1</property>
+<property id="54cd8a64-c53d-915d-217b-c949a79c2871" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="3d53bd3d-3040-a162-00af-a3652cb7e60f" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="ee0eb2ca-f53f-4fab-902a-6173612c497d" id="i2ab8feb3-0759-4d01-a825-46e0abc3e4ee" type="port">
+          <property isimportant="false" name="name">1-I/O3</property>
+          <property isimportant="false" name="inventoryName">1-I/O3</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="60ae13f4-f065-48d2-ab7b-639fbfac41d6" valuelabel="" name="portNumber" type="text">1-I/O3</property>
+<property id="8f73a705-6aca-4587-99f8-5588fa15c707" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="b8bde337-132a-a827-e065-a0eb12e3d428" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="52d1c6e2-75b8-420f-b6b2-c782d9553e30" id="i24acc89f-454e-4cd8-9cf5-87ebecbd4de8" type="port">
+          <property isimportant="false" name="name">1-OUT2</property>
+          <property isimportant="false" name="inventoryName">1-OUT2</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="4e30aea7-df64-4ce4-a847-e9efdd07c3e5" valuelabel="" name="portNumber" type="text">1-OUT2</property>
+<property id="14a1d4ea-ab85-91b1-f066-2ac78e4133e1" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="62a79267-20de-e861-1019-bc3cff6d77e1" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="ce82da66-a261-47b1-9b72-437a40c1a0c6" id="i0088f57d-0f69-4348-9732-ae57f43e8ad2" type="port">
+          <property isimportant="false" name="name">1-OUT4</property>
+          <property isimportant="false" name="inventoryName">1-OUT4</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="2d5c265f-0068-41ee-b7d4-66e042f8a015" valuelabel="" name="portNumber" type="text">1-OUT4</property>
+<property id="f2b27e22-cbbb-c905-aaf8-aa17bc3a034c" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="d5c145b3-2478-824d-80d7-d3cc015e2cb1" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="7b6532ea-5444-495f-ba50-e90093bde5c7" id="i8814272f-f792-4b7f-926e-9560ba336548" type="port">
+          <property isimportant="false" name="name">2-I/O1</property>
+          <property isimportant="false" name="inventoryName">2-I/O1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="7a1cbe64-6903-4496-884c-feafd8f0a4d1" valuelabel="" name="portNumber" type="text">2-I/O1</property>
+<property id="5d8376c8-d2fb-2827-399a-99520b59c180" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="27969b0b-b692-1659-7397-71fd0090deaa" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="3cc17a3d-fdd3-4156-90fe-b25e87bf9cb3" id="ifa20f463-6d5a-43c1-914d-57bebaf97d90" type="port">
+          <property isimportant="false" name="name">2-I/O3</property>
+          <property isimportant="false" name="inventoryName">2-I/O3</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="69b0ac73-4abc-4f7d-b534-9dad96611b97" valuelabel="" name="portNumber" type="text">2-I/O3</property>
+<property id="cf0ab9b9-2a00-6c05-1a83-6ae5a418d82a" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="be49020c-6b64-a32a-68ee-45c1854b523e" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="2e99ee7a-ba70-4da4-94b5-fe5ac6dcdc65" id="ifb1189ad-090a-4bca-a501-6ede83b9c965" type="port">
+          <property isimportant="false" name="name">2-OUT2</property>
+          <property isimportant="false" name="inventoryName">2-OUT2</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="996f9c31-2b20-4e86-b35e-91b7bf8b51dd" valuelabel="" name="portNumber" type="text">2-OUT2</property>
+<property id="f1a54c5d-e442-30c0-d3c6-2c2de410d05c" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="b64269b2-ca59-db60-1730-d28e1ab8731b" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+        <resource guid="c70a2c14-b2bd-4468-8993-c2fe84373ee5" id="i88b97909-8be6-4d81-8fee-78141381b50d" type="port">
+          <property isimportant="false" name="name">2-OUT4</property>
+          <property isimportant="false" name="inventoryName">2-OUT4</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="cfa0bc17-5b60-48b8-bd71-4156068cd3b4" valuelabel="" name="portNumber" type="text">2-OUT4</property>
+<property id="0362fa41-bc5c-a924-0afe-fd148bb43a60" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="d8a8ee11-d965-2fac-d011-2968058607b9" valuelabel="" name="Port Speed" type="integer">1000</property>
+</propertyCollection>
+        </resource>
+      </resource>
+      <resource guid="fda3d378-1390-4391-9d7f-8e1bbfcfc87a" id="i8219d0fa-0bd9-4c5c-ac93-e4c3b6fb12c3" shared="true" type="device">
+        <boundary height="100" width="100" x="-106" y="136"/>
+        <property isimportant="false" name="name">STC</property>
+        <property isimportant="false" name="inventoryName">STC</property>
+        <property isimportant="false" name="description">Spirent Test Center </property>
+        <property isimportant="false" name="iconURI">ilo://api/0/resource/icon?id=fda3d378-1390-4391-9d7f-8e1bbfcfc87a</property>
+        <property isimportant="false" name="ilo_shape">RECTANGLE</property>
+        <property name="ilo_iconId">d99f3ed3-07d2-4430-9ae9-9874cfeacf23</property>
+        <propertyCollection name="Location Information">
+<property id="76de121c-08fe-40cc-8152-b3cdb33b44f9" valuelabel="" name="Facility" type="text">Rogers Dixie Road</property>
+<property id="57343433-461a-4dd6-9a29-09d3085727f4" valuelabel="" name="Room" type="text">RNOC</property>
+<property id="15e6569b-b449-f950-a14e-32f4b0176805" valuelabel="" name="Floor Position" type="text"/>
+</propertyCollection>
+        <propertyCollection name="System Identification">
+<property id="b0c1a642-a16c-4b9e-b06a-78842b2a5041" valuelabel="" name="ipAddress" type="text">172.30.245.61</property>
+<property id="50ef5007-39e9-da15-f4db-108b89786d3f" valuelabel="" name="Hostname" type="text"/>
+<property id="6f48324d-f7e5-9861-c7a6-9d5d634543d3" valuelabel="" name="Make" type="text"/>
+<property id="0722c666-5071-dfe7-e0a4-f2fc5b9e2924" valuelabel="" name="Model" type="text"/>
+<property id="d1d277b5-8446-dac8-7b93-4fab4d0ecc11" valuelabel="" name="Serial Number" type="text"/>
+</propertyCollection>
+        <extensions type="com.fnfr.itest.session" xs:namespace="com.fnfr.itest.session">
+          <session baseSessionProfile="" name="Spirent_TestCenter" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.svt.applications.spirent.testcenter.gui</baseApplication>
+              <sessionProperties ipAddress="[velocity('property','ipAddress')]" ipAddress.inherit="false" ports="2:1 1:1" ports.inherit="false" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TestCenterGUISessionProperties" type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject">
+                <tcl interpreterLocation="file:/C:/Program%20Files%20(x86)/Spirent%20Communications/Spirent%20TestCenter%204.93/TCL/bin/tclsh84.exe" interpreterLocation.inherit="false" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.TclInterpreterProperties"/>
+                <configureCustom16bitFilter endOfRange="ffff" endOfRange.inherit="false" mask="ffff" mask.inherit="false" transferableToolId="com.fnfr.svt.applications.spirent.testcenter.gui" transferableType="com.fnfr.itest.applications.spirent.testcenter.properties.Analyzer16BitFilterProperties"/>
+              </sessionProperties>
+              <baseProfile>project://di_stc_com/session_profiles/stc.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+          <session baseSessionProfile="" name="REST" provider="com.fnfr">
+            <sessionProfile version="7.2.0.201811011532">
+              <baseApplication>com.fnfr.itest.applications.webservices.restful</baseApplication>
+              <sessionProperties transferableToolId="com.fnfr.itest.applications.webservices.restful" transferableType="com.fnfr.itest.applications.webservices.properties.restful.RESTfulSessionProperties" type="com.fnfr.svt.adapter.automation.tools.common.documents.TransferableDocumentObject" url="http://172.30.245.81:9200" url.inherit="false"/>
+              <baseProfile>project://di_Elasticsearch/session_profiles/Elasticsearch_Rest_Base.ffsp</baseProfile>
+              <standalone>false</standalone>
+              <language>Python</language>
+            </sessionProfile>
+          </session>
+        </extensions>
+        <resource guid="53125a2a-4e34-4be6-9366-0d1b3d9d02e9" id="i5a1fcc4e-7dd1-4cb6-bb82-7ef22110e2ed" type="port">
+          <property isimportant="false" name="name">2:1</property>
+          <property isimportant="false" name="inventoryName">2:1</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="3512c0e1-9676-4a29-a04e-fbee7691685d" valuelabel="" name="portNumber" type="text">2:1</property>
+<property id="805a2b1c-4773-4bd2-6c58-964fc74bd1c2" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="e3f6de7b-1bd9-3695-78f5-04ed98664117" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="e1d634b2-0e4f-d520-b935-1ba911d0bf22" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="c14dd91e-e7a9-4415-86dc-238b9a22f76f" id="ia9235b71-4309-4fb6-9dee-fb71e082d784" type="port">
+          <property isimportant="false" name="name">2:2</property>
+          <property isimportant="false" name="inventoryName">2:2</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="7f5f2dcc-7ff6-4634-99a4-4a98134ea774" valuelabel="" name="portNumber" type="text">2:2</property>
+<property id="18bbea3a-4a6b-d982-7e23-89f858421a77" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="f0665b30-d118-e50b-9626-bdb7d3c0bb2b" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="62f318f9-9864-f325-d063-ea49fcbb51c4" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="730a0e2a-2301-443e-9ced-05131aaf113f" id="i4708d9aa-aa23-4b82-ab02-4629933de34e" type="port">
+          <property isimportant="false" name="name">2:3</property>
+          <property isimportant="false" name="inventoryName">2:3</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="a0edd8e6-2865-4cba-b779-ed08718feb24" valuelabel="" name="portNumber" type="text">2:3</property>
+<property id="009329cd-6d6e-0178-bb57-1998000b99f8" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="e314a0e2-1005-adf7-d610-435c0f04939c" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="eed31c73-1600-51cf-5614-035e7c0a12d4" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+        <resource guid="304d3eb1-f5d8-4d86-9ba2-33a8833079d1" id="ibe75e5d3-5f51-4325-8728-175bec5e0266" type="port">
+          <property isimportant="false" name="name">wifiPort</property>
+          <property isimportant="false" name="inventoryName">wifiPort</property>
+          <property isimportant="false" name="description"/>
+          <property isimportant="false" name="connectivity">connected</property>
+          <propertyCollection name="System Identification">
+<property id="ae0c2cb9-a94f-4210-8091-952edb3bc283" valuelabel="" name="portNumber" type="text">2:4</property>
+<property id="5c955dc3-6b39-663e-9a94-cfa97dc11170" valuelabel="" name="Port Type" type="text">Ethernet</property>
+<property id="422b897b-4abf-70a0-2d3e-18e46afcd720" valuelabel="" name="Port Speed" type="integer">1000</property>
+<property id="f35eab23-7afd-6390-7401-74d5ac3b576b" valuelabel="" name="AttenuatorInstance" type="text"/>
+</propertyCollection>
+        </resource>
+      </resource>
+    </resources>
+    <connectivity>
+      <link id="if4501da4-5ea4-45a2-b96f-9faf489bf345">
+        <property isimportant="false" name="name">Link 24</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i0171994e-970f-4395-8c6e-738ed9fa9836"/>
+        <endpoint direction="bidirectional" id="i5a1fcc4e-7dd1-4cb6-bb82-7ef22110e2ed"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="ic94f78d3-7391-4823-bf6a-b3cf7ba98fc8">
+        <property isimportant="false" name="name">Link 25</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i2ab8feb3-0759-4d01-a825-46e0abc3e4ee"/>
+        <endpoint direction="bidirectional" id="ia9235b71-4309-4fb6-9dee-fb71e082d784"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i928b40e5-d018-4eef-af41-fe66ed1a6753">
+        <property isimportant="false" name="name">Link 26</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i24acc89f-454e-4cd8-9cf5-87ebecbd4de8"/>
+        <endpoint direction="bidirectional" id="i29704319-f94f-4fbb-b8ee-a02dee4ce9b5"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i55e6b164-37f7-4bf6-bba7-6e1c10960e74">
+        <property isimportant="false" name="name">Link 27</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i0088f57d-0f69-4348-9732-ae57f43e8ad2"/>
+        <endpoint direction="bidirectional" id="i356e4675-dc91-4ed9-af26-60d945ea5d98"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="idd35bf0e-f57b-4429-9151-27ccf2b84bdd">
+        <property isimportant="false" name="name">Link 28</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i8814272f-f792-4b7f-926e-9560ba336548"/>
+        <endpoint direction="bidirectional" id="i4708d9aa-aa23-4b82-ab02-4629933de34e"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i66fe8755-6370-43d8-96cb-1990eef7d74f">
+        <property isimportant="false" name="name">Link 29</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="ifa20f463-6d5a-43c1-914d-57bebaf97d90"/>
+        <endpoint direction="bidirectional" id="ibe75e5d3-5f51-4325-8728-175bec5e0266"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="if026fb59-7c4f-42e3-aad4-70cfd3f3be4e">
+        <property isimportant="false" name="name">Link 30</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="ifb1189ad-090a-4bca-a501-6ede83b9c965"/>
+        <endpoint direction="bidirectional" id="i317b086b-a091-48c1-9894-ca45a49fdb5e"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="ifeebdec5-26ba-4dd2-a089-b43065aaf606">
+        <property isimportant="false" name="name">Link 31</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i88b97909-8be6-4d81-8fee-78141381b50d"/>
+        <endpoint direction="bidirectional" id="i5e23ebc6-7b5d-41b4-9dd3-e3fd00352a4b"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i13cc1ea1-790e-4b92-b642-cbdff9558c32">
+        <property isimportant="false" name="name">Link 32</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i6847bd88-90f7-40d2-8ce0-74c3429bd5f0"/>
+        <endpoint direction="bidirectional" id="i58ddfb14-8a0c-4ab5-976a-ba899417ea10"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i64911630-8c02-43a8-a4fd-06c7d070a973">
+        <property isimportant="false" name="name">Link 33</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="ib38e4c90-9e77-4695-9cc9-ae6c4f95d856"/>
+        <endpoint direction="bidirectional" id="ic51faa6f-fe3f-4b7e-9eba-c7ddc73fad4f"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="ib8e46376-2227-4ee8-99c1-4301ff453ac2">
+        <property isimportant="false" name="name">Link 34</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i326d2921-3e14-4a49-8da3-89d1e72ce08c"/>
+        <endpoint direction="bidirectional" id="i52dfddc8-7c0d-4a31-9321-05d3cf41bd67"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i35cc736a-8883-46d4-8c68-c237aea2a678">
+        <property isimportant="false" name="name">Link 35</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="id44d83bd-e661-44f6-b88f-8ece7e877bcb"/>
+        <endpoint direction="bidirectional" id="i9568d2e0-61b0-416f-8e16-d1a548dfe500"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i6f83e9db-4056-4e91-ac2f-0cecfe0aa197">
+        <property isimportant="false" name="name">Link 44</property>
+        <property isimportant="false" name="type">Ethernet</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">e247aa69-229c-25ca-2497-910f8dba49fd</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Eth</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i4d053802-ab4c-485b-ad0f-dbb7429bedf2"/>
+        <endpoint direction="bidirectional" id="ie74fcad7-4724-4447-827e-224f50df9141"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i2e3a869e-63d3-4261-8195-927554724dc6">
+        <property isimportant="false" name="name">Link 45</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i9b73fa4c-cdbb-4920-83c5-9035ed473f76"/>
+        <endpoint direction="bidirectional" id="i7ab29c06-8477-4c84-9b19-a3b6c50b3bd7"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i4d2a6cce-4c72-4f08-82fa-feaa49e1ae07">
+        <property isimportant="false" name="name">Link 46</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i125793e2-63fe-4371-b11e-878f16b9d364"/>
+        <endpoint direction="bidirectional" id="i7c301b1c-1b15-4809-b647-04e16e90ef72"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+      <link id="i5a201bb7-705b-4be3-9a11-7251b888e4ad">
+        <property isimportant="false" name="name">Link 47</property>
+        <property isimportant="false" name="type">General</property>
+        <property isimportant="false" name="abstractResourceId"/>
+        <property isimportant="false" name="abstractResourceName"/>
+        <propertyCollection name="connectionType" order="0">
+<property isimportant="false" name="id">3453962f-e9ab-3dbc-0cb9-3c7347f110ff</property>
+<property isimportant="false" name="description"/>
+<property isimportant="false" name="kind">L1</property>
+<property isimportant="false" name="shortcut">Gen</property>
+</propertyCollection>
+        <endpoint direction="bidirectional" id="i7ad6023d-dadc-4ce5-b8f4-fed1424831fb"/>
+        <endpoint direction="bidirectional" id="i66d729ac-70d9-4c54-9da0-03284b87a7c4"/>
+        <extensions type="com.fnfr.rm.condition"/>
+      </link>
+    </connectivity>
+  </body>
+  <illustration>
+    <layer/>
+  </illustration>
+</tbml>

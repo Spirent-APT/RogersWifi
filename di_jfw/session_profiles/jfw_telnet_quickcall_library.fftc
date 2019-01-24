@@ -5,7 +5,16 @@
         <language>Python</language>
     </general>
     <procedures>
-        <item name="main"/>
+        <item name="main">
+            <steps>
+                <item guid="a56de9aa-ae4b-4363-b7e7-fd1b7868ca2f" action="comment" useFieldsInCommand="false">
+                    <command>
+                        <body>main procedure</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
         <item name="GetAttenuation" isPublic="true" isVBlock="true">
             <description>Get Attenuation</description>
             <steps>

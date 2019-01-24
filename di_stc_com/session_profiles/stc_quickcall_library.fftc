@@ -2172,5 +2172,79 @@ ChannelBandWidth80Mhz</description>
                 </item>
             </arguments>
         </item>
+        <item name="setSMAattenuation" isPublic="true">
+            <steps>
+                <item guid="c5407f3c-01c4-4516-bff7-8274f72e2732" action="eval" useFieldsInCommand="false">
+                    <command>
+                        <body>set atten  [expr $attenLevel*4]</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="1eb3155b-00f4-4c7f-82f6-d2495bb9ade5" action="eval" session="$session">
+                    <command>
+                        <body>stc::get $wifiPort -Children-ieee80211phy</body>
+                    </command>
+                    <postProcessing>
+                        <analysisRules>
+                            <item>
+                                <extractorInfo extractorType="regex">
+                                    <extractorProperties type="com.fnfr.svt.mapping.regex.extractors.RegexExtractorPropertyGroup" useLineMode="true">
+                                        <regex>^Result=([^\\r\\n]+)$</regex>
+                                    </extractorProperties>
+                                </extractorInfo>
+                                <processorInfo ruleType="store">
+                                    <ruleProperties type="com.fnfr.svt.execution.builtin.processors.StoreProcessorPropertyGroup">
+                                        <storageLocation>iee80211phy_handle</storageLocation>
+                                        <responseValue type="com.fnfr.documents.PropertyBoolean">false</responseValue>
+                                        <variable type="com.fnfr.documents.PropertyBoolean">true</variable>
+                                    </ruleProperties>
+                                </processorInfo>
+                            </item>
+                        </analysisRules>
+                    </postProcessing>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+                <item guid="6c3f54a3-288f-4394-9e25-ea7fe5128215" action="eval" session="$session">
+                    <command>
+                        <body>stc::config $iee80211phy_handle -SmaAttenuator${smaPort} $atten</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+            <multilineDescription>This Procedure will the channel Attenuation, since it might be called multiple time for setting multiple attenaution on different SMA&apos;s, 
+stc::apply need to used by calling test case</multilineDescription>
+            <arguments>
+                <item name="smaPort">
+                    <description>smaPort 
+
+This is SMA port (Attenuator) on Wifi Port generally 
+
+1 2 3 4 --&gt;  For 2.4 GHz 
+5 6 7 8 --&gt;  For 5.0 GHz</description>
+                </item>
+                <item name="attenLevel">
+                    <description>Default Attenuation level.
+
+QC will multiply attenuation by 4 (to increment approx) so that correct attenuation level is mantained
+
+Min value: 0 db
+Max value: 60 db</description>
+                    <defaultValue>0</defaultValue>
+                </item>
+                <item name="wifiPort">
+                    <description>Wifi Port on which the SMA&apos;s are present</description>
+                </item>
+            </arguments>
+        </item>
+        <item name="stcApply" isPublic="true">
+            <steps>
+                <item guid="a2081692-46fe-4472-b39a-c6440c1360d2" action="eval" session="$session">
+                    <command>
+                        <body>stc::apply</body>
+                    </command>
+                    <applicationProperties type="com.fnfr.svt.documents.EmptyPropertyGroup"/>
+                </item>
+            </steps>
+        </item>
     </procedures>
 </testCase>
